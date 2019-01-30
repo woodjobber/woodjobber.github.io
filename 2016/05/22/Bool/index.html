@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>BOOL，你真的了解吗？ | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="BOOL对于我们来说，再熟悉不过了，但是，你真的会用BOOL吗？哈哈，没别的意思，只是想说明BOOL其实还有点坑。也许你拥有多年的开发经验，有可能在开发中会因BOOL导致错误。哈哈，有可能你现在在想，BOOL 不就是 真(1)与假(0)的区别嘛，会有什么坑呢？或者 你会想，我是不是在乱说呢？。不要着急，请听我细细说来。希望我下面的介绍会给你带来启示。
+
+BOOL &amp;amp; bool我们都知道 B">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BOOL，你真的了解吗？">
+<meta property="og:url" content="http://yoursite.com/2016/05/22/Bool/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="BOOL对于我们来说，再熟悉不过了，但是，你真的会用BOOL吗？哈哈，没别的意思，只是想说明BOOL其实还有点坑。也许你拥有多年的开发经验，有可能在开发中会因BOOL导致错误。哈哈，有可能你现在在想，BOOL 不就是 真(1)与假(0)的区别嘛，会有什么坑呢？或者 你会想，我是不是在乱说呢？。不要着急，请听我细细说来。希望我下面的介绍会给你带来启示。
+
+BOOL &amp;amp; bool我们都知道 B">
+<meta property="og:image" content="http://i.imgur.com/TUz7oc9.jpg">
+<meta property="og:updated_time" content="2016-05-28T16:30:19.463Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BOOL，你真的了解吗？">
+<meta name="twitter:description" content="BOOL对于我们来说，再熟悉不过了，但是，你真的会用BOOL吗？哈哈，没别的意思，只是想说明BOOL其实还有点坑。也许你拥有多年的开发经验，有可能在开发中会因BOOL导致错误。哈哈，有可能你现在在想，BOOL 不就是 真(1)与假(0)的区别嘛，会有什么坑呢？或者 你会想，我是不是在乱说呢？。不要着急，请听我细细说来。希望我下面的介绍会给你带来启示。
+
+BOOL &amp;amp; bool我们都知道 B">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Bool" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/22/Bool/" class="article-date">
+  <time datetime="2016-05-22T13:26:48.000Z" itemprop="datePublished">2016-05-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      BOOL，你真的了解吗？
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><code>BOOL</code>对于我们来说，再熟悉不过了，但是，你真的会用<code>BOOL</code>吗？哈哈，没别的意思，只是想说明<code>BOOL</code>其实还有点坑。也许你拥有多年的开发经验，有可能在开发中会因<code>BOOL</code>导致错误。哈哈，有可能你现在在想，<code>BOOL</code> 不就是 真<code>(1)</code>与假<code>(0)</code>的区别嘛，会有什么坑呢？或者 你会想，我是不是在乱说呢？。不要着急，请听我细细说来。希望我下面的介绍会给你带来启示。</p>
+<hr>
+<h1 id="BOOL__26amp_3B_bool"><a href="#BOOL__26amp_3B_bool" class="headerlink" title="BOOL &amp; bool"></a>BOOL &amp; bool</h1><p>我们都知道 <code>BOOL</code> 被定义在    <code>Objective-C</code>中（<strong>注意，在<code>64-bit</code> 的<code>iOS</code>设备或者模拟器上已经把<code>BOOL</code>定义成了<code>bool</code>,因此以下我们考虑其他平台，包括运行实例</strong>）。<code>bool</code>这种类型的布尔，出现在古老的<code>C</code>语言中。但是<code>BOOL</code>实际上是一种对带符号类型（<code>signed char</code>）的类型定义,它拥有 <code>8 bits</code>的存储空间。通过<code>#define</code>指令把YES定义为<code>1</code>，<code>NO</code>定义为<code>0</code>。<code>Objective-C</code>并不会将<code>BOOL</code>作为仅能保存<code>YES</code>或<code>NO</code>值的真正布尔类型来处理。编译器仍将<code>BOOL</code>看作为<code>8 bits</code>二进制数。<code>YES</code>和<code>NO</code>值只是在习惯上的一种理解,同时也是为了与<code>C</code>语言中的<code>false</code>和<code>true</code>区别与一致。<br>在<code>Objective-C</code>中是这样定义的：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="preprocessor">#<span class="keyword">if</span> (TARGET_OS_IPHONE &amp;&amp; __LP64__)  ||  TARGET_OS_WATCH</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> OBJC_BOOL_IS_BOOL <span class="number">1</span> </span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">bool</span> BOOL;<span class="comment">// 在64-bite下的iPhone，被定义成 bool</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">else</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> OBJC_BOOL_IS_CHAR <span class="number">1</span> </span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">signed</span> <span class="keyword">char</span> BOOL;<span class="comment">//定义 成 char类型</span></span><br><span class="line"><span class="comment">// BOOL is explicitly signed so @encode(BOOL) == "c" rather than "C"</span></span><br><span class="line"><span class="comment">// even if -funsigned-char is used.</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor">#<span class="keyword">if</span> __has_feature(objc_bool)</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> YES __objc_yes</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> NO  __objc_no</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">else</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> YES ((BOOL)<span class="number">1</span>)</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> NO  ((BOOL)<span class="number">0</span>)</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<p>而<code>bool</code>就两个值<code>0</code>和<code>非0</code>，其实是一种(<code>int</code>)整型，即<code>0</code>代表<code>false</code>,<code>非0</code>代表为<code>true</code>.简单的描述下应该是这样定义：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="id">#ifndef</span> FALSE</span><br><span class="line"><span class="hexcolor">#def</span>ine FALSE <span class="number">0</span></span><br><span class="line"><span class="id">#endif</span></span><br><span class="line"><span class="id">#ifndef</span> TRUE</span><br><span class="line"><span class="hexcolor">#def</span>ine TRUE <span class="number">1</span></span><br><span class="line">#endif</span><br></pre></td></tr></table></figure>
+<p>具体定义请谷歌一下。也许有人说<code>bool</code>应该是<code>0</code>和<code>1</code>.请不用纠结这个问题，这个问题源于<code>c</code>语言的版本问题。在<code>C</code>语言标准（<code>C98</code>）并没有定义布尔类型，所以判断真假以<code>0</code>为假，<code>非0</code>为真，而在<code>C99</code>中，解决了布尔类型的问题。<code>_Bool</code>(<code>bool</code>)变量只能赋值为<code>0</code>或<code>1</code>.非<code>0</code>的值都被存储为<code>1</code>.即<code>true</code>代表<code>1</code>，<code>false</code>代表<code>0</code>。请参考<code>C99</code>头文件<code>&lt;stdbool.h&gt;</code>对<code>bool</code>的定义。<br>因此<code>Objective-C</code>中的<code>BOOL</code>与<code>C</code>语言中<code>bool</code>是不同的。最大的区别就是两种定义的类型完全不同，一种使<code>char</code>，一种是<code>int</code>。<br>比如说我可以这样对<code>BOOL</code>、<code>bool</code>赋值</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">BOOL isValue1 = <span class="number">8960</span>;<span class="comment">//256</span></span><br><span class="line"><span class="keyword">bool</span> isValue2 = <span class="number">8960</span>;<span class="comment">//256</span></span><br><span class="line">   </span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"value1 = %d,value2 = %d\n"</span>,isValue1,isValue2);</span><br></pre></td></tr></table></figure>
+<p>你认为会得到怎样的结果呢？<br>输出结果是：<code>value1 = 0，value2 = 1</code>；<br>为什么会这样呢？请继续往下看…</p>
+<hr>
+<h1 id="BOOL_u2013_u4E0D_u8981_u4E0EYES_u4F5C_u6BD4_u8F83"><a href="#BOOL_u2013_u4E0D_u8981_u4E0EYES_u4F5C_u6BD4_u8F83" class="headerlink" title="BOOL–不要与YES作比较"></a>BOOL–不要与YES作比较</h1><p><code>YES</code>是<code>Objective-C</code>的真值，与值<code>1</code>相等。<code>BOOL</code>能够拥有从<code>-128</code>到<code>127</code>（包括零）任意一个零值，因此它代表了<code>255</code>种不同的真值。按照惯例，那些函数或者方法总是返回<code>YES</code>或者<code>NO</code>。但是，你不能依赖于它返回的是真值（<code>255</code>种值的任意一个），就说明与<code>YES</code>（它的值为<code>1</code>）就相等。因此与<code>YES(1)</code>想比较是一种不好的想法。像这样：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">if</span> ([obj1 <span class="attribute">has</span>:obj2] == YES) &#123;</span><br><span class="line"> <span class="comment">//code</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>因为没有编译器会执行一个变量或者一个值，总是保持<code>YES</code>或者<code>NO</code>。<br>也许，你还不是很明白，没关系，我再举一个例子说明，直接与<code>YES</code>比较是不合理的。</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="function">BOOL <span class="title">compareDifferent</span><span class="params">(<span class="keyword">int</span> value1,<span class="keyword">int</span> value2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> value1 - value2;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- (BOOL)<span class="string">compareDifferenValue:</span>(<span class="typename">int</span>)v1 <span class="string">value2:</span>(<span class="typename">int</span>)v2 &#123;</span><br><span class="line">   <span class="keyword">return</span> v1 - v2 ;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>然而，你像这样使用方法或者函数，</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">	</span><br><span class="line"><span class="keyword">if</span> (compareDifferent(<span class="number">25</span>,<span class="number">24</span>) == YES) &#123;</span><br><span class="line">     <span class="built_in">printf</span>(<span class="string">"不相等\n"</span>);</span><br><span class="line">   &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="built_in">printf</span>(“相等\n”);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (compareDifferent(<span class="number">24</span>,<span class="number">25</span>) == YES) &#123;</span><br><span class="line">     <span class="built_in">printf</span>(<span class="string">"不相等\n"</span>);</span><br><span class="line">   &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="built_in">printf</span>(“相等\n”);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (compareDifferent(<span class="number">15</span>,<span class="number">45</span>) == YES) &#123;</span><br><span class="line">     <span class="built_in">printf</span>(<span class="string">"不相等\n"</span>);</span><br><span class="line">   &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="built_in">printf</span>(“相等\n”);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (compareDifferent(<span class="number">512</span>,<span class="number">256</span>) == YES) &#123;</span><br><span class="line">     <span class="built_in">printf</span>(<span class="string">"不相等\n"</span>);</span><br><span class="line">   &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"相等\n"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上实例，你觉得会得到什么结果呢？会输出 “不相等”吗？。哈哈…，不好意思，编译器会给你开一个玩笑！，最终输出的结果会是这样的</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="undefined">不相等</span><br><span class="line">相等</span><br><span class="line">相等</span><br><span class="line">相等</span></span><br></pre></td></tr></table></figure>
+<p>实际上返回值应该是<code>1</code>，<code>-1</code>，<code>-30</code>,<code>0</code>。注意最后一个输出为什么是<code>0</code>。当然，与<code>NO</code>相比较，总是安全的，因为在<code>C</code>语言中只有<code>0</code>代表<code>false</code>，在<code>OC</code>也一样 <code>YES</code> 和 <code>NO</code>。</p>
+<p>我们来分析下，<code>512</code>与<code>256</code>相比较为什么是<code>相等</code>，即返回值是<code>0</code>。有这样一段代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">BOOL <span class="literal">true</span>OrFalse = (BOOL)<span class="number">256</span>;</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">"-&gt;%d\n"</span>,<span class="literal">true</span>OrFalse);</span><br></pre></td></tr></table></figure>
+<p>输出结果是<code>0</code>即<code>NO</code>。我们把<code>256</code>转化成二进制位<code>1 0000 0000</code>。根据<code>BOOL</code>，是一个占<code>8 bits</code>的<code>char</code>类型。因此编译器会剔除高位的数据，保留低<code>8</code>位的数据。在这个<code>1 0000 0000</code>中，保留<code>0000 0000</code>,再转化成<code>10</code>进制为<code>0</code>，<code>0</code>在<code>OC</code>中被定义为<code>NO</code>。而 <code>512 - 256</code> 等于 <code>256</code>。因此会输出<code>相等</code>。我们把上面的代码片段 修改成这样：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">bool</span> trueOrFalse = (<span class="keyword">bool</span>)<span class="number">256</span>;</span><br><span class="line"></span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">"-&gt;%d\n"</span>,trueOrFalse);</span><br></pre></td></tr></table></figure>
+<p>输出结果是<code>1</code>即<code>YES</code>。因为 <code>bool</code> 就两个值<code>0</code>和<code>1</code>。<br>再举一个例子。</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">NSString</span> *name = <span class="string">@"test"</span>;</span><br><span class="line">   </span><br><span class="line">   <span class="built_in">BOOL</span> haveName() &#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="built_in">BOOL</span>)name;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>这种 返回的 结果是不确定的，有可能是<code>YES</code>，也有可能是<code>NO</code>。假设<code>name</code>的指针是<code>0x010CA683</code>,将返回<code>YES</code>，如果<code>name</code>指针是<code>0x010BA600</code>，将返回<code>NO</code>。<br>原因也是<code>BOOL</code>类型只会保留<code>8 bits</code>    的数据。为真的时候保留<code>0x83</code>,为假的时候保留<code>0x00</code>。因此你可以这样做：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">if</span> (name) &#123;</span><br><span class="line"><span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">retrun <span class="literal">NO</span>;	 </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">retrun name !=<span class="literal">nil</span> ? <span class="literal">YES</span> : <span class="literal">NO</span>;</span><br></pre></td></tr></table></figure>
+<p>因此，不要这样写是非常有必要的，千万不要这样写：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// Never do this</span></span><br><span class="line"><span class="tag">if</span> (someValue == YES ) &#123;</span><br><span class="line"> <span class="comment">//code</span></span><br><span class="line">&#125;<span class="tag">else</span> &#123;</span><br><span class="line"> <span class="comment">//code</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//Never do this</span></span><br><span class="line"><span class="keyword">if</span> (someValue == <span class="literal">true</span> ) &#123;</span><br><span class="line"> <span class="comment">//code</span></span><br><span class="line">&#125;<span class="keyword">else</span> &#123;</span><br><span class="line"> <span class="comment">//code</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但可以这样写</p>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//代码规范不推荐这样写</span></span><br><span class="line"><span class="keyword">if</span> <span class="comment">(someValue == NO)</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//代码规范推荐这样写</span></span><br><span class="line"><span class="keyword">if</span> <span class="comment">(！someValue)</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p><code>!!注意：以上实例可以建立一个 MAC工程，运行，观测其输出结果。！！</code></p>
+<hr>
+<h1 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h1><p>非常感谢你能看完本文文章，所以在使用<code>YES</code>与其他相比较的时候特别的注意，这也是在代码规范中特别要避免的地方。如上面有什么错误，请联系我<code>woodjobber@outlook.com</code>。非常感谢！！！</p>
+<p>微信公众号：<code>嘀咕嘀咕（iOSSharers）</code></p>
+<p><strong>扫二维码关注</strong></p>
+<p><img src="http://i.imgur.com/TUz7oc9.jpg" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/05/22/Bool/" data-id="ciosbkfzy0000l4oazd3a6arw" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/05/23/code-style/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          良好代码风格是一种艺术 -- Objective-C
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/03/23/strategy/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">设计模式之策略模式</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/05/24/设计模式之命令模式/">设计模式之命令模式</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/23/code-style/">良好代码风格是一种艺术 -- Objective-C</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/22/Bool/">BOOL，你真的了解吗？</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/23/strategy/">设计模式之策略模式</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/23/isa/">Object-C的继承isa指针</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Woodjobber<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>
