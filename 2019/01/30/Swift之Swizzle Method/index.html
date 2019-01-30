@@ -13,6 +13,12 @@
     
 
     
+        <meta name="description" content="运行环境
+Xcode 10.1
+Swift 4.2
+
+背景知识Swift 是一种强类型语言。即默认类型是安全的静态类型。纯Swift类的函数调用已经不再是OC的运行时发送消息，而是类似于C++的vtable,在编译时就确定了调用哪个函数，所以没法通过runtime获取方法，属性。Swift中的动态性">
+    
 
     <!--Author-->
     
@@ -21,10 +27,16 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="Woodjobber">
+        <meta property="og:title" content="Swift之交换/替换方法">
     
 
     <!--Open Graph Description-->
+    
+        <meta property="og:description" content="运行环境
+Xcode 10.1
+Swift 4.2
+
+背景知识Swift 是一种强类型语言。即默认类型是安全的静态类型。纯Swift类的函数调用已经不再是OC的运行时发送消息，而是类似于C++的vtable,在编译时就确定了调用哪个函数，所以没法通过runtime获取方法，属性。Swift中的动态性">
     
 
     <!--Open Graph Site Name-->
@@ -32,7 +44,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="website">
+        <meta property="og:type" content="article">
     
 
     <!--Page Cover-->
@@ -51,7 +63,7 @@
 
     <!-- Title -->
     
-    <title>Archives: 2019 - Woodjobber</title>
+    <title>Swift之交换/替换方法 - Woodjobber</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
@@ -137,49 +149,72 @@
 </nav>
 
     <!-- Main Content -->
-    
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
 
-<!-- Page Header -->
-<!-- Set your background image for this header in the theme's configuration: index_cover -->
 <header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="site-heading">
-                    <h1>2019</h1>
+                <div class="post-heading">
+                    <h1>Swift之交换/替换方法</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2019-01-30
+                        
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+
+            <!-- Gallery -->
             
-                <div class="post-preview">
-    <a href="/2019/01/30/Swift之Swizzle Method/">
-        <h1 class="post-title archive">
-            Swift之交换/替换方法
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2019-01-30
-    </p>
-</div>
-            
-            <div class="archive-before-pagination"></div>
-            <ul class="pager">
-    
-    
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 id="运行环境"><a href="#运行环境" class="headerlink" title="运行环境"></a>运行环境</h2><ul>
+<li>Xcode 10.1</li>
+<li>Swift 4.2</li>
 </ul>
+<h2 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h2><p><code>Swift</code> 是一种强类型语言。即默认类型是安全的静态类型。纯Swift类的函数调用已经不再是OC的运行时发送消息，而是类似于C++的vtable,在编译时就确定了调用哪个函数，所以没法通过runtime获取方法，属性。Swift中的动态性可以通过OC运行时来获得，动态性最常用的就是方法替换(Method Swizzling)。</p>
+<h4 id="Swift中的动态修饰符"><a href="#Swift中的动态修饰符" class="headerlink" title="Swift中的动态修饰符"></a>Swift中的动态修饰符</h4><ul>
+<li><code>@objc</code>: 将`Swift 函数 暴露给 OC运行时，但是它仍然不能保证完全动态，编译器会尝试去对它做静态优化</li>
+<li><code>@dynamic</code>: 动态功能修饰符，它能保证函数，属性可以获得动态性</li>
+</ul>
+<!--注意：继承自`NSObject`的`Swift`类，其继承自父类的方法具有动态性，因为是`NSObject`中的方法,其他在`Swift`中自定义方法，属性需要加`@objc`与`@dynamic` 必须同时加上者两个修饰符获得动态性，否则要报错`"'dynamic' instance method 'caculator' must also be '@objc'"` 。若方法的参数，属性类型为`Swift`特有的，无法映射到OC的类型上(例如，`Character`,`Tuple`),不能添加`@dynamic`-->
+<h2 id="定义一个需要替换方法实现的类-不继承NSObject"><a href="#定义一个需要替换方法实现的类-不继承NSObject" class="headerlink" title="定义一个需要替换方法实现的类(不继承NSObject)"></a>定义一个需要替换方法实现的类(不继承NSObject)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class SayHello &#123;</span><br><span class="line">    @objc dynamic func sayHello(name: String) &#123;</span><br><span class="line">        print(&quot;Hello \(name)!&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="两种方案"><a href="#两种方案" class="headerlink" title="两种方案"></a>两种方案</h2><ul>
+<li>方案一：用Swift中的unsafeBitCast 实现</li>
+</ul>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
         </div>
     </div>
-</div>
-
+</article>
 
     <!-- Footer -->
     <hr>
