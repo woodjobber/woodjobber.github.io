@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>自动化归档的实现 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="利用Runtime实现自动化归档与解档的两种方法如果对运行时不太了解的可以简单的通过下面的项目初步了解，如果要系统学习请自行谷歌。首先我建立了两个类，分别用不同方法实现自动归档与解档，两种方法区别不是很大，都是利用runtime实现，只是在代码处理上有着不同的思路。一种使    AutoArchiver类，另一种是AutoArchiverHelper类,你可以任选一种导入到你的工程中。使用起来非">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自动化归档的实现">
+<meta property="og:url" content="http://yoursite.com/2016/02/04/autoarchive/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="利用Runtime实现自动化归档与解档的两种方法如果对运行时不太了解的可以简单的通过下面的项目初步了解，如果要系统学习请自行谷歌。首先我建立了两个类，分别用不同方法实现自动归档与解档，两种方法区别不是很大，都是利用runtime实现，只是在代码处理上有着不同的思路。一种使    AutoArchiver类，另一种是AutoArchiverHelper类,你可以任选一种导入到你的工程中。使用起来非">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://i.imgur.com/TUz7oc9.jpg">
+<meta property="og:updated_time" content="2016-03-28T01:18:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自动化归档的实现">
+<meta name="twitter:description" content="利用Runtime实现自动化归档与解档的两种方法如果对运行时不太了解的可以简单的通过下面的项目初步了解，如果要系统学习请自行谷歌。首先我建立了两个类，分别用不同方法实现自动归档与解档，两种方法区别不是很大，都是利用runtime实现，只是在代码处理上有着不同的思路。一种使    AutoArchiver类，另一种是AutoArchiverHelper类,你可以任选一种导入到你的工程中。使用起来非">
+<meta name="twitter:image" content="http://i.imgur.com/TUz7oc9.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-autoarchive" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/02/04/autoarchive/" class="article-date">
+  <time datetime="2016-02-04T15:34:59.000Z" itemprop="datePublished">2016-02-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      自动化归档的实现
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <a id="more"></a>
+<h2 id="利用Runtime实现自动化归档与解档的两种方法"><a href="#利用Runtime实现自动化归档与解档的两种方法" class="headerlink" title="利用Runtime实现自动化归档与解档的两种方法"></a>利用Runtime实现自动化归档与解档的两种方法</h2><p>如果对运行时不太了解的可以简单的通过下面的项目初步了解，如果要系统学习请自行谷歌。<br>首先我建立了两个类，分别用不同方法实现自动归档与解档，两种方法区别不是很大，都是利用<code>runtime</code>实现，只是在代码处理上有着不同的思路。一种使    <code>AutoArchiver</code>类，另一种是<code>AutoArchiverHelper</code>类,你可以任选一种导入到你的工程中。使用起来非常简单，只需要继承这两个类中的一个即可，子类不需要再遵循<code>NSCoding</code>协议,也不需要实现它的协议。</p>
+<p>一. 建立<code>Person</code>类</p>
+<p><code>Person.h</code>中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"> #import &quot;Person.h&quot;</span><br><span class="line"></span><br><span class="line"> @interface Person : AutoArchiverHelper&#123;</span><br><span class="line"></span><br><span class="line">         NSString *_name;</span><br><span class="line"></span><br><span class="line">         NSString *age;</span><br><span class="line"></span><br><span class="line">         NSString *sex;</span><br><span class="line"></span><br><span class="line">         NSString *_ID;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">         @property (nonatomic, strong)NSString *name;</span><br><span class="line"></span><br><span class="line">         @property (nonatomic, strong)NSString *age;</span><br><span class="line"></span><br><span class="line">         @property (nonatomic, strong)NSString *sex;</span><br><span class="line"></span><br><span class="line">         @property (nonatomic, strong)NSString *ID;</span><br><span class="line"></span><br><span class="line">         @end</span><br></pre></td></tr></table></figure>
+<p><code>Person.m</code>中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@implementation Person</span><br><span class="line"></span><br><span class="line">@synthesize name=_name,ID=_ID,age=age,sex=sex;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>二. 在其他类导入 <code>#import&quot;AutoArchiverHelper.h&quot;</code> 或者 <code>#import &quot;AutoArchiver.h&quot;</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">NSString *file2 = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject         stringByAppendingPathComponent:@&quot;person.data&quot;];</span><br><span class="line"></span><br><span class="line">        Person *person = [[Person alloc]init];</span><br><span class="line"></span><br><span class="line">        person.name = @&quot;jack&quot;;</span><br><span class="line"></span><br><span class="line">        person.age =@&quot;11&quot;;</span><br><span class="line"></span><br><span class="line">        person.ID =@&quot;510722199912121212&quot;;</span><br><span class="line"></span><br><span class="line">        person.sex = @&quot;man&quot;;</span><br><span class="line"></span><br><span class="line">        [NSKeyedArchiver archiveRootObject:person toFile:file2];</span><br><span class="line"></span><br><span class="line">        Person *jack =[NSKeyedUnarchiver unarchiveObjectWithFile:file2];</span><br><span class="line"></span><br><span class="line">        NSLog(@&quot;%@&quot;,jack.name);</span><br><span class="line"></span><br><span class="line">        NSLog(@&quot;%@&quot;,jack.age);</span><br><span class="line"></span><br><span class="line">        NSLog(@&quot;%@&quot;,jack.ID);</span><br><span class="line"></span><br><span class="line">        NSLog(@&quot;%@&quot;,jack.sex);</span><br><span class="line"></span><br><span class="line">        NSLog(@&quot;%@&quot;,jack);</span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>最后送上项目工程地址:<a href="https://github.com/woodjobber/AutoArchiverHelper" target="_blank" rel="noopener">https://github.com/woodjobber/AutoArchiverHelper</a></p>
+<p>Bugs反馈:  <a href="mailto:`woodjobber@outlook.com" target="_blank" rel="noopener">`woodjobber@outlook.com</a>`</p>
+<p>微信公众号：嘀咕嘀咕（iOSSharers）</p>
+<p><strong>扫二维码关注</strong></p>
+<p><img src="http://i.imgur.com/TUz7oc9.jpg" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/02/04/autoarchive/" data-id="cjrja9brv0002wy2hj9tpuulw" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/03/12/Regex-0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          学习正则表达式（一）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/02/04/coreHelper/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">2G,3G,4G,WIFI网络状态探测</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/05/24/设计模式之命令模式/">设计模式之命令模式</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/23/code-style/">良好代码风格是一种艺术 -- Objective-C</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/22/Bool/">BOOL，你真的了解吗？</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/23/strategy/">设计模式之策略模式</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/23/isa/">Object-C的继承isa指针</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
