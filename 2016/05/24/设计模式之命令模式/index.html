@@ -13,6 +13,16 @@
     
 
     
+        <meta name="description" content="命令模式定义命令模式将一个请求或者行为封装成一个对象。可以在对象之间被传递，存储，修改，撤销。
+命令模式使用场景
+需要实现撤销与恢复功能
+记录请求日志
+想实现一个对象参数化一个动作以执行操作，并且用不同的命令对象替换回调函数
+
+命令模式中的角色
+接收者：负责具体的功能实现
+命令协议：定义一些命令方法">
+    
 
     <!--Author-->
     
@@ -25,6 +35,16 @@
     
 
     <!--Open Graph Description-->
+    
+        <meta property="og:description" content="命令模式定义命令模式将一个请求或者行为封装成一个对象。可以在对象之间被传递，存储，修改，撤销。
+命令模式使用场景
+需要实现撤销与恢复功能
+记录请求日志
+想实现一个对象参数化一个动作以执行操作，并且用不同的命令对象替换回调函数
+
+命令模式中的角色
+接收者：负责具体的功能实现
+命令协议：定义一些命令方法">
     
 
     <!--Open Graph Site Name-->
@@ -173,7 +193,29 @@
 
             <!-- Post Main Content -->
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                
+                <h2 id="命令模式定义"><a href="#命令模式定义" class="headerlink" title="命令模式定义"></a>命令模式定义</h2><p>命令模式将一个请求或者行为封装成一个对象。可以在对象之间被传递，存储，修改，撤销。</p>
+<h2 id="命令模式使用场景"><a href="#命令模式使用场景" class="headerlink" title="命令模式使用场景"></a>命令模式使用场景</h2><ul>
+<li>需要实现撤销与恢复功能</li>
+<li>记录请求日志</li>
+<li>想实现一个对象参数化一个动作以执行操作，并且用不同的命令对象替换回调函数</li>
+</ul>
+<h2 id="命令模式中的角色"><a href="#命令模式中的角色" class="headerlink" title="命令模式中的角色"></a>命令模式中的角色</h2><ul>
+<li>接收者：负责具体的功能实现</li>
+<li>命令协议：定义一些命令方法</li>
+<li>命令对象：负责调用接收者的逻辑方法</li>
+<li>命令管理者：负责命令对象之间的调度</li>
+</ul>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>接收者</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Receiver</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> soundNum: <span class="type">Int</span> = <span class="number">10</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>命令协议</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">CommandProtocol</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">excuteCommand</span><span class="params">()</span></span> -&gt; <span class="type">Void</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">undoCommand</span><span class="params">()</span></span> -&gt; <span class="type">Void</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>命令对象</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SoundUpCommand</span>: <span class="title">CommandProtocol</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> receiver: <span class="type">Receiver?</span></span><br><span class="line">    <span class="keyword">init</span>(receiver: <span class="type">Receiver</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.receiver = receiver</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">excuteCommand</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.receiver?.soundNum += <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">undoCommand</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.receiver?.soundNum -= <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SoundDownCommand</span>: <span class="title">CommandProtocol</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> receiver: <span class="type">Receiver?</span></span><br><span class="line">    <span class="keyword">init</span>(receiver: <span class="type">Receiver</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.receiver = receiver</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">excuteCommand</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.receiver?.soundNum -= <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">undoCommand</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.receiver?.soundNum += <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>命令管理者</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CommandManager</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> commands: [(<span class="type">CommandProtocol</span>)] = []</span><br><span class="line">    <span class="keyword">var</span> comand: <span class="type">CommandProtocol?</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">setCommand</span><span class="params">(cmd: CommandProtocol)</span></span> -&gt; <span class="type">Void</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.comand = cmd</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">executeCmd</span><span class="params">()</span></span> -&gt; <span class="type">Void</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> cmd = <span class="keyword">self</span>.comand &#123;</span><br><span class="line">            cmd.excuteCommand()</span><br><span class="line">            <span class="keyword">self</span>.commands.append(cmd)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">updoCmd</span><span class="params">()</span></span> -&gt; <span class="type">Void</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> !<span class="keyword">self</span>.commands.isEmpty &#123;</span><br><span class="line">            <span class="keyword">let</span> cmd = <span class="keyword">self</span>.commands.last!</span><br><span class="line">            cmd.undoCommand()</span><br><span class="line">            <span class="keyword">self</span>.commands.removeLast()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>终端调用</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> receiver = <span class="type">Receiver</span>()</span><br><span class="line"><span class="keyword">let</span> upcmd = <span class="type">SoundUpCommand</span>(receiver: receiver)</span><br><span class="line"><span class="keyword">let</span> manager = <span class="type">CommandManager</span>()</span><br><span class="line">manager.setCommand(cmd: upcmd)</span><br><span class="line">manager.executeCmd()</span><br><span class="line"><span class="built_in">print</span>(receiver.soundNum)<span class="comment">//11</span></span><br><span class="line">manager.updoCmd()</span><br><span class="line"><span class="built_in">print</span>(receiver.soundNum)<span class="comment">//10</span></span><br></pre></td></tr></table></figure>
+
 
                 
             </div>
