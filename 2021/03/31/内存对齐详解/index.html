@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="内存对齐详解一、内存对齐的概念
+在计算机中内存空间都是按照byte划分的，从理论上讲似乎对任何类型的变量的访问可以从任何地址开始，但实际情况是在访问特定类型变量的时候经常在特定的内存地址访问，这就需要各种类型数据按照一定的规则在空间上排列，而不是顺序的一个接一个的排放，从结构体存储的首地址开始，每个"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Woodjobber"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="内存对齐详解"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="内存对齐详解一、内存对齐的概念
+在计算机中内存空间都是按照byte划分的，从理论上讲似乎对任何类型的变量的访问可以从任何地址开始，但实际情况是在访问特定类型变量的时候经常在特定的内存地址访问，这就需要各种类型数据按照一定的规则在空间上排列，而不是顺序的一个接一个的排放，从结构体存储的首地址开始，每个"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Woodjobber"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://yoursite.comhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="http://yoursite.comhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>内存对齐详解 - Woodjobber</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">啄木鸟</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woodjobber">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>内存对齐详解</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2021-03-31
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h1 id="内存对齐详解"><a href="#内存对齐详解" class="headerlink" title="内存对齐详解"></a>内存对齐详解</h1><p>一、内存对齐的概念</p>
+<p>在计算机中内存空间都是按照byte划分的，从理论上讲似乎对任何类型的变量的访问可以从任何地址开始，但实际情况是在访问特定类型变量的时候经常在特定的内存地址访问，这就需要各种类型数据按照一定的规则在空间上排列，而不是顺序的一个接一个的排放，从结构体存储的首地址开始，每个元素放置到内存中时，它都会认为内存是按照自己的大小来划分的，因此元素放置的位置一定会在自己宽度的整数倍上开始，这就是内存对齐。</p>
+<p>二、内存对齐的原因</p>
+<p>1、平台原因（移植原因）：不是所有的硬件平台都能访问地址上的任意数据的；某些硬件平台只能在某些地址处取某些类型的数据，否则抛出硬件异常。</p>
+<p>2、性能原因：数据结构（尤其是栈）应该尽可能地在边界上对齐。原因在于，访问未对齐的内存，处理器需要作两次内存访问，然后再合并两次访问的结果；而对齐的内存访问仅需要一次访问。</p>
+<p>三、对齐规则</p>
+<p>每个特定平台上的编译器都有自己的默认“对齐系数”（对齐模数）k。通常k = 1，2，4，6，8，16来改变这一系数。</p>
+<p>1.基本类型的对齐值就是<code>MemoryLayout&lt;T&gt;.size</code>或<code>sizeof</code>的大小；</p>
+<p>2.数据成员对齐规则：结构(struct)(或联合(union))的数据成员，第一个数据成员放在offset为0的地方，以后每个数据成员的对齐按照k指定的数值和这个数据成员自身长度中比较小的那个进行;</p>
+<p>3.结构整体对齐规则：再数据成员完成各自对齐之后，结构本身也要进行对齐，对齐将按照k指定的数值和结构最大数据成员长度中比较小的那个进行；</p>
+<p>总结：<strong>对齐原则是任何 K 字节的基本对象的地址必须是 K 的倍数</strong></p>
+<p>四、基本数据类型<code>MemoryLayout</code></p>
+<p>值类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MemoryLayout&lt;Int&gt;.size           &#x2F;&#x2F;8</span><br><span class="line">MemoryLayout&lt;Int&gt;.alignment      &#x2F;&#x2F;8</span><br><span class="line">MemoryLayout&lt;Int&gt;.stride         &#x2F;&#x2F;8</span><br></pre></td></tr></table></figure>
+<p>引用类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MemoryLayout&lt;T&gt;.size           &#x2F;&#x2F;8</span><br><span class="line">MemoryLayout&lt;T&gt;.alignment      &#x2F;&#x2F;8</span><br><span class="line">MemoryLayout&lt;T&gt;.stride         &#x2F;&#x2F;8</span><br></pre></td></tr></table></figure>
+<p>指针类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">MemoryLayout&lt;unsafeMutablePointer&lt;T&gt;&gt;.size           &#x2F;&#x2F;8</span><br><span class="line">MemoryLayout&lt;unsafeMutablePointer&lt;T&gt;&gt;.alignment      &#x2F;&#x2F;8</span><br><span class="line">MemoryLayout&lt;unsafeMutablePointer&lt;T&gt;&gt;.stride         &#x2F;&#x2F;8</span><br><span class="line"></span><br><span class="line">MemoryLayout&lt;unsafeMutableBufferPointer&lt;T&gt;&gt;.size           &#x2F;&#x2F;16</span><br><span class="line">MemoryLayout&lt;unsafeMutableBufferPointer&lt;T&gt;&gt;.alignment      &#x2F;&#x2F;16</span><br><span class="line">MemoryLayout&lt;unsafeMutableBufferPointer&lt;T&gt;&gt;.stride         &#x2F;&#x2F;16</span><br></pre></td></tr></table></figure>
+<p>还有可选类型，占一个字节。</p>
+<p>我们来看看，在Swift中，struct是值类型，一个没有引用类型的Struct临时变量都是在栈上存储的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">struct Test &#123;</span><br><span class="line">    var b: Double &#x3D; 0 </span><br><span class="line">    var a: Double &#x3D; 0    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(MemoryLayout&lt;Test&gt;.size) &#x2F;&#x2F; 16</span><br><span class="line">print(MemoryLayout&lt;Test&gt;.stride) &#x2F;&#x2F; 16</span><br><span class="line">print(MemoryLayout&lt;Test&gt;.alignment) &#x2F;&#x2F; 8</span><br></pre></td></tr></table></figure>
+<p>分析: a、b都是Double类型，字节为8字节。b从地址0开始，占用0到7号地址，a从8号开始占用8到15地址。所以size：16，stride：16，aglinment: 8。</p>
+<p>在看看这样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">struct Test &#123;</span><br><span class="line">    var b: Double? &#x3D; 0 </span><br><span class="line">    var a: Double &#x3D; 0    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(MemoryLayout&lt;Test&gt;.size) &#x2F;&#x2F; 24</span><br><span class="line">print(MemoryLayout&lt;Test&gt;.stride) &#x2F;&#x2F; 24</span><br><span class="line">print(MemoryLayout&lt;Test&gt;.alignment) &#x2F;&#x2F; 8</span><br></pre></td></tr></table></figure>
+<p>分析：b是Double类型，且是可选的，a是Double类型。b占9个字节，a占8个字节。根据内存对齐原则：b占0到7号，可选类型：8到15地址号。a占16到23号，总共24字节。可见，<code>Test</code>增加了8个字节。实际上，可选类型只增加一个类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(MemoryLayout&lt;Double&gt;.size) &#x2F;&#x2F; 8</span><br><span class="line">print(MemoryLayout&lt;Optional&lt;Double&gt;&gt;.size) &#x2F;&#x2F; 9</span><br></pre></td></tr></table></figure>
+<p>结论：Swift的可选类型是非常浪费内存空间的。</p>
+<p>再继续看，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">struct Test &#123;</span><br><span class="line">		var a: Double</span><br><span class="line">		var b: Bool</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(MemoryLayout&lt;Test&gt;.size) &#x2F;&#x2F; 9</span><br><span class="line">print(MemoryLayout&lt;Test&gt;.stride) &#x2F;&#x2F; 16</span><br><span class="line">print(MemoryLayout&lt;Test&gt;.alignment) &#x2F;&#x2F; 8</span><br></pre></td></tr></table></figure>
+<p>分析：a是Double类型，8个字节大小，占0到7地址号，b是bool类型，1个字节大小，占8地址号。总共大小：9字节大小</p>
+<p>然后，我们再看看，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">struct Test &#123;</span><br><span class="line">		var b: Bool</span><br><span class="line">		var a: Double</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(MemoryLayout&lt;Test&gt;.size) &#x2F;&#x2F; 16</span><br><span class="line">print(MemoryLayout&lt;Test&gt;.stride) &#x2F;&#x2F; 16</span><br><span class="line">print(MemoryLayout&lt;Test&gt;.alignment) &#x2F;&#x2F; 8</span><br></pre></td></tr></table></figure>
+<p>分析：b是bool类型，1个字节大小，占0到7地址号，a是Double类型，8字节大小，占8到15地址号。所以Test大小：16字节。</p>
+<p>结论：内存大小与成员位置顺序有关。</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/woodjobber" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2021 Woodjobber<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
