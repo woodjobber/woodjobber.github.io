@@ -2,11 +2,11 @@
 <html lang="en">
 
 <!-- Head tag -->
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
     <!--Description-->
 
@@ -21,17 +21,17 @@
 在Reachability中，增加一些新的API.
 
 
-如何使用遵守协议 CoreHelperProtocol，实现- (void)coreHelperNetworkChangedNotificati">
+如何使用遵守协议 CoreHelperProtocol，实现- (void)coreHelperNetworkChangedNotificati"/>
     
 
     <!--Author-->
     
-        <meta name="author" content="Woodjobber">
+        <meta name="author" content="Woodjobber"/>
     
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="2G,3G,4G,WIFI网络状态探测">
+        <meta property="og:title" content="2G,3G,4G,WIFI网络状态探测"/>
     
 
     <!--Open Graph Description-->
@@ -44,29 +44,29 @@
 在Reachability中，增加一些新的API.
 
 
-如何使用遵守协议 CoreHelperProtocol，实现- (void)coreHelperNetworkChangedNotificati">
+如何使用遵守协议 CoreHelperProtocol，实现- (void)coreHelperNetworkChangedNotificati"/>
     
 
     <!--Open Graph Site Name-->
-        <meta property="og:site_name" content="Woodjobber">
+        <meta property="og:site_name" content="Woodjobber"/>
 
     <!--Type page-->
     
-        <meta property="og:type" content="article">
+        <meta property="og:type" content="article"/>
     
 
     <!--Page Cover-->
     
     
-        <meta property="og:image" content="http://yoursite.comhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg">
+        <meta property="og:image" content="http://yoursite.comhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg"/>
     
 
-        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:card" content="summary_large_image"/>
 
     
 
     
-        <meta name="twitter:image" content="http://yoursite.comhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg">
+        <meta name="twitter:image" content="http://yoursite.comhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg"/>
     
 
     <!-- Title -->
@@ -74,15 +74,17 @@
     <title>2G,3G,4G,WIFI网络状态探测 - Woodjobber</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/style.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
 
     <!-- Custom Fonts -->
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -92,7 +94,7 @@
     <![endif]-->
 
     <!-- Gallery -->
-    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet"/>
 
     <!-- Google Analytics -->
     
@@ -101,7 +103,7 @@
     <!-- favicon -->
     
 
-</head>
+<meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <body>
@@ -142,7 +144,7 @@
                     </li>
                 
                     <li>
-                        <a href="https://github.com/woodjobber">
+                        <a target="_blank" rel="noopener" href="https://github.com/woodjobber">
                             
                                 <i class="fa fa-github fa-stack-2x"></i>
                             
@@ -201,11 +203,10 @@
 <li><p>在Reachability中，增加一些新的API.</p>
 </li>
 </ul>
-<h2 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h2><p>遵守协议 <code>CoreHelperProtocol</code>，实现<code>- (void)coreHelperNetworkChangedNotification:(NSNotification *)noti</code>方法;这是一个可选的，还可以用<code>block</code>回调监听网络状态改变，像这样使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">  [CoreHelper sharedInstance].thisReachbility.reachableBlock = ^(Reachability *reach)&#123;</span><br><span class="line">    NSLog(@&quot;%@&quot;,reach);</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">[CoreHelper sharedInstance].thisReachbility.unreachableBlock = ^(Reachability *reachability)&#123;</span><br><span class="line">    NSLog(@&quot;%@&quot;,reachability);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">[CoreHelper sharedInstance].thisReachbility.reachabilityBlock = ^(Reachability *reachability,SCNetworkConnectionFlags         flags)&#123;</span><br><span class="line">    NSLog(@&quot;%@,%d&quot;,reachability,flags);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p>  3.开始监听网络状态 <code>[CoreHelper startDetectNetwork:self];</code></p>
+<h2 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h2><p>遵守协议 <code>CoreHelperProtocol</code>，实现<code>- (void)coreHelperNetworkChangedNotification:(NSNotification *)noti</code>方法;这是一个可选的，还可以用<code>block</code>回调监听网络状态改变，像这样使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">  [CoreHelper sharedInstance].thisReachbility.reachableBlock &#x3D; ^(Reachability *reach)&#123;</span><br><span class="line">    NSLog(@&quot;%@&quot;,reach);</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">[CoreHelper sharedInstance].thisReachbility.unreachableBlock &#x3D; ^(Reachability *reachability)&#123;</span><br><span class="line">    NSLog(@&quot;%@&quot;,reachability);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">[CoreHelper sharedInstance].thisReachbility.reachabilityBlock &#x3D; ^(Reachability *reachability,SCNetworkConnectionFlags         flags)&#123;</span><br><span class="line">    NSLog(@&quot;%@,%d&quot;,reachability,flags);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure><br>  3.开始监听网络状态 <code>[CoreHelper startDetectNetwork:self];</code></p>
 <p>  4.获取当前网络状态 <code>[CoreHelper currentCoreHelperNetworkStrStatus];</code></p>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>在github上 <a href="https://github.com/woodjobber/CoreHelper" target="_blank" rel="noopener">https://github.com/woodjobber/CoreHelper</a></p>
-<p>Bugs反馈: <a href="mailto:`woodjobber@outlook.com" target="_blank" rel="noopener">`woodjobber@outlook.com</a>`</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>在github上 <a target="_blank" rel="noopener" href="https://github.com/woodjobber/CoreHelper">https://github.com/woodjobber/CoreHelper</a></p>
+<p>Bugs反馈: <a href="mailto:`woodjobber@outlook.com">`woodjobber@outlook.com</a>`</p>
 <p>微信公众号：·<code>嘀咕嘀咕（iOSSharers）</code></p>
 <p><strong>扫二维码关注</strong></p>
 <p><img src="http://i.imgur.com/TUz7oc9.jpg" alt=""></p>
@@ -227,7 +228,7 @@
 </article>
 
     <!-- Footer -->
-    <hr>
+    <hr />
 
 <!-- Footer -->
 <footer>
@@ -256,7 +257,7 @@
 
                     
                 </ul>
-                <p class="copyright text-muted">&copy; 2019 Woodjobber<br></p>
+                <p class="copyright text-muted">&copy; 2021 Woodjobber<br></p>
                 <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
                 <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
             </div>

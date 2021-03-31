@@ -13,14 +13,8 @@
     
 
     
-        <meta name="description" content="第三章 边界本章的重点是断言，用来标记边界，但不消耗字符。也就是说，字符并不会返回到结果中。断言也被称作零宽度断言。零宽度断言不匹配字符，而是匹配字符串中的位置。本章主要学习几种：
-
-行或字符串的起始与结束位置；
-单词边界；
-主题词的起始与结束位置；
-引用字符串字面值的边界；
-
-我们使用另一个工具R"/>
+        <meta name="description" content="CSS的相对定位与绝对定位的区别通常情况下，position属性默认是static，在正常的文档流中，静态定位的元素不受left,bottom,right,top属性的影响。
+position属性位置值：static、relative、fixed、absolute、sticky。必须先给元素指定定位"/>
     
 
     <!--Author-->
@@ -30,19 +24,13 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="学习正则表达式 （三）"/>
+        <meta property="og:title" content="CSS的相对定位与绝对定位的区"/>
     
 
     <!--Open Graph Description-->
     
-        <meta property="og:description" content="第三章 边界本章的重点是断言，用来标记边界，但不消耗字符。也就是说，字符并不会返回到结果中。断言也被称作零宽度断言。零宽度断言不匹配字符，而是匹配字符串中的位置。本章主要学习几种：
-
-行或字符串的起始与结束位置；
-单词边界；
-主题词的起始与结束位置；
-引用字符串字面值的边界；
-
-我们使用另一个工具R"/>
+        <meta property="og:description" content="CSS的相对定位与绝对定位的区别通常情况下，position属性默认是static，在正常的文档流中，静态定位的元素不受left,bottom,right,top属性的影响。
+position属性位置值：static、relative、fixed、absolute、sticky。必须先给元素指定定位"/>
     
 
     <!--Open Graph Site Name-->
@@ -69,7 +57,7 @@
 
     <!-- Title -->
     
-    <title>学习正则表达式 （三） - Woodjobber</title>
+    <title>CSS的相对定位与绝对定位的区 - Woodjobber</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
@@ -165,13 +153,13 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
-                    <h1>学习正则表达式 （三）</h1>
+                    <h1>CSS的相对定位与绝对定位的区</h1>
                     
                     <span class="meta">
                         <!-- Date and Author -->
                         
                         
-                            2016-03-13
+                            2021-03-31
                         
                     </span>
                 </div>
@@ -193,17 +181,30 @@
 
             <!-- Post Main Content -->
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <h1 id="第三章-边界"><a href="#第三章-边界" class="headerlink" title="第三章 边界"></a>第三章 边界</h1><p>本章的重点是断言，用来标记边界，但不消耗字符。也就是说，字符并不会返回到结果中。断言也被称作零宽度断言。零宽度断言不匹配字符，而是匹配字符串中的位置。<br>本章主要学习几种：</p>
-<ul>
-<li>行或字符串的起始与结束位置；</li>
-<li>单词边界；</li>
-<li>主题词的起始与结束位置；</li>
-<li>引用字符串字面值的边界；</li>
-</ul>
-<p>我们使用另一个工具<a target="_blank" rel="noopener" href="http://gskinner.com/regexr" title="RegExr">RegExr</a>。</p>
-<h2 id="3-1-行的起始与结束"><a href="#3-1-行的起始与结束" class="headerlink" title="3.1 行的起始与结束"></a>3.1 行的起始与结束</h2><h2 id="3-2-单词边界与非单词边界"><a href="#3-2-单词边界与非单词边界" class="headerlink" title="3.2 单词边界与非单词边界"></a>3.2 单词边界与非单词边界</h2><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>微信公众号：嘀咕嘀咕（iOSSharers）</p>
-<p>扫二维码关注</p>
-<p><img src="http://i.imgur.com/TUz7oc9.jpg" alt=""></p>
+                <h1 id="CSS的相对定位与绝对定位的区别"><a href="#CSS的相对定位与绝对定位的区别" class="headerlink" title="CSS的相对定位与绝对定位的区别"></a><code>CSS</code>的相对定位与绝对定位的区别</h1><p>通常情况下，<code>position</code>属性默认是<code>static</code>，在正常的文档流中，静态定位的元素不受<code>left</code>,<code>bottom</code>,<code>right</code>,<code>top</code>属性的影响。</p>
+<p><code>position</code>属性位置值：<code>static</code>、<code>relative</code>、<code>fixed</code>、<code>absolute</code>、<code>sticky</code>。必须先给元素指定定位类型，才能使用<code>left</code>,<code>bottom</code>,<code>right</code>,<code>top</code>，否则无效。</p>
+<p>在这5个位置值中，最难理解的是<code>relative</code>与<code>absolute</code>了。现在我们来看看他们之间的布局方式。</p>
+<p>对于<code>relative</code>：</p>
+<p>我们看看正常流文档的布局方式：</p>
+<p><img src="https://gitee.com/woodjobbeer/pics/raw/master/image-20210330113419634.png" alt="image-20210330113419634" style="zoom:25%;" /></p>
+<p><img src="https://gitee.com/woodjobbeer/pics/raw/master/image-20210330113443904.png" alt="image-20210330113443904" style="zoom:25%;" /></p>
+<p>然后我们对<code>position</code>设置<code>relative,left:50px</code></p>
+<p><img src="https://gitee.com/woodjobbeer/pics/raw/master/image-20210330115239226.png" alt="image-20210330115239226" style="zoom:25%;" /></p>
+<p><img src="https://gitee.com/woodjobbeer/pics/raw/master/image-20210330114040518.png" alt="image-20210330114040518" style="zoom:25%;" /></p>
+<p>这时我们发现第二个块针对它本身位置的起始点进行了一个偏移，但是它原来所占据的那个位置空间依然还在，即使我们把偏移量设置得再大一点，使它完全离开原来的位置，它原来位于文档流中的位置仍然会存在，不会被第三个块浮动过来填补掉。</p>
+<p>同时，它的偏移也不会把别的块从文档流中原来的位置挤开，如果有重叠的地方它会重叠在其它文档流元素之上，而不是把它们挤开，就像图中那样，它已经覆盖在了第三个块之上。</p>
+<p><strong>结论：<code>position:relative</code>,它的位置是相对于它正常的位置。设置相对放置的元素的<code>top</code>，<code>right</code>，<code>bottom</code>和<code>left</code>属性将导致其偏离正常位置进行调整，其他内容将不进行调整以适合元素留下的任何间隙。</strong></p>
+<p>再来看看<code>absolute</code>：</p>
+<p><img src="https://gitee.com/woodjobbeer/pics/raw/master/image-20210330115423362.png" alt="image-20210330115423362" style="zoom:25%;" /></p>
+<p><img src="https://gitee.com/woodjobbeer/pics/raw/master/image-20210330115448143.png" alt="image-20210330115448143" style="zoom:25%;" /></p>
+<p>被设置了绝对定位的元素，在文档流中是不占据空间的，如果某元素设置了绝对定位，那么它在文档流中的位置会被删除，那这个元素到哪去了呢？它浮了起来，其实设置了相对定位<code>relative</code>时也会让该 元素浮起来，但它们的不同点在于，相对对定位不会删除它本身在文档流中占据的那块空间，而绝对定位则会删除掉该元素在文档流中的位置，完全从文档流中抽了出来，我们可以通过<code>z-index</code>来设置它们的堆叠顺序 。</p>
+<p>那么绝对定位是如何定位的呢？首先，如果它的父元素设置了除<code>static</code>之外的<em>定位</em>，比如<code>position:relative</code>,或者<code>position:absolute</code>以及<code>position:fixed</code>，那么它就会相对于它的父元素来定位，位置通过<code>left</code> , <code>top</code> ,<code>right</code> ,<code>bottom</code>属性来规定，如果它的父元素没有设置定位，那么就得看它父元素的父元素是否有设置定位 ，如果还是没有就继续向更高层的祖先元素类推，总之它的定位就是相对于设置了除<code>static</code>定位之外的定位（比如<code>position:relative</code>）的第一个祖先元素，如果所有的祖先元素都没有以上三种定位中的其中一种定位，那么它就会相对于文档<code>body</code>来定位（并非窗口,相对于窗口定位的是<code>fixed</code>）。</p>
+<p><strong>结论：元素<code>position: absolute;</code>的位置相对于最近的祖先位置（而不是相对于视口的位置，如固定位置）。</strong></p>
+<p><strong>然而; 如果绝对定位的元素没有祖先，它将使用文档正文，并随页面滚动一起移动。</strong></p>
+<p><strong>注意：</strong> “定位”元素是位置除以外的任何元素 <code>static</code>。</p>
+<p>文字太多，看下面图：</p>
+<p><img src="https://gitee.com/woodjobbeer/pics/raw/master/image-20210330123333351.png" alt="image-20210330123333351" style="zoom:50%;" /></p>
+<p><strong>结论：元素<code>position: absolute;</code>的位置相对于最近的祖先位置，且祖先的元素一定要设置<code>position</code>不为static的值才能作为参照物，进行<code>left</code>,<code>top</code>,<code>right</code>,<code>bottom</code>调整。</strong></p>
 
 
                 
