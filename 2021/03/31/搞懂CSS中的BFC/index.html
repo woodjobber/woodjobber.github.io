@@ -188,11 +188,11 @@
 <p><strong>块格式化上下文（Block Fromatting Context,BFC）</strong>是Web页面的可视化CSS渲染的一部分，是块盒子的布局过程发生的区域，也是浮动元素与其他元素交互的区域。</p>
 <p>有点难懂，官方语言格式化一下：BFC是块级格式化上下文，它是Web页面中的一块渲染区域，它这个区域有着自己的渲染规则，它的规则决定布局对齐内容，以及与其他元素的关系。BFC提供一个独立的环境，HTML元素在这个区域内按照BFC的规则进行布局。简单说：<strong>BFC是一块独立的布局环境，内部的元素只影响内部元素，不会受外部元素影响。</strong></p>
 <h2 id="二、BFC的布局规则"><a href="#二、BFC的布局规则" class="headerlink" title="二、BFC的布局规则"></a>二、BFC的布局规则</h2><ul>
-<li>BFC的高度，浮动子元素也要参与计算。如果不参与计算，怎么能伸开它的父元素的高度呢</li>
-<li>BFC是一块独立的容器，容器中的子元素不会影响到外部的元素，外部的元素也不会影响容器的元素</li>
-<li>在同一个BFC中，float box模型之间不会发生重叠</li>
-<li>在同一个BFC中，两个相邻的Box的margin会发生重叠</li>
-<li>BFC内部的box是垂直方向上布局的</li>
+<li>BFC的高度，浮动子元素也要参与计算。如果不参与计算，怎么能伸开它的父元素的高度呢；</li>
+<li>BFC是一块独立的容器，容器中的子元素不会影响到外部的元素，外部的元素也不会影响容器的元素；</li>
+<li>在同一个BFC中，float box模型之间不会发生重叠；</li>
+<li>在同一个BFC中，两个相邻的Box的margin会发生重叠；</li>
+<li>BFC内部的box是垂直方向上布局的。</li>
 </ul>
 <h2 id="三、BFC创建"><a href="#三、BFC创建" class="headerlink" title="三、BFC创建"></a>三、BFC创建</h2><table>
 <thead>
