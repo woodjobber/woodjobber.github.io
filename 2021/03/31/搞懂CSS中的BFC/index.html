@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="搞懂CSS中的BFCBFC在CSS中是非常重要的，对于元素的布局有着重要的影响，涉及到了诸多问题，例如，float，position等。因此了解它是必要的。
+一、BFC是什么对于MDN（官方）定义：
+块格式化上下文（Block Fromatting Context,BFC）是Web页面的可视化CSS"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Woodjobber"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="搞懂CSS中的BFC"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="搞懂CSS中的BFCBFC在CSS中是非常重要的，对于元素的布局有着重要的影响，涉及到了诸多问题，例如，float，position等。因此了解它是必要的。
+一、BFC是什么对于MDN（官方）定义：
+块格式化上下文（Block Fromatting Context,BFC）是Web页面的可视化CSS"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Woodjobber"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://yoursite.comhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="http://yoursite.comhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>搞懂CSS中的BFC - Woodjobber</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">啄木鸟</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woodjobber">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>搞懂CSS中的BFC</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2021-03-31
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h1 id="搞懂CSS中的BFC"><a href="#搞懂CSS中的BFC" class="headerlink" title="搞懂CSS中的BFC"></a>搞懂CSS中的BFC</h1><p>BFC在CSS中是非常重要的，对于元素的布局有着重要的影响，涉及到了诸多问题，例如，float，position等。因此了解它是必要的。</p>
+<h2 id="一、BFC是什么"><a href="#一、BFC是什么" class="headerlink" title="一、BFC是什么"></a>一、BFC是什么</h2><p>对于MDN（<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context">官方</a>）定义：</p>
+<p><strong>块格式化上下文（Block Fromatting Context,BFC）</strong>是Web页面的可视化CSS渲染的一部分，是块盒子的布局过程发生的区域，也是浮动元素与其他元素交互的区域。</p>
+<p>有点难懂，官方语言格式化一下：BFC是块级格式化上下文，它是Web页面中的一块渲染区域，它这个区域有着自己的渲染规则，它的规则决定布局对齐内容，以及与其他元素的关系。BFC提供一个独立的环境，HTML元素在这个区域内按照BFC的规则进行布局。简单说：<strong>BFC是一块独立的布局环境，内部的元素只影响内部元素，不会受外部元素影响。</strong></p>
+<h2 id="二、BFC的布局规则"><a href="#二、BFC的布局规则" class="headerlink" title="二、BFC的布局规则"></a>二、BFC的布局规则</h2><ul>
+<li>BFC的高度，浮动子元素也要参与计算。如果不参与计算，怎么能伸开它的父元素的高度呢；</li>
+<li>BFC是一块独立的容器，容器中的子元素不会影响到外部的元素，外部的元素也不会影响容器的元素；</li>
+<li>在同一个BFC中，float box模型之间不会发生重叠；</li>
+<li>在同一个BFC中，两个相邻的Box的margin会发生重叠；</li>
+<li>BFC内部的box是垂直方向上布局的。</li>
+</ul>
+<h2 id="三、BFC创建"><a href="#三、BFC创建" class="headerlink" title="三、BFC创建"></a>三、BFC创建</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">元素</th>
+<th style="text-align:center">属性值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">overflow</td>
+<td style="text-align:center">除visible以外的值，hidden、auto、scroll</td>
+</tr>
+<tr>
+<td style="text-align:center">根元素</td>
+<td style="text-align:center"><html></td>
+</tr>
+<tr>
+<td style="text-align:center">float</td>
+<td style="text-align:center">right 、left</td>
+</tr>
+<tr>
+<td style="text-align:center">postion</td>
+<td style="text-align:center">absoulte、 fixed</td>
+</tr>
+<tr>
+<td style="text-align:center">display</td>
+<td style="text-align:center">inline-block、table-cell、flex、table、table-x、flow-root、grid、inline-grid</td>
+</tr>
+<tr>
+<td style="text-align:center"><del>contain</del></td>
+<td style="text-align:center">Layout、content、paint</td>
+</tr>
+<tr>
+<td style="text-align:center"><del>column-span</del></td>
+<td style="text-align:center">all</td>
+</tr>
+<tr>
+<td style="text-align:center"><del>colum-count\column-width</del></td>
+<td style="text-align:center">非auto、以及column-count:1</td>
+</tr>
+</tbody>
+</table>
+<p>元素满足以上任一个条件可创建BFC。其中删除线是非常用的。table-x：指table-row、table-row-group、table-header-group、table-footer-group。</p>
+<p>四、BFC特性应用</p>
+<p>下面代码运行环境，请使用<a target="_blank" rel="noopener" href="https://www.w3schools.com/code/tryit.asp?filename=GP1SO7TKX96N">Tryit Editor</a></p>
+<p>1.同一个BFC相邻两个元素外边距重叠</p>
+<p><img src="https://gitee.com/woodjobbeer/pics/raw/master/image-20210329150856297.png" alt="image-20210329150856297" style="zoom:25%;" /></p>
+<p><img src="https://gitee.com/woodjobbeer/pics/raw/master/image-20210329151019174.png" alt="image-20210329151019174" style="zoom:25%;" /></p>
+<p>从效果上看，<div>元素都处于同一个BFC容器下(<html>)，所以第一个<div>下边距与第二个<div>上边距发什么了重叠，两个盒子的之间的距离只有100px。</p>
+<p>如果要避免外边距的重叠，可以把<div>元素放在不同的BFC容器中.</p>
+<p><img src="https://gitee.com/woodjobbeer/pics/raw/master/image-20210329153053937.png" alt="image-20210329153053937" style="zoom:25%;" /></p>
+<p><img src="https://gitee.com/woodjobbeer/pics/raw/master/image-20210329153112215.png" alt="image-20210329153112215" style="zoom:25%;" /></p>
+<p>这样两个盒子之间的边距为200px。</p>
+<p>2.BFC阻止父元素高度坍塌</p>
+<p>先看看普通流布局</p>
+<p><img src="/Users/chengbin/Library/Application Support/typora-user-images/image-20210329165615982.png" alt="image-20210329165615982" style="zoom:25%;" /></p>
+<p><img src="https://gitee.com/woodjobbeer/pics/raw/master/image-20210329165732558.png" alt="image-20210329165732558" style="zoom:25%;" /></p>
+<p>再看看触发BFC</p>
+<p><img src="https://gitee.com/woodjobbeer/pics/raw/master/image-20210329181006335.png" alt="image-20210329181006335" style="zoom:25%;" /></p>
+<p><img src="https://gitee.com/woodjobbeer/pics/raw/master/image-20210329181026349.png" alt="image-20210329181026349" style="zoom:25%;" /></p>
+<p>我们可以看到，父元素红色容器已经被撑开了。</p>
+<p>3.BFC阻止元素被浮动元素遮挡</p>
+<p>没有触发BFC情况下</p>
+<p><img src="https://gitee.com/woodjobbeer/pics/raw/master/image-20210329182305914.png" alt="image-20210329182305914" style="zoom:25%;" /></p>
+<p><img src="https://gitee.com/woodjobbeer/pics/raw/master/image-20210329182332746.png" alt="image-20210329182332746" style="zoom:25%;" /></p>
+<p>触发BFC情况下</p>
+<p><img src="https://gitee.com/woodjobbeer/pics/raw/master/image-20210330094751586.png" alt="image-20210330094751586" style="zoom:25%;" /></p>
+<p><img src="https://gitee.com/woodjobbeer/pics/raw/master/image-20210329182448582.png" alt="image-20210329182448582" style="zoom:25%;" /></p>
+<p>两个<div>元素都开启了BFC，会使元素横向排列。这个可以做自适应宽度布局：左边宽度固定，右边的内容自适应宽度。</p>
+<p>父元素自适应子元素高度布局：</p>
+<p><img src="https://gitee.com/woodjobbeer/pics/raw/master/image-20210330103913778.png" alt="image-20210330103913778" style="zoom:25%;" /></p>
+<p><img src="https://gitee.com/woodjobbeer/pics/raw/master/image-20210330103937968.png" alt="image-20210330103937968" style="zoom:25%;" /></p>
+<p>父元素一个BFC，子元素是float同时触发BFC。子元素的宽度是固定的，子元素高度自适应内容。父元素自适应子元素的高度。</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/woodjobber" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2021 Woodjobber<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="isa指针isa指针的作用就是追溯谁是谁的谁的关系，假设有一个人叫小明，小明是谁的儿子，是谁的孙子。isa指针就是建立一种继承关系。那么isa指针指向该实例对象的类对象。针对于一个对象本身来说，它并不知道如何去应答一个方法，它本身既不包含方法的实现，也不包含有方法的指针。而是间接的通过继承来的isa"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Woodjobber"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Object-C的继承isa指针"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="isa指针isa指针的作用就是追溯谁是谁的谁的关系，假设有一个人叫小明，小明是谁的儿子，是谁的孙子。isa指针就是建立一种继承关系。那么isa指针指向该实例对象的类对象。针对于一个对象本身来说，它并不知道如何去应答一个方法，它本身既不包含方法的实现，也不包含有方法的指针。而是间接的通过继承来的isa"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Woodjobber"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://yoursite.comhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="http://yoursite.comhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>Object-C的继承isa指针 - Woodjobber</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">啄木鸟</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woodjobber">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Object-C的继承isa指针</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2016-03-23
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h1 id="isa指针"><a href="#isa指针" class="headerlink" title="isa指针"></a><code>isa</code>指针</h1><p><code>isa</code>指针的作用就是追溯谁是谁的谁的关系，假设有一个人叫小明，小明是谁的儿子，是谁的孙子。<code>isa</code>指针就是建立一种继承关系。那么<code>isa</code>指针指向该实例对象的类对象。针对于一个对象本身来说，它并不知道如何去应答一个方法，它本身既不包含方法的实现，也不包含有方法的指针。而是间接的通过继承来的<code>isa</code>转到自己的类，才能知道某一个方法。<br>在<code>Object-C</code>中，任何类的定义都是对象，类与类的对象（实例）并没有本质的区别，也就是类也是一种对象，叫类对象，通过类实例化后的对象，也称为对象，就就是<code>Object-C</code>面向对象语言的精髓，所以，任何对象都有<code>isa</code>指针。<br>每一个<code>OC</code>对象都有一个隐藏的数据结构，在这个数据结构中的第一个成员变量，它就是<code>isa</code>指针。<br>在<code>objc.h</code>中能看到类定义：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#if !OBJC_TYPES_DEFINED</span><br><span class="line">typedef struct objc_class *Class;</span><br><span class="line">struct objc_object &#123;</span><br><span class="line">	 Class isa OBJC_ISA_AVAILABILITY;</span><br><span class="line">&#125;;</span><br><span class="line">typedef struct objc_object *id;</span><br><span class="line">#endif</span><br><span class="line">typedef struct objc_selector *SEL;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>可以看出： Class是一个objc_class结构类型的指针，id 是一个objc_object结构体类型的指针。</p>
+<p>在<code>NSObject.h</code>里面： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@interface NSObject &lt;NSObject&gt; &#123;</span><br><span class="line"></span><br><span class="line">   Class isa  OBJC_ISA_AVAILABILITY;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>再点开 <code>Class</code> 的定义：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">	struct objc_class &#123;</span><br><span class="line"></span><br><span class="line">    Class isa  OBJC_ISA_AVAILABILITY;</span><br><span class="line"></span><br><span class="line">	#if !__OBJC2__</span><br><span class="line"></span><br><span class="line">    Class super_class                                        OBJC2_UNAVAILABLE;</span><br><span class="line"></span><br><span class="line">    const char *name                                         OBJC2_UNAVAILABLE;</span><br><span class="line"></span><br><span class="line">    long version                                             OBJC2_UNAVAILABLE;</span><br><span class="line"></span><br><span class="line">    long info                                                OBJC2_UNAVAILABLE;</span><br><span class="line"></span><br><span class="line">    long instance_size                                       OBJC2_UNAVAILABLE;</span><br><span class="line"></span><br><span class="line">    struct objc_ivar_list *ivars                             OBJC2_UNAVAILABLE;</span><br><span class="line"></span><br><span class="line">    struct objc_method_list **methodLists                    OBJC2_UNAVAILABLE;</span><br><span class="line"></span><br><span class="line">    struct objc_cache *cache                                 OBJC2_UNAVAILABLE;</span><br><span class="line"></span><br><span class="line">    struct objc_protocol_list *protocols                     OBJC2_UNAVAILABLE;</span><br><span class="line"></span><br><span class="line">	#endif</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><code>isa</code>:是一个<code>Class</code>类型的指针，每个实例对象都有一个<code>isa</code>指针，并且指向对象的类，而<code>Class</code>里也有个<code>isa</code>的指针，指向元类，什么是元类？就是类方法的类，保存了类方法的列表。当某一个类方法被调用时，先会查找本身类方法中的实现方法，如果没有，元类会向他父类查找该方法。元类也是对象，最终指向根元类，根元类<code>isa</code>指向本身。<br><code>super_class</code>:父类，如果该类已经是最顶层的根类，那么它为<code>NULL</code>。<br><img src="http://i.imgur.com/KrzmwVt.png" alt=""></p>
+<p>类通过类的<code>isa</code>指针指向元类，根元类<code>isa</code>指针指向本身。</p>
+<p>举例：<br>假设新建一个<code>Parent</code>,继承与<code>NSObject</code>,里面有成员方法.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-(void)run；</span><br><span class="line">+(void)sing;</span><br><span class="line"></span><br></pre></td></tr></table></figure><br>在新建一个类<code>Child</code>,继承于<code>Parent</code>,里面有成员方法.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">-(void)playC;</span><br><span class="line">+(void)dump;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>实例化一个对象<code>Child *xiaoming = [[Child alloc]init];</code><br>注意：当我们调用<code>[xiaoming class]</code>的时候，<code>xiaoming</code>会通过它的<code>isa</code>指针去寻找<code>xiaoming</code> 的 <code>class</code>，即 <code>Child</code>。<br>当我们调用<code>[xiaoming superclass]</code>的时候，<code>xiaoming</code>通过<code>isa</code>找到<code>xiaoming</code>的<code>class</code>即<code>Child</code>类，在通过<code>super_class</code>，找到<code>Parent</code>类。</p>
+<p>调用<code>[xiaoming playC]</code>，<code>xiaoming</code>通过<code>isa</code>找到<code>Child</code>类，在<code>class</code>的方法列表里面找到<code>playC</code>；</p>
+<p>再试着调用<code>[xiaoming run]</code>，<code>xiaoming</code>通过<code>isa</code>找到<code>Child</code>类，发现该类里面并没有这个方法，通过该类里面的<code>super_class</code>找到<code>Parent</code>类，在里面的方法列表找到了<code>run</code>；</p>
+<p>再是类方法<code>[Child dump]</code>，<code>Child</code>通过<code>isa</code>找到<code>Child</code>类，通过该类的<code>isa</code>找到<code>Child</code>的<code>metaclass</code>，在metaclass的方法列表里面找到了<code>+(void)dump</code>；</p>
+<p>再试着调用<code>[Child sing]</code>，<code>Child</code>通过<code>isa</code>找到<code>Child</code>类，通过该类的<code>isa</code>找到<code>Child</code>的<code>metaclass</code>，发现metaclass里面并没有这个方法，通过<code>metaclass</code>里面的<code>super_class</code>找到<code>Parent</code>的<code>metaclass</code>，在里面的方法列表找到了<code>+(void)sing</code>；</p>
+<p><code>objc_class</code>有两种类型：<br><code>class</code>与<code>metaclass</code>；<br><code>class</code>:实例对象的isa指向的结构体;<br><code>metaclass</code>：<code>class</code>的<code>isa</code>指向的一个结构体；</p>
+<pre><code>**`isa` 指针的最大作用 即是 寻找 `谁是谁的谁` 关系。**
+</code></pre><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>微信公众号：<code>嘀咕嘀咕（iOSSharers）</code></p>
+<p><strong>扫二维码关注</strong></p>
+<p><img src="http://i.imgur.com/TUz7oc9.jpg" alt=""></p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/woodjobber" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2021 Woodjobber<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

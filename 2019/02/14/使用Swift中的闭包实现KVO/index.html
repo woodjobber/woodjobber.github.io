@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="用Swift闭包实现KVO上一篇中已经提到，KVO是OC的运行时特性，Swift不具有的，要想使用这特性，必须要继承NSObject,但是对于Swift中的结构体与枚举类型就不能使用。现在有另一种方法不需要NSObject的子类，便可以实现KVO。
+使用别名typealias定义一个函数类型，回调内"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Woodjobber"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="使用Swift中的闭包实现KVO"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="用Swift闭包实现KVO上一篇中已经提到，KVO是OC的运行时特性，Swift不具有的，要想使用这特性，必须要继承NSObject,但是对于Swift中的结构体与枚举类型就不能使用。现在有另一种方法不需要NSObject的子类，便可以实现KVO。
+使用别名typealias定义一个函数类型，回调内"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Woodjobber"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://yoursite.comhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="http://yoursite.comhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>使用Swift中的闭包实现KVO - Woodjobber</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">啄木鸟</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woodjobber">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>使用Swift中的闭包实现KVO</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2019-02-14
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 id="用Swift闭包实现KVO"><a href="#用Swift闭包实现KVO" class="headerlink" title="用Swift闭包实现KVO"></a>用Swift闭包实现KVO</h2><p>上一篇中已经提到，<code>KVO</code>是OC的运行时特性，Swift不具有的，要想使用这特性，必须要继承<code>NSObject</code>,但是对于Swift中的结构体与枚举类型就不能使用。现在有另一种方法不需要<code>NSObject</code>的子类，便可以实现<code>KVO</code>。</p>
+<p>使用别名<code>typealias</code>定义一个函数类型，回调内容变化</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typealias</span> <span class="type">KVObserveChange</span> <span class="operator">=</span> (<span class="keyword">_</span> kvo: <span class="type">KeyValueObserver</span>, <span class="keyword">_</span> change: [NSObject : <span class="type">AnyObject</span>]) -&gt; <span class="type">Void</span></span><br></pre></td></tr></table></figure>
+<p>然后，创建一个类<code>KeyValueObserver</code>保持着被观察者，键路径，观察者，内容变化回调函数。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">KeyValueObserver</span> </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> source: <span class="type">NSObject</span><span class="comment">// 被观察者</span></span><br><span class="line">    <span class="keyword">let</span> keyPath: <span class="type">String</span> <span class="comment">// 键路径</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">let</span> observer: <span class="type">KVObserveChange</span> <span class="comment">// 观察的变化内容</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> defaultKVODispatcher <span class="operator">=</span> <span class="type">KVODispatcher</span>()<span class="comment">// 观察者</span></span><br><span class="line">    <span class="function"><span class="keyword">init</span>(<span class="params">source</span>: <span class="type">NSObject</span>, <span class="params">keyPath</span>: <span class="type">String</span>, <span class="params">options</span>: <span class="type">NSKeyValueObservingOptions</span>, <span class="params">observer</span>: <span class="keyword">@escaping</span> <span class="type">KVObserveChange</span>)</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.source <span class="operator">=</span> source</span><br><span class="line">        <span class="keyword">self</span>.keyPath <span class="operator">=</span> keyPath</span><br><span class="line">        <span class="keyword">self</span>.observer <span class="operator">=</span> observer</span><br><span class="line">        source.addObserver(defaultKVODispatcher, forKeyPath: keyPath, options: options, context: <span class="keyword">self</span>.pointer)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">__conversion</span>()</span> -&gt; <span class="type">UnsafeMutablePointer</span>&lt;<span class="type">KeyValueObserver</span>&gt; &#123;</span><br><span class="line">        <span class="keyword">return</span> pointer</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 获取当前实例的指针</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">lazy</span> <span class="keyword">var</span> pointer: <span class="type">UnsafeMutablePointer</span>&lt;<span class="type">KeyValueObserver</span>&gt; <span class="operator">=</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="type">UnsafeMutablePointer</span>&lt;<span class="type">KeyValueObserver</span>&gt;(<span class="type">Unmanaged</span>&lt;<span class="type">KeyValueObserver</span>&gt;.passUnretained(<span class="keyword">self</span>).toOpaque().assumingMemoryBound(to: <span class="type">KeyValueObserver</span>.<span class="keyword">self</span>))</span><br><span class="line">    &#125;()</span><br><span class="line">    <span class="comment">// 从pointer中获得值</span></span><br><span class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">fromPointer</span>(<span class="title">pointer</span>: <span class="title">UnsafeMutablePointer</span>&lt;<span class="title">KeyValueObserver</span>&gt;) -&gt; <span class="title">KeyValueObserver</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">Unmanaged</span>&lt;<span class="type">KeyValueObserver</span>&gt;.fromOpaque(<span class="type">UnsafeRawPointer</span>(pointer)).takeUnretainedValue()</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">observe</span>(<span class="params">pointer</span>: <span class="type">UnsafeMutablePointer</span>&lt;<span class="type">KeyValueObserver</span>&gt;, <span class="params">change</span>: [<span class="params">NSObject</span> : <span class="type">AnyObject</span>])</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> kvo <span class="operator">=</span> fromPointer(pointer: pointer)</span><br><span class="line">        kvo.observer(kvo, change)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">deinit</span> &#123;</span><br><span class="line">        source.removeObserver(defaultKVODispatcher, forKeyPath: keyPath, context: <span class="keyword">self</span>.pointer)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;deinit...<span class="subst">\(<span class="keyword">self</span>.pointer)</span>&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">KVODispatcher</span> : <span class="title">NSObject</span> </span>&#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">observeValue</span>(<span class="params">forKeyPath</span> <span class="params">keyPath</span>: <span class="type">String</span>?, <span class="params">of</span> <span class="params">object</span>: <span class="keyword">Any</span><span class="operator">?</span>, <span class="params">change</span>: [<span class="params">NSKeyValueChangeKey</span> : <span class="keyword">Any</span>]<span class="operator">?</span>, <span class="params">context</span>: <span class="type">UnsafeMutableRawPointer</span>?)</span> &#123;</span><br><span class="line">        <span class="type">KeyValueObserver</span>.observe(pointer: (<span class="type">UnsafeMutablePointer</span>&lt;<span class="type">KeyValueObserver</span>&gt;.<span class="keyword">init</span>(mutating: context<span class="operator">?</span>.bindMemory(to: <span class="type">KeyValueObserver</span>.<span class="keyword">self</span>, capacity:  <span class="type">MemoryLayout</span>&lt;<span class="type">KeyValueObserver</span>&gt;.stride)))<span class="operator">!</span>, change: change<span class="operator">!</span> <span class="keyword">as</span> [NSObject : <span class="type">AnyObject</span>])</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> button <span class="operator">=</span> <span class="type">UIButton</span>()</span><br><span class="line"><span class="keyword">var</span> kvo: <span class="type">KeyValueObserver</span>? <span class="operator">=</span> <span class="type">KeyValueObserver</span>(source: button, keyPath: <span class="string">&quot;selected&quot;</span>, options: .new) &#123;</span><br><span class="line">    (kvo, change) <span class="keyword">in</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;OBSERVE 2&quot;</span>, kvo.keyPath, change)</span><br><span class="line">&#125;</span><br><span class="line">button.isSelected <span class="operator">=</span> <span class="literal">true</span></span><br><span class="line">button.isSelected <span class="operator">=</span> <span class="literal">false</span></span><br><span class="line">kvo <span class="operator">=</span> <span class="literal">nil</span></span><br><span class="line">button.isSelected <span class="operator">=</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>如果不需要观察了，需要把观察者移出。同理，如果<code>KeyValueOberser</code>如果不是<code>class</code>，是<code>struct</code>也是可以的，只不过，<code>struct</code>时，代码需要做调整。因为<code>struct</code>是值类型，修改某个值时，通过函数前面需要加<code>mutating</code>，还有就是<code>pointer</code>属性返回的指针操作也需要通过<code>bindMemory</code>函数。可以调用下面这个函数</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">headPointerOfStruct</span>()</span> -&gt; <span class="type">UnsafeMutablePointer</span>&lt;<span class="type">KeyValueObserver</span>&gt; &#123;</span><br><span class="line">       <span class="keyword">return</span> <span class="built_in">withUnsafeMutablePointer</span>(to: <span class="operator">&amp;</span><span class="keyword">self</span>) &#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="type">UnsafeMutableRawPointer</span>(<span class="variable">$0</span>).bindMemory(to: <span class="type">KeyValueObserver</span>.<span class="keyword">self</span>, capacity: <span class="type">MemoryLayout</span>&lt;<span class="keyword">Self</span>&gt;.stride)</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>其他，<code>KVODispatcher</code>稍做调整即可实现功能。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.rectalogic.com/2014/08/key-value-observing-kvo-with-swift.html">KVO With Swift Closures</a></p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/woodjobber" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2021 Woodjobber<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

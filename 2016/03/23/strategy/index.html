@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="策略模式策略模式的定义定义一些列算法，将每一个算法封装起来，并让它们可以相互替换，策略模式是让算法对于使用它的客户而变化，也称为政策模式。策略模式是一种对象行为模式，对象行为模式就是把行为看作面向对象的，是一种面向对象的思想，简单的理解就是，对象本身与算法使独立的，对象本身可以根据具体情况使用不同的"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Woodjobber"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="设计模式之策略模式"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="策略模式策略模式的定义定义一些列算法，将每一个算法封装起来，并让它们可以相互替换，策略模式是让算法对于使用它的客户而变化，也称为政策模式。策略模式是一种对象行为模式，对象行为模式就是把行为看作面向对象的，是一种面向对象的思想，简单的理解就是，对象本身与算法使独立的，对象本身可以根据具体情况使用不同的"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Woodjobber"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://yoursite.comhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="http://yoursite.comhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>设计模式之策略模式 - Woodjobber</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">啄木鸟</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woodjobber">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>设计模式之策略模式</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2016-03-23
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h1 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h1><h2 id="策略模式的定义"><a href="#策略模式的定义" class="headerlink" title="策略模式的定义"></a>策略模式的定义</h2><p>定义一些列算法，将每一个算法封装起来，并让它们可以相互替换，策略模式是让算法对于使用它的客户而变化，也称为政策模式。策略模式是一种对象行为模式，对象行为模式就是把行为看作面向对象的，是一种面向对象的思想，简单的理解就是，对象本身与算法使独立的，对象本身可以根据具体情况使用不同的算法（策略，具体行为）。</p>
+<h2 id="情景分析"><a href="#情景分析" class="headerlink" title="情景分析"></a>情景分析</h2><p>情景1：把N种算法植入到同一段代码中，然互使用if-else 或者switch-case条件语句来决定要使用哪种算法？这些算法可能是相似的类函数或方法，用以解决相关的问题。</p>
+<p>情景2：旅行出行方式，非常经典情景，不同的人要从A点到B点旅行，可以选择乘坐火车，汽车，飞机，骑自行车等。代码的实现一般都是通过if-else或者switch-case条件语句来决定不同人选择何种出行方式。</p>
+<p><img src="http://i.imgur.com/MWlgqur.png" alt=""></p>
+<h2 id="问题思考"><a href="#问题思考" class="headerlink" title="问题思考"></a>问题思考</h2><p>思考：<br>1.如何消除根据不同的对象决定使用什么算法或者什么出行方式的 一大堆if-else或者switch-case的判断；<br>2.如何让算法和对象分开来，使得算法可以独立于使用它的客户而变化。</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>把每个算法封装成一个对象，就能解决以上两个问题，而 根据策略模式的定义，所以使用策略模式设计，此问题就会得到解决。策略模式的作用就是把对象本身与算法分开来，其功能非常强大，因为策略模式的核心思想就是面向对象编程的多形性思想。</p>
+<h2 id="小提示"><a href="#小提示" class="headerlink" title="小提示"></a>小提示</h2><p>这里的 “算法” 并不一定是指 真正意义的算法，换句话说，可以是真正意义的算法（冒泡排序，二分法，快速排序等），也可以是指不同的方式或者方法,行为，去实现相同的 目的或者产生同样的效应。”算法” 即 “策略”。</p>
+<h2 id="策略模式的结构"><a href="#策略模式的结构" class="headerlink" title="策略模式的结构"></a>策略模式的结构</h2><p>环境类（Context）：用一个ConcreteStrategy对象来配置。维护一个对Strategy对象的引用。可定义一个接口来让Strategy访问它的数据。<br>抽象策略类（Strategy）:定义所有支持的算法（策略）的公共接口。 Context使用这个接口来调用某ConcreteStrategy定义的算法（策略）。<br>具体策略类（ConcreteStrategy）:以Strategy为接口具体实现某一算法（策略）。</p>
+<p><img src="http://i.imgur.com/tAskDDF.jpg" alt=""></p>
+<h2 id="策略模式的优缺点"><a href="#策略模式的优缺点" class="headerlink" title="策略模式的优缺点"></a>策略模式的优缺点</h2><p>优点：<br>1，策略模式提供了可以替换继承关系的方法<br>2，灵活选择不同的策略<br>3，消除了if-else或者switch-case判断<br>4，策略模式提供了管理相关算法簇的方法<br>缺点:<br>1，客户端需要具体知道有哪些具体策略<br>2，会产生很多策略类</p>
+<h2 id="策略模式适用性"><a href="#策略模式适用性" class="headerlink" title="策略模式适用性"></a>策略模式适用性</h2><p>1，一个对象需要动态的选择几种算法的一种<br>2，不希望客户端知道复杂的，与算法相关数据结构，在具体策略类中封装算法和数据机构，提供保密性和安全性<br>3，一个类操作中使用多个条件语句来定义许多行为</p>
+<h2 id="策略模式的实现"><a href="#策略模式的实现" class="headerlink" title="策略模式的实现"></a>策略模式的实现</h2><h4 id="两种方式实现–继承与协议"><a href="#两种方式实现–继承与协议" class="headerlink" title="两种方式实现–继承与协议"></a>两种方式实现–继承与协议</h4><p>在基类中，<code>Person .h</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#import &lt;Foundation&#x2F;Foundation.h&gt;</span><br><span class="line">#import &lt;Transport.h&gt;</span><br><span class="line">@interface Person: NSObject</span><br><span class="line">- (void)travelWithTransport:(Transport *)transport;</span><br><span class="line">@end</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>在<code>Person.h</code>中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@implementation Person</span><br><span class="line">- (void)travelWithTransport:(Transport *)transport&#123;</span><br><span class="line">       [transport travel];</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>在<code>Transport.h</code>中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#import &lt;Foundation&#x2F;Foundation.h&gt;</span><br><span class="line">@interface Transport:NSObject</span><br><span class="line">- (void)travel; &#x2F;&#x2F;子类去实现</span><br><span class="line">@end</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>在<code>Transport.m</code>中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@implementation Transport</span><br><span class="line">@end</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>//子类中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@interface Plane:Transport</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation Plane</span><br><span class="line">-(void)travel&#123;</span><br><span class="line"></span><br><span class="line">      NSLog(&quot;by plane...&quot;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@interface Car:Transport</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation Car</span><br><span class="line">-(void)travel&#123;</span><br><span class="line"></span><br><span class="line">   NSLog(&quot;by car...&quot;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">@end</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#import &lt;Car.h&gt;</span><br><span class="line">#import &lt;Plane.h&gt;</span><br><span class="line">#import &lt;Person .h&gt;</span><br><span class="line">@interface ViewController ()</span><br><span class="line">@end</span><br><span class="line">@implementation ViewController</span><br><span class="line">-  (void)viewDidLoad &#123;</span><br><span class="line">    [super viewDidLoad];</span><br><span class="line">    &#x2F;&#x2F; Do any additional setup after loading the view, typically from a nib.</span><br><span class="line">     Person *xiaoming &#x3D; [[Person alloc]init];</span><br><span class="line">     [xiaoming travelWithTransport:[[Car alloc]init] ];</span><br><span class="line">     [xiaoming travelWithTransport:[Plane new]];</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>如有发现bugs，请联系<a href="mailto:`woodjobber@outlook.com">`woodjobber@outlook.com</a>`</p>
+<p>项目地址：<a target="_blank" rel="noopener" href="https://github.com/woodjobber/Design-Pattern-" title="监听键盘的隐藏与显示的新思路">https://github.com/woodjobber/Design-Pattern-</a></p>
+<p>微信公众号：嘀咕嘀咕（iOSSharers）</p>
+<p><strong>扫二维码关注</strong></p>
+<p><img src="http://i.imgur.com/TUz7oc9.jpg" alt=""></p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/woodjobber" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2021 Woodjobber<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

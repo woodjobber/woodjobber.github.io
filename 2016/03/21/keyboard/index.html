@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="监听键盘的隐藏与显示监听键盘的隐藏与显示，其实原始的比较简单，只需要观察四个通知名称：
+`UIKeyboardWillShowNotification` 
+`UIKeyboardWillHideNotification`
+`UIKeyboardDidShowNotification`
+`UIKeyb"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Woodjobber"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="另一种思路监听键盘的隐藏与显示"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="监听键盘的隐藏与显示监听键盘的隐藏与显示，其实原始的比较简单，只需要观察四个通知名称：
+`UIKeyboardWillShowNotification` 
+`UIKeyboardWillHideNotification`
+`UIKeyboardDidShowNotification`
+`UIKeyb"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Woodjobber"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://yoursite.comhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="http://yoursite.comhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>另一种思路监听键盘的隐藏与显示 - Woodjobber</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">啄木鸟</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woodjobber">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>另一种思路监听键盘的隐藏与显示</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2016-03-21
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h1 id="监听键盘的隐藏与显示"><a href="#监听键盘的隐藏与显示" class="headerlink" title="监听键盘的隐藏与显示"></a>监听键盘的隐藏与显示</h1><p>监听键盘的隐藏与显示，其实原始的比较简单，只需要观察四个通知名称：</p>
+<pre><code>`UIKeyboardWillShowNotification` 
+`UIKeyboardWillHideNotification`
+`UIKeyboardDidShowNotification`
+`UIKeyboardDidHideNotification`
+</code></pre><p>实现方式是这样的 </p>
+<pre><code>`[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];`
+
+`[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector    (keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];`
+`[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];`
+
+`[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector    (keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];`
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-(void)keyboardWillHide:(NSNotification*)aNotification&#123;</span><br><span class="line"> &#x2F;&#x2F;代码</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-(void)keyboardWillShow:(NSNotification*)aNotification&#123;</span><br><span class="line">	&#x2F;&#x2F;代码</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-(void)keyboardDidHide:(NSNotification*)aNotification&#123;</span><br><span class="line"> &#x2F;&#x2F;代码</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-(void)keyboardDidShow:(NSNotification*)aNotification&#123;</span><br><span class="line">	&#x2F;&#x2F;代码</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>但是，在我的项目里面，如果使用以上方法去监听键盘的隐藏与显示，会编写比较多的代码以及代码逻辑判断很复杂，还有就是，在系统键盘与第三方键盘之间切换时，有时候不会走这个方法，因此，我就换了一种思路去解决这样的bugs，我仅仅是通过监听<code>UIKeyboardWillChangeFrameNotification</code>这个通知，然后通过键盘的<code>y</code>坐标与屏幕高度作比较，如果<code>y</code>值 大于或者等于屏幕高度则为键盘隐藏，相反，<code>y</code>值小于屏幕高度则为键盘显示。这样既可以解决第三方键盘 的高度变化的问题，又可以少写代码。<code>没有代码展示都是耍流氓！</code><br>代码如下：<br><code>.h</code>中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">typedef void(^GRUCAnimationsWithKeyboardBlock)(CGRect keyboardRect,CGFloat 	keyboardOffset,NSTimeInterval duration,BOOL isShowing);</span><br><span class="line">typedef void(^GRUCBeforeAnimationsWithKeyboardBlock)(CGRect keyboardRect,CGFloat 	keyboardOffset,NSTimeInterval duration,BOOL isShowing);</span><br><span class="line">typedef void(^GRUCCompletionKeyboardAnimationsBlock)(BOOL finished);</span><br><span class="line">typedef void(^GRUCCompletionBeforeUnsubscribeKeyboardBlcok)(void);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@interface GRUCChatPanelView (KeyboardAnimation)</span><br><span class="line">@property (nonatomic,assign) CGFloat yOffset; &#x2F;&#x2F; keyboard offset if yOfset &lt; 0, the keyboard is Showing,otherwise, it is Hiddening.</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> *  To the notification center, subscribe to a change in the keyboard position of the observer.</span><br><span class="line">	 *  The name of the object observered is &#39;UIKeyboardWillChangeFrameNotification&#39;.</span><br><span class="line"> *  @param animations perform the  same as the keyboard animations.</span><br><span class="line">	 *  @param completion after the keyboard animations completion, Maybe you have other things to do.</span><br><span class="line">	*&#x2F;</span><br><span class="line"></span><br><span class="line">- (void)gruc_subscribeKeyboardWithAnimations:(GRUCAnimationsWithKeyboardBlock)animations completion:(GRUCCompletionKeyboardAnimationsBlock)completion;</span><br><span class="line">- (void)gruc_subscribeUIkeyboardNotification;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> *  To the notification center,subscribe to a change in the keyboard postion ofhte observer.</span><br><span class="line">	 *</span><br><span class="line"> *  @param beforeAnimations before performing the keyboard animations,Maybe you 	have other things to do.</span><br><span class="line">	 *  @param animations       perform the keyboard animations.</span><br><span class="line">  	 *  @param completion       the keyboard animaitons completion.</span><br><span class="line">	*&#x2F;</span><br><span class="line"></span><br><span class="line">- (void)gruc_subscribeKeyboardWithBeforeAnimations:(GRUCBeforeAnimationsWithKeyboardBlock)beforeAnimations</span><br><span class="line">                                       animations:(GRUCAnimationsWithKeyboardBlock)animations</span><br><span class="line">                                       completion:(GRUCCompletionKeyboardAnimationsBlock)completion;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line">	*  Cancel subscriber for change the postion of the keyboard.</span><br><span class="line">	*&#x2F;</span><br><span class="line">- (void)gruc_unsubscribeKeyboard;</span><br><span class="line">- (void)gruc_unsubscribeUIKeyboardNotification;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line">	*  Cancel subcriber for change the postion of the keyboard. but before canceling subcriber,Maybe you have other things to do.</span><br><span class="line">*</span><br><span class="line">	*  @param completion completion context.</span><br><span class="line">   *&#x2F;</span><br><span class="line"></span><br><span class="line">- (void)gruc_beforeUnsubscribeKeyboard:(GRUCCompletionBeforeUnsubscribeKeyboardBlcok)completion;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><code>.m</code>中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">	-(void)gruc_subscribeKeyboardWithAnimations:(GRUCAnimationsWithKeyboardBlock)animations completion:(GRUCCompletionKeyboardAnimationsBlock)completion&#123;</span><br><span class="line">    [self gruc_subscribeKeyboardWithBeforeAnimations:nil animations:animations completion:completion];</span><br><span class="line">	&#125;</span><br><span class="line"> 	-(void)gruc_subscribeKeyboardWithBeforeAnimations:(GRUCBeforeAnimationsWithKeyboardBlock)beforeAnimations animations:(GRUCAnimationsWithKeyboardBlock)animations completion:(GRUCCompletionKeyboardAnimationsBlock)completion&#123;</span><br><span class="line">    [self gruc_unsubscribeKeyboard];</span><br><span class="line">    objc_setAssociatedObject(self, GRUCBeforeAnimationsBlockAssociationKey, beforeAnimations, OBJC_ASSOCIATION_COPY_NONATOMIC);</span><br><span class="line">    objc_setAssociatedObject(self, GRUCAnimationsBlockAssociationKey, animations, OBJC_ASSOCIATION_COPY_NONATOMIC);</span><br><span class="line">    objc_setAssociatedObject(self, GRUCAnimationsCompletionBlockAssociationKey, completion, OBJC_ASSOCIATION_COPY_NONATOMIC);</span><br><span class="line">    [self gruc_subscribeUIkeyboardNotification];</span><br><span class="line">	&#125;</span><br><span class="line"> 	-(void)gruc_subscribeUIkeyboardNotification&#123;</span><br><span class="line">    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(gruc_keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];</span><br><span class="line">	&#125;</span><br><span class="line">	-(void)gruc_unsubscribeKeyboard&#123;</span><br><span class="line">    [self gruc_beforeUnsubscribeKeyboard:nil];</span><br><span class="line">	&#125;</span><br><span class="line"> 	-(void)gruc_unsubscribeUIKeyboardNotification&#123;</span><br><span class="line">    [[NSNotificationCenter defaultCenter]removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];</span><br><span class="line">	&#125;</span><br><span class="line"> 	-(void)gruc_beforeUnsubscribeKeyboard:(GRUCCompletionBeforeUnsubscribeKeyboardBlcok)completion&#123;</span><br><span class="line">    if (completion) &#123;</span><br><span class="line">        completion();</span><br><span class="line">    &#125;</span><br><span class="line">    objc_setAssociatedObject(self, GRUCBeforeAnimationsBlockAssociationKey, nil, OBJC_ASSOCIATION_COPY_NONATOMIC);</span><br><span class="line">    objc_setAssociatedObject(self, GRUCAnimationsBlockAssociationKey, nil, OBJC_ASSOCIATION_COPY_NONATOMIC);</span><br><span class="line">    objc_setAssociatedObject(self, GRUCAnimationsCompletionBlockAssociationKey, nil, OBJC_ASSOCIATION_COPY_NONATOMIC);</span><br><span class="line">    [self gruc_unsubscribeUIKeyboardNotification];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">#pragma mark -</span><br><span class="line">#pragma mark -- private methods</span><br><span class="line"></span><br><span class="line">-(void)gruc_keyboardWillChangeFrame:(NSNotification *)notification&#123;</span><br><span class="line">    </span><br><span class="line">    BOOL isShowing;</span><br><span class="line">    NSDictionary *info &#x3D; [notification userInfo];</span><br><span class="line">    CGFloat duration &#x3D; [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];</span><br><span class="line">    CGRect beginKeyboardRect &#x3D; [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];</span><br><span class="line">    CGRect endKeyboardRect &#x3D; [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];</span><br><span class="line">  </span><br><span class="line">    UIViewAnimationCurve curve &#x3D; (UIViewAnimationCurve)[[notification.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey] integerValue];</span><br><span class="line">    CGFloat offset &#x3D; endKeyboardRect.origin.y - beginKeyboardRect.origin.y;</span><br><span class="line">    self.yOffset +&#x3D; offset;</span><br><span class="line">    </span><br><span class="line">    isShowing &#x3D; endKeyboardRect.origin.y &gt;&#x3D; kScreenHeight ?NO:YES;</span><br><span class="line">    </span><br><span class="line">    GRUCAnimationsWithKeyboardBlock animationsBlock &#x3D; objc_getAssociatedObject(self, GRUCAnimationsBlockAssociationKey);</span><br><span class="line">    GRUCBeforeAnimationsWithKeyboardBlock beforeAnimationsBlock &#x3D; objc_getAssociatedObject(self, GRUCBeforeAnimationsBlockAssociationKey);</span><br><span class="line">    GRUCCompletionKeyboardAnimationsBlock completionBlock &#x3D; objc_getAssociatedObject(self, GRUCAnimationsCompletionBlockAssociationKey);</span><br><span class="line">    </span><br><span class="line">    if (beforeAnimationsBlock) &#123;</span><br><span class="line">        beforeAnimationsBlock(endKeyboardRect,offset,duration,isShowing);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^&#123;</span><br><span class="line">        [UIView setAnimationCurve:curve];</span><br><span class="line">        if (animationsBlock) &#123;</span><br><span class="line">            animationsBlock(endKeyboardRect,offset,duration,isShowing);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; completion:completionBlock];</span><br><span class="line">    </span><br><span class="line">	&#125;</span><br><span class="line">	-(CGFloat)yOffset&#123;</span><br><span class="line">    return [objc_getAssociatedObject(self, externVarableKey) doubleValue];</span><br><span class="line">	&#125;</span><br><span class="line">	-(void)setYOffset:(CGFloat)yOffset&#123;</span><br><span class="line">    objc_setAssociatedObject(self, externVarableKey, @(yOffset), OBJC_ASSOCIATION_COPY_NONATOMIC);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>如有发现bugs，请联系<a href="mailto:`woodjobber@outlook.com">`woodjobber@outlook.com</a>`</p>
+<p>项目地址：<a target="_blank" rel="noopener" href="https://github.com/woodjobber/GRUCChatPanelView" title="监听键盘的隐藏与显示的新思路">https://github.com/woodjobber/GRUCChatPanelView</a></p>
+<p>微信公众号：嘀咕嘀咕（iOSSharers）</p>
+<p><strong>扫二维码关注</strong></p>
+<p><img src="http://i.imgur.com/TUz7oc9.jpg" alt=""></p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/woodjobber" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2021 Woodjobber<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
