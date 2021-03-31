@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="导语很显然，在Swift中，观察一个值类型或者引用类型的属性的内容变化，我们可以利用属性观察器willSet和didSet，但对于KVO/KVC这样强大的机制却不能直接使用，毕竟KVO/KVC仅仅是OC的运行时特性，Swift不具有的，要想要使用这个KVO/KVC,必须要继承NSObject。这样以"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Woodjobber"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Swift之KVO属性关系依赖"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="导语很显然，在Swift中，观察一个值类型或者引用类型的属性的内容变化，我们可以利用属性观察器willSet和didSet，但对于KVO/KVC这样强大的机制却不能直接使用，毕竟KVO/KVC仅仅是OC的运行时特性，Swift不具有的，要想要使用这个KVO/KVC,必须要继承NSObject。这样以"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="嘀咕嘀咕"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://yoursite.comhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="http://yoursite.comhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>Swift之KVO属性关系依赖 - 嘀咕嘀咕</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">啄木鸟</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woodjobber">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Swift之KVO属性关系依赖</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2019-02-02
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h2><p>很显然，在<code>Swift</code>中，观察一个值类型或者引用类型的属性的内容变化，我们可以利用属性观察器<code>willSet</code>和<code>didSet</code>，但对于<code>KVO</code>/<code>KVC</code>这样强大的机制却不能直接使用，毕竟<code>KVO</code>/<code>KVC</code>仅仅是<code>OC</code>的运行时特性，<code>Swift</code>不具有的，要想要使用这个<code>KVO</code>/<code>KVC</code>,必须要继承<code>NSObject</code>。这样以来，<code>Swift</code>中的结构体与枚举类型这样的值类型是不能用<code>KVO</code>/<code>KVC</code>特性。因此仅仅针对能继承<code>NSObject</code>的 <code>class</code>类型。这是我们使用<code>KVO</code>/<code>KVC</code>的前提，虽然有局限性，但是有时候真的能够带来方便。比如说，在某些情况下，一个属性的值取决于另一个对象中的一个或者多个属性值时候，利用KVO的特效就相当的方便了。</p>
+<h2 id="KVO-Key-Value-Observing"><a href="#KVO-Key-Value-Observing" class="headerlink" title="KVO(Key-Value Observing)"></a>KVO(Key-Value Observing)</h2><p><code>KVO</code>:健值观察，是观察者模式的实现，提供一种观察对象属性内容变化的机制。那如何实现的呢？苹果官方文档针对<code>KVO</code>实现原理（<a target="_blank" rel="noopener" href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueObserving/Articles/KVOImplementation.html#//apple_ref/doc/uid/20002307-BAJEAIEE">Key-Value Observing Implementation Details</a>）是这样阐述的：</p>
+<blockquote>
+<p>Automatic key-value observing is implemented using a technique called <em>isa-swizzling</em>.</p>
+<p>The <code>isa</code> pointer, as the name suggests, points to the object’s class which maintains a dispatch table. This dispatch table essentially contains pointers to the methods the class implements, among other data.</p>
+<p>When an observer is registered for an attribute of an object the isa pointer of the observed object is modified, pointing to an intermediate class rather than at the true class. As a result the value of the isa pointer does not necessarily reflect the actual class of the instance.</p>
+<p>You should never rely on the <code>isa</code> pointer to determine class membership. Instead, you should use the <code>class</code> method to determine the class of an object instance.</p>
+</blockquote>
+<p>可以看出，<code>KVO</code>是通过一种叫<code>isa-swizzling</code>技术实现的。什么是<code>isa-swizzling</code>呢？顾名思义，<code>isa</code>指针指向维护调度表的对象类，调度表基本包含了指向该类的实现方法的指针，以及其他数据。当观察者注册对象的属性时，观察对象的<code>isa</code>指针被修改，指向中间类而不是真正的类。通俗的讲，每个类对象都有一个<code>isa</code>指针，该指针指向当前类，当这个类对象的属性被观察时，系统会动态生成一个中间类（派生类），然后把这个<code>isa</code>指针指向这个中间类，在这个中间类重写被观察属性的<code>setter</code>方法，在这个中间类重写的<code>setter</code>方法实现真正的通知机制。这个通知机制又使用了<code>willChangeValueForKey</code>（Swift中<code>willChangeValue(forKey key: String)</code>）和<code>didChangeValueForKey</code>（Swift中<code>didChangeValue(forKey key: String)</code>）这两个方法。</p>
+<p>使用<code>KVO</code>的基本步骤是:</p>
+<ol>
+<li>调用<code>addObserver(_ observer: NSObject, forKeyPath keyPath: String, options: NSKeyValueObservingOptions = [], context: UnsafeMutableRawPointer?)</code></li>
+<li>重写函数 <code>observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?)</code></li>
+<li>在不需要观察属性的时候移除<code>removeObserver(_ observer: NSObject, forKeyPath keyPath: String)</code></li>
+</ol>
+<p>值得注意的是：</p>
+<ol>
+<li>如果观察者被多次移除，程序崩溃</li>
+<li>多次添加观察者，程序崩溃</li>
+<li>观察者被deinit了，但没有移除监听，程序崩溃</li>
+</ol>
+<h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><p>一个人的姓名取决于姓氏（<code>lastName</code>）与名(<code>firstName</code>)，我们可以把全名的方法定义成这样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var fullName: String! &#123;</span><br><span class="line">       return lastName + firstName</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><code>fullName</code> 的变化 依赖于<code>lastName</code>与<code>firstName</code>。当其中一个变化都应该去通知观察属性的对象。如何解决呢？一种解决方案重写<code>class func keyPathsForValuesAffectingValue(forKey key: String) -&gt; Set&lt;String&gt;</code>,另一种是通过实现遵循命名约定的类方法来实现相同的结果<code>keyPathsForValuesAffecting&lt;Key&gt;</code>，其中<code>&lt;Key&gt;</code>是依赖于值的属性（首字母大写）的名称。</p>
+<h2 id="基本实现"><a href="#基本实现" class="headerlink" title="基本实现"></a>基本实现</h2><p>这是一种To-One Relationships（一对一关系）</p>
+<p>创建一个<code>Person</code>类，继承了<code>NSObject</code>，我们使用的是runtime，需要<code>dynamic</code></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"> <span class="class"><span class="keyword">class</span> <span class="title">Person</span>: <span class="title">NSObject</span> </span>&#123;</span><br><span class="line">    <span class="keyword">@objc</span> <span class="keyword">dynamic</span> <span class="keyword">var</span> fullName: <span class="type">String</span>! &#123;</span><br><span class="line">       <span class="keyword">return</span> lastName <span class="operator">+</span> firstName</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">@objc</span> <span class="keyword">dynamic</span> <span class="keyword">var</span> firstName: <span class="type">String</span>! <span class="operator">=</span> <span class="string">&quot;能&quot;</span></span><br><span class="line">    <span class="keyword">@objc</span> <span class="keyword">dynamic</span> <span class="keyword">var</span> lastName: <span class="type">String</span>! <span class="operator">=</span> <span class="string">&quot;刘&quot;</span></span><br><span class="line"><span class="comment">// 第一种方法利用 重写 函数 keyPathsForValuesAffectingValue 实现</span></span><br><span class="line"><span class="comment">//    override class func keyPathsForValuesAffectingValue(forKey key: String) -&gt; Set&lt;String&gt; &#123;</span></span><br><span class="line"><span class="comment">//        if key.isEmpty &#123;</span></span><br><span class="line"><span class="comment">//            return Set()</span></span><br><span class="line"><span class="comment">//        &#125;</span></span><br><span class="line"><span class="comment">//        var keyPaths: Set = super.keyPathsForValuesAffectingValue(forKey: key)</span></span><br><span class="line"><span class="comment">//        if key == &quot;fullName&quot; &#123;</span></span><br><span class="line"><span class="comment">//            let affectedKey: Array = [&quot;firstName&quot;,&quot;lastName&quot;]</span></span><br><span class="line"><span class="comment">//            keyPaths = keyPaths.union(affectedKey)</span></span><br><span class="line"><span class="comment">//        &#125;</span></span><br><span class="line"><span class="comment">//        return keyPaths</span></span><br><span class="line"><span class="comment">//    &#125;</span></span><br><span class="line">    <span class="comment">//第二种方法使用 keyPathsForValuesAffecting&lt;Key&gt; 实现，其中 Key是 需要观察的属性</span></span><br><span class="line">    <span class="keyword">@objc</span> <span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">keyPathsForValuesAffectingFullName</span>() -&gt; <span class="title">Set</span>&lt;<span class="title">String</span>&gt; </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">Set</span>(arrayLiteral: <span class="string">&quot;firstName&quot;</span>,<span class="string">&quot;lastName&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>创建一个 观察类，使用两个定时器，模拟改变这两个属性的值</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">var</span> <span class="type">ObserverContent</span> <span class="operator">=</span> <span class="number">0</span></span><br><span class="line"> <span class="class"><span class="keyword">class</span> <span class="title">Observer</span>: <span class="title">NSObject</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> ob: <span class="type">Person</span>!</span><br><span class="line">    <span class="keyword">let</span> firstNames:<span class="type">Array</span> <span class="operator">=</span> [<span class="string">&quot;三&quot;</span>,<span class="string">&quot;四&quot;</span>,<span class="string">&quot;五&quot;</span>,<span class="string">&quot;六&quot;</span>]</span><br><span class="line">    <span class="keyword">let</span> lastNames:<span class="type">Array</span> <span class="operator">=</span> [<span class="string">&quot;张&quot;</span>,<span class="string">&quot;李&quot;</span>,<span class="string">&quot;王&quot;</span>,<span class="string">&quot;赵&quot;</span>]</span><br><span class="line">    <span class="keyword">var</span> firtNameCount: <span class="type">Int</span> <span class="operator">=</span> <span class="number">0</span></span><br><span class="line">    <span class="keyword">var</span> lastNameCount: <span class="type">Int</span> <span class="operator">=</span> <span class="number">0</span></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">init</span>()</span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>()</span><br><span class="line">        ob <span class="operator">=</span> <span class="type">Person</span>()</span><br><span class="line">        <span class="comment">//添加观察者</span></span><br><span class="line">        ob.addObserver(<span class="keyword">self</span>, forKeyPath: <span class="string">&quot;fullName&quot;</span>, options: .new, context: <span class="operator">&amp;</span><span class="type">ObserverContent</span>)</span><br><span class="line">        <span class="type">Timer</span>.scheduledTimer(withTimeInterval: <span class="number">3</span>, repeats: <span class="literal">true</span>) &#123; (<span class="keyword">_</span>) <span class="keyword">in</span></span><br><span class="line">            <span class="keyword">self</span>.ob.lastName <span class="operator">=</span> <span class="keyword">self</span>.lastNames[<span class="keyword">self</span>.lastNameCount]</span><br><span class="line">            <span class="keyword">self</span>.lastNameCount <span class="operator">+=</span> <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">self</span>.lastNameCount <span class="operator">&gt;=</span> <span class="keyword">self</span>.lastNames.count &#123;</span><br><span class="line">                <span class="keyword">self</span>.lastNameCount <span class="operator">=</span> <span class="number">0</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">Timer</span>.scheduledTimer(withTimeInterval: <span class="number">2</span>, repeats: <span class="literal">true</span>) &#123; (<span class="keyword">_</span>) <span class="keyword">in</span></span><br><span class="line">            <span class="keyword">self</span>.ob.firstName <span class="operator">=</span> <span class="keyword">self</span>.firstNames[<span class="keyword">self</span>.firtNameCount]</span><br><span class="line">            <span class="keyword">self</span>.firtNameCount <span class="operator">+=</span> <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">self</span>.firtNameCount <span class="operator">&gt;=</span> <span class="keyword">self</span>.firstNames.count &#123;</span><br><span class="line">                <span class="keyword">self</span>.firtNameCount <span class="operator">=</span> <span class="number">0</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 重写</span></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">observeValue</span>(<span class="params">forKeyPath</span> <span class="params">keyPath</span>: <span class="type">String</span>?, <span class="params">of</span> <span class="params">object</span>: <span class="keyword">Any</span><span class="operator">?</span>, <span class="params">change</span>: [<span class="params">NSKeyValueChangeKey</span> : <span class="keyword">Any</span>]<span class="operator">?</span>, <span class="params">context</span>: <span class="type">UnsafeMutableRawPointer</span>?)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> ch <span class="operator">=</span> change, context <span class="operator">==</span> <span class="operator">&amp;</span><span class="type">ObserverContent</span> &#123;</span><br><span class="line">            <span class="keyword">let</span> a <span class="operator">=</span> ch[<span class="type">NSKeyValueChangeKey</span>.newKey]</span><br><span class="line">            <span class="built_in">print</span>(a<span class="operator">!</span> <span class="keyword">as</span> <span class="keyword">Any</span>)</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">super</span>.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">deinit</span> &#123;</span><br><span class="line">        <span class="comment">//移除</span></span><br><span class="line">        <span class="keyword">self</span>.ob.removeObserver(<span class="keyword">self</span>, forKeyPath: <span class="string">&quot;fullName&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>创建 对象</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> observer <span class="operator">=</span> <span class="type">Observer</span>()</span><br></pre></td></tr></table></figure>
+<p>输出结果</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">刘三</span><br><span class="line">张三</span><br><span class="line">张四</span><br><span class="line">李四</span><br><span class="line">李五</span><br><span class="line">李六</span><br><span class="line">王六</span><br><span class="line">王三</span><br><span class="line">赵三</span><br><span class="line">赵四</span><br><span class="line">赵五</span><br><span class="line">张五</span><br><span class="line">张六</span><br><span class="line">李六</span><br><span class="line">李三</span><br></pre></td></tr></table></figure>
+<p>还有另一种写法，我就不做解释了。直接上代码吧，这种方式在Swift4.x不需要调用romove观察者。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span>: <span class="title">NSObject</span> </span>&#123;</span><br><span class="line">    <span class="keyword">@objc</span> <span class="keyword">dynamic</span> <span class="keyword">var</span> fullName: <span class="type">String</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> firstName <span class="operator">+</span> lastName</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">@objc</span> <span class="keyword">dynamic</span> <span class="keyword">var</span> firstName: <span class="type">String</span></span><br><span class="line">    <span class="keyword">@objc</span> <span class="keyword">dynamic</span> <span class="keyword">var</span> lastName: <span class="type">String</span></span><br><span class="line">    <span class="keyword">@objc</span> <span class="keyword">var</span> observertion: <span class="type">NSKeyValueObservation</span>?</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">init</span>()</span> &#123;</span><br><span class="line">        firstName <span class="operator">=</span> <span class="string">&quot;&quot;</span></span><br><span class="line">        lastName <span class="operator">=</span> <span class="string">&quot;&quot;</span></span><br><span class="line">        <span class="comment">// 需要 把 属性初始化才能调用 super.init()</span></span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>()</span><br><span class="line">        <span class="type">Timer</span>.scheduledTimer(withTimeInterval: <span class="number">2</span>, repeats: <span class="literal">true</span>) &#123; (<span class="keyword">_</span>) <span class="keyword">in</span></span><br><span class="line">            <span class="keyword">self</span>.firstName <span class="operator">=</span> <span class="string">&quot;四&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">Timer</span>.scheduledTimer(withTimeInterval: <span class="number">3</span>, repeats: <span class="literal">true</span>) &#123; (<span class="keyword">_</span>) <span class="keyword">in</span></span><br><span class="line">            <span class="keyword">self</span>.lastName <span class="operator">=</span> <span class="string">&quot;李&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">@objc</span> <span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">keyPathsForValuesAffectingFullName</span>() -&gt; <span class="title">Set</span>&lt;<span class="title">String</span>&gt; </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">Set</span>(arrayLiteral: <span class="string">&quot;firstName&quot;</span>,<span class="string">&quot;lastName&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">begin</span>()</span> -&gt; <span class="type">Void</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.observertion <span class="operator">=</span> <span class="keyword">self</span>.observe(\.fullName) &#123; (foo, change) <span class="keyword">in</span></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot; <span class="subst">\(foo.fullName)</span>&quot;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">stop</span>()</span> -&gt; <span class="type">Void</span> &#123;</span><br><span class="line">        <span class="type">Timer</span>.scheduledTimer(withTimeInterval: <span class="number">10</span>, repeats: <span class="literal">false</span>) &#123; (<span class="keyword">_</span>) <span class="keyword">in</span></span><br><span class="line">           <span class="keyword">self</span>.observertion<span class="operator">?</span>.invalidate()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//let foo = Foo()</span></span><br><span class="line"><span class="comment">//foo.begin()</span></span><br><span class="line"><span class="comment">//foo.stop()</span></span><br></pre></td></tr></table></figure>
+<h2 id="相关资料推荐"><a href="#相关资料推荐" class="headerlink" title="相关资料推荐"></a>相关资料推荐</h2><p><a target="_blank" rel="noopener" href="http://skyefreeman.io/programming/2017/06/28/kvo-in-ios11.html?utm_campaign=iOS+Dev+Weekly">Key Value Observation in iOS 11</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.infoq.cn/article/2018%2F09%2Fswift-4.2-released?utm_source=tuicool&amp;utm_medium=referral">Swift4.2 Hits the Road</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.zybuluo.com/MicroCai/note/66738">KVO和KVC实现</a></p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/woodjobber" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2021 Woodjobber<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="命令模式定义命令模式将一个请求或者行为封装成一个对象。可以在对象之间被传递，存储，修改，撤销。
+命令模式使用场景
+需要实现撤销与恢复功能
+记录请求日志，在需要撤销操作的时候可以使用
+想实现一个对象参数化一个动作以执行操作，并且用不同的命令对象替换回调函数
+
+命令模式中的角色
+接收者：负责具体的功能实"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Woodjobber"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="设计模式之命令模式"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="命令模式定义命令模式将一个请求或者行为封装成一个对象。可以在对象之间被传递，存储，修改，撤销。
+命令模式使用场景
+需要实现撤销与恢复功能
+记录请求日志，在需要撤销操作的时候可以使用
+想实现一个对象参数化一个动作以执行操作，并且用不同的命令对象替换回调函数
+
+命令模式中的角色
+接收者：负责具体的功能实"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="嘀咕嘀咕"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://yoursite.comhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="http://yoursite.comhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>设计模式之命令模式 - 嘀咕嘀咕</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">啄木鸟</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woodjobber">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>设计模式之命令模式</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2019-01-31
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 id="命令模式定义"><a href="#命令模式定义" class="headerlink" title="命令模式定义"></a>命令模式定义</h2><p>命令模式将一个请求或者行为封装成一个对象。可以在对象之间被传递，存储，修改，撤销。</p>
+<h2 id="命令模式使用场景"><a href="#命令模式使用场景" class="headerlink" title="命令模式使用场景"></a>命令模式使用场景</h2><ul>
+<li>需要实现撤销与恢复功能</li>
+<li>记录请求日志，在需要撤销操作的时候可以使用</li>
+<li>想实现一个对象参数化一个动作以执行操作，并且用不同的命令对象替换回调函数</li>
+</ul>
+<h2 id="命令模式中的角色"><a href="#命令模式中的角色" class="headerlink" title="命令模式中的角色"></a>命令模式中的角色</h2><ul>
+<li>接收者：负责具体的功能实现</li>
+<li>命令协议：定义一些命令方法</li>
+<li>命令对象：负责调用接收者的逻辑方法</li>
+<li>命令管理者：负责命令对象之间的调度</li>
+</ul>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>接收者</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Receiver</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> soundNum: <span class="type">Int</span> <span class="operator">=</span> <span class="number">10</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>命令协议</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">CommandProtocol</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">excuteCommand</span>()</span> -&gt; <span class="type">Void</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">undoCommand</span>()</span> -&gt; <span class="type">Void</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>命令对象</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SoundUpCommand</span>: <span class="title">CommandProtocol</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> receiver: <span class="type">Receiver</span>?</span><br><span class="line">    <span class="function"><span class="keyword">init</span>(<span class="params">receiver</span>: <span class="type">Receiver</span>)</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.receiver <span class="operator">=</span> receiver</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">excuteCommand</span>()</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.receiver<span class="operator">?</span>.soundNum <span class="operator">+=</span> <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">undoCommand</span>()</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.receiver<span class="operator">?</span>.soundNum <span class="operator">-=</span> <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SoundDownCommand</span>: <span class="title">CommandProtocol</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> receiver: <span class="type">Receiver</span>?</span><br><span class="line">    <span class="function"><span class="keyword">init</span>(<span class="params">receiver</span>: <span class="type">Receiver</span>)</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.receiver <span class="operator">=</span> receiver</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">excuteCommand</span>()</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.receiver<span class="operator">?</span>.soundNum <span class="operator">-=</span> <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">undoCommand</span>()</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.receiver<span class="operator">?</span>.soundNum <span class="operator">+=</span> <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>命令管理者</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CommandManager</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> commands: [(<span class="type">CommandProtocol</span>)] <span class="operator">=</span> []</span><br><span class="line">    <span class="keyword">var</span> comand: <span class="type">CommandProtocol</span>?</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">setCommand</span>(<span class="params">cmd</span>: <span class="type">CommandProtocol</span>)</span> -&gt; <span class="type">Void</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.comand <span class="operator">=</span> cmd</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">executeCmd</span>()</span> -&gt; <span class="type">Void</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> cmd <span class="operator">=</span> <span class="keyword">self</span>.comand &#123;</span><br><span class="line">            cmd.excuteCommand()</span><br><span class="line">            <span class="keyword">self</span>.commands.append(cmd)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">updoCmd</span>()</span> -&gt; <span class="type">Void</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> <span class="operator">!</span><span class="keyword">self</span>.commands.isEmpty &#123;</span><br><span class="line">            <span class="keyword">let</span> cmd <span class="operator">=</span> <span class="keyword">self</span>.commands.last<span class="operator">!</span></span><br><span class="line">            cmd.undoCommand()</span><br><span class="line">            <span class="keyword">self</span>.commands.removeLast()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>终端调用</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> receiver <span class="operator">=</span> <span class="type">Receiver</span>()</span><br><span class="line"><span class="keyword">let</span> upcmd <span class="operator">=</span> <span class="type">SoundUpCommand</span>(receiver: receiver)</span><br><span class="line"><span class="keyword">let</span> manager <span class="operator">=</span> <span class="type">CommandManager</span>()</span><br><span class="line">manager.setCommand(cmd: upcmd)</span><br><span class="line">manager.executeCmd()</span><br><span class="line"><span class="built_in">print</span>(receiver.soundNum)<span class="comment">//11</span></span><br><span class="line">manager.updoCmd()</span><br><span class="line"><span class="built_in">print</span>(receiver.soundNum)<span class="comment">//10</span></span><br></pre></td></tr></table></figure>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/woodjobber" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2021 Woodjobber<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

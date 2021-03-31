@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="Any在Swift中Any是什么？在Swift中是这样定义的：public typealias Any = protocol&amp;lt;&amp;gt; 。是一个空协议集合的别名，它表示没有实现任何协议，因此可以是任何类型，包括函数，枚举，结构体，保持类型的原生状态(不会隐式转换)，可以存储swift的类型或者"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Woodjobber"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Any与AnyObject,AnyClass"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="Any在Swift中Any是什么？在Swift中是这样定义的：public typealias Any = protocol&amp;lt;&amp;gt; 。是一个空协议集合的别名，它表示没有实现任何协议，因此可以是任何类型，包括函数，枚举，结构体，保持类型的原生状态(不会隐式转换)，可以存储swift的类型或者"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="嘀咕嘀咕"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://yoursite.comhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="http://yoursite.comhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>Any与AnyObject,AnyClass - 嘀咕嘀咕</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">啄木鸟</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woodjobber">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Any与AnyObject,AnyClass</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2019-01-31
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 id="Any"><a href="#Any" class="headerlink" title="Any"></a>Any</h2><p>在Swift中<code>Any</code>是什么？在Swift中是这样定义的：<code>public typealias Any = protocol&lt;&gt;</code> 。是一个空协议集合的别名，它表示没有实现任何协议，因此可以是任何类型，包括函数，枚举，结构体，保持类型的原生状态(不会隐式转换)，可以存储swift的类型或者Object-C类型。所有类型都隐式遵守了这个协议。官方文档是这样解释的<code>/// The protocol to which all types implicitly conform.</code></p>
+<p>看看具体内容</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MediaItem</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">    <span class="function"><span class="keyword">init</span>(<span class="params">name</span>: <span class="type">String</span>)</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.name <span class="operator">=</span> name</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Movie</span>: <span class="title">MediaItem</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> director: <span class="type">String</span></span><br><span class="line">    <span class="function"><span class="keyword">init</span>(<span class="params">name</span>: <span class="type">String</span>, <span class="params">director</span>: <span class="type">String</span>)</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.director <span class="operator">=</span> director</span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(name: name)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> things <span class="operator">=</span> [<span class="keyword">Any</span>]()</span><br><span class="line">things.append(<span class="number">9</span>)</span><br><span class="line">things.append(<span class="number">9.0</span>)</span><br><span class="line">things.append(<span class="string">&quot;hello&quot;</span>)</span><br><span class="line"><span class="keyword">typealias</span> closureType2 <span class="operator">=</span> <span class="keyword">@convention(block)</span>(<span class="type">String</span>) -&gt; <span class="type">String</span></span><br><span class="line"><span class="keyword">let</span> closureGreet2: closureType <span class="operator">=</span> &#123;</span><br><span class="line">    (name: <span class="type">String</span>) -&gt; <span class="type">String</span> <span class="keyword">in</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;Hello, <span class="subst">\(name)</span>&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">things.append(closureGreet2)</span><br><span class="line">things.append(&#123;(name: <span class="type">String</span>) -&gt; <span class="type">String</span> <span class="keyword">in</span> <span class="string">&quot;Hello, <span class="subst">\(name)</span>&quot;</span>&#125;)</span><br><span class="line">things.append(<span class="type">Movie</span>(name: <span class="string">&quot;Ghostbusters&quot;</span>, director: <span class="string">&quot;Ivan Reitman&quot;</span>))</span><br><span class="line"><span class="keyword">let</span> optionalNumber: <span class="type">Int</span>? <span class="operator">=</span> <span class="number">3</span></span><br><span class="line">things.append(optionalNumber <span class="keyword">as</span> <span class="keyword">Any</span>)</span><br><span class="line"><span class="keyword">let</span> <span class="type">OCArray</span>: <span class="type">NSArray</span> <span class="operator">=</span> [<span class="string">&quot;a&quot;</span>,<span class="string">&quot;b&quot;</span>];</span><br><span class="line">things.append(<span class="type">OCArray</span>)</span><br><span class="line"><span class="keyword">let</span> number <span class="operator">=</span> <span class="number">4</span> <span class="keyword">as</span> <span class="type">NSNumber</span></span><br><span class="line">things.append(number)</span><br><span class="line"><span class="built_in">print</span>(things)</span><br><span class="line"><span class="keyword">for</span> object <span class="keyword">in</span> things &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">type</span>(of: object))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>看看显示结果</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">9</span>, <span class="number">9.0</span>, <span class="string">&quot;hello&quot;</span>, (<span class="type">Function</span>), (<span class="type">Function</span>), __lldb_expr_30.<span class="type">Movie</span>, <span class="type">Optional</span>(<span class="number">3</span>), <span class="operator">&lt;</span>__NSArrayI <span class="number">0x600003275b40</span><span class="operator">&gt;</span>(</span><br><span class="line">a,</span><br><span class="line">b</span><br><span class="line">)</span><br><span class="line">, <span class="number">4</span>]</span><br><span class="line"><span class="type">Int</span></span><br><span class="line"><span class="type">Double</span></span><br><span class="line"><span class="type">String</span></span><br><span class="line"><span class="keyword">@convention(block)</span> (<span class="type">String</span>) -&gt; <span class="type">String</span></span><br><span class="line">(<span class="type">String</span>) -&gt; <span class="type">String</span></span><br><span class="line"><span class="type">Movie</span></span><br><span class="line"><span class="type">Optional</span>&lt;<span class="type">Int</span>&gt;</span><br><span class="line">__NSArrayI</span><br><span class="line">__NSCFNumber</span><br></pre></td></tr></table></figure>
+<p>类型保持了原生状态，包括OC中的数据类型，注意@convertion(block)类型，待会对比。</p>
+<h2 id="AnyObject"><a href="#AnyObject" class="headerlink" title="AnyObject"></a>AnyObject</h2><p>苹果官方文档是这样定义的：<code>@objc public protocol AnyObject &#123; &#125;</code> ，可以表示任何<code>class</code>类型的实例，来替代OC中的id类型，也就是swift转OC的桥梁。所有的类都隐式遵循了这个协议，官方文档<code>the protocol to which all classes implicitly conform.</code> </p>
+<p>我们来看看使用AnyObject会发生什么情况</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MediaItem</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">    <span class="function"><span class="keyword">init</span>(<span class="params">name</span>: <span class="type">String</span>)</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.name <span class="operator">=</span> name</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Movie</span>: <span class="title">MediaItem</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> director: <span class="type">String</span></span><br><span class="line">    <span class="function"><span class="keyword">init</span>(<span class="params">name</span>: <span class="type">String</span>, <span class="params">director</span>: <span class="type">String</span>)</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.director <span class="operator">=</span> director</span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(name: name)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> objects: [<span class="type">AnyObject</span>] <span class="operator">=</span> [<span class="type">AnyObject</span>]()</span><br><span class="line"><span class="comment">// 元祖类型不是一个类的实例</span></span><br><span class="line">objects.append((<span class="number">3.0</span>,<span class="number">5.0</span>) <span class="keyword">as</span> <span class="type">AnyObject</span>)</span><br><span class="line"><span class="comment">//字面量不是 一个类的实例</span></span><br><span class="line">objects.append(<span class="number">0</span> <span class="keyword">as</span> <span class="type">AnyObject</span>)</span><br><span class="line">objects.append(<span class="string">&quot;hello&quot;</span> <span class="keyword">as</span> <span class="type">AnyObject</span>)</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">    <span class="function"><span class="keyword">init</span>(<span class="params">name</span>: <span class="type">String</span>)</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.name <span class="operator">=</span> name</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> jack <span class="operator">=</span> <span class="type">Person</span>(name: <span class="string">&quot;jack&quot;</span>)</span><br><span class="line">objects.append(jack <span class="keyword">as</span> <span class="type">AnyObject</span>)</span><br><span class="line"><span class="keyword">let</span> alpha <span class="operator">=</span> [<span class="string">&quot;a&quot;</span>,<span class="string">&quot;b&quot;</span>]</span><br><span class="line">objects.append(alpha <span class="keyword">as</span> <span class="type">AnyObject</span>)</span><br><span class="line">objects.append(<span class="type">Movie</span>(name: <span class="string">&quot;Ghostbusters&quot;</span>, director: <span class="string">&quot;Ivan Reitman&quot;</span>))</span><br><span class="line"><span class="comment">// 函数 不是一个实例</span></span><br><span class="line"><span class="keyword">typealias</span> closureType <span class="operator">=</span> <span class="keyword">@convention(block)</span>(<span class="type">String</span>) -&gt; <span class="type">String</span></span><br><span class="line"><span class="keyword">let</span> closureGreet: closureType <span class="operator">=</span> &#123;</span><br><span class="line">    (name: <span class="type">String</span>) -&gt; <span class="type">String</span> <span class="keyword">in</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;Hello, <span class="subst">\(name)</span>&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">objects.append(closureGreet <span class="keyword">as</span> <span class="type">AnyObject</span>)</span><br><span class="line">objects.append(&#123;(name: <span class="type">String</span>) -&gt; <span class="type">String</span> <span class="keyword">in</span> <span class="string">&quot;Hello, <span class="subst">\(name)</span>&quot;</span>&#125; <span class="keyword">as</span> <span class="type">AnyObject</span> )</span><br><span class="line"><span class="keyword">let</span> optionalNum: <span class="type">Int</span>? <span class="operator">=</span> <span class="number">3</span></span><br><span class="line">objects.append(optionalNum <span class="keyword">as</span> <span class="type">AnyObject</span>)</span><br><span class="line"><span class="keyword">let</span> ocArray: <span class="type">NSArray</span> <span class="operator">=</span> [<span class="string">&quot;c&quot;</span>,<span class="string">&quot;d&quot;</span>]<span class="comment">//OC 中 的 NSArray类型</span></span><br><span class="line">objects.append(ocArray)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> object <span class="keyword">in</span> objects &#123;</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> obj <span class="operator">=</span> object <span class="keyword">as?</span> (<span class="type">String</span>)-&gt;<span class="type">String</span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(obj(<span class="string">&quot;World!<span class="subst">\(obj)</span>&quot;</span>))</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">type</span>(of: object))</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">print</span>(objects)</span><br></pre></td></tr></table></figure>
+<p>输出结果显示</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">_SwiftValue</span><br><span class="line">__NSCFNumber</span><br><span class="line"><span class="type">NSTaggedPointerString</span></span><br><span class="line">_SwiftValue</span><br><span class="line">_SwiftDeferredNSArray</span><br><span class="line"><span class="type">Movie</span></span><br><span class="line">__NSMallocBlock__</span><br><span class="line"><span class="type">Hello</span>, <span class="type">World</span>!(<span class="type">Function</span>)</span><br><span class="line">_SwiftValue</span><br><span class="line">__NSCFNumber</span><br><span class="line">__NSArrayI</span><br><span class="line">[(<span class="number">3.0</span>, <span class="number">5.0</span>), <span class="number">0</span>, hello, __lldb_expr_36.<span class="type">Person</span>(name: <span class="string">&quot;jack&quot;</span>), <span class="operator">&lt;</span><span class="type">Swift</span>._SwiftDeferredNSArray <span class="number">0x60000398e7a0</span><span class="operator">&gt;</span>(</span><br><span class="line">a,</span><br><span class="line">b</span><br><span class="line">)</span><br><span class="line">, __lldb_expr_36.<span class="type">Movie</span>, <span class="operator">&lt;</span>__NSMallocBlock__: <span class="number">0x60000378dda0</span><span class="operator">&gt;</span>, (<span class="type">Function</span>), <span class="number">3</span>, <span class="operator">&lt;</span>__NSArrayI <span class="number">0x600003984f60</span><span class="operator">&gt;</span>(</span><br><span class="line">c,</span><br><span class="line">d</span><br><span class="line">)</span><br><span class="line">]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>可以看出<code>AnyObject</code>隐式转换了类型，对于<code>Tuple</code>、<code>struct</code>类型，OC并不存在或者定义不一样，所以保持swift的<code>值类型</code>，对于使用了<code>@conversion(block)</code>修饰一个闭包，被转换成了<code>__NSMallocBlock__</code>，真正转换成OC中的<code>block块</code>，如果把<code>@conversion(block)</code>去掉，会转换成一个<code>(Function)</code>，仅仅被当成普通函数。可以看使用<code>Any</code>的时候对比下。</p>
+<h2 id="AnyClass"><a href="#AnyClass" class="headerlink" title="AnyClass"></a>AnyClass</h2><p><code>AnyClass</code> 表示任意类的元类型，苹果官方文档：<code>public typealias AnyClass = AnyObject.Type</code> , 解释道：<code>/// The protocol to which all class types implicitly conform.</code>任意类的类型都隐式遵守这个协议.其中 <code>.Type</code>就是获得元类型的。注意如果某个变量或者常量的类型是<code>AnyClass</code>，你需要显示的转换成具体类型，然后再调用<code>init()</code>方法实例对象。参考：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/cfdd830f6cb6">swift根据类型（AnyClass）创建对象</a></p>
+<h2 id="相关文章推荐"><a href="#相关文章推荐" class="headerlink" title="相关文章推荐"></a>相关文章推荐</h2><p><a target="_blank" rel="noopener" href="https://swifter.tips/any-anyobject/">Any和AnyObject</a></p>
+<p><a target="_blank" rel="noopener" href="https://swifter.tips/self-anyclass/">AnyClass</a></p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/woodjobber" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2021 Woodjobber<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

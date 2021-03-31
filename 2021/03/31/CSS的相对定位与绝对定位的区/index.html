@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="CSS的相对定位与绝对定位的区别通常情况下，position属性默认是static，在正常的文档流中，静态定位的元素不受left,bottom,right,top属性的影响。
+position属性位置值：static、relative、fixed、absolute、sticky。必须先给元素指定定位"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Woodjobber"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="CSS的相对定位与绝对定位的区"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="CSS的相对定位与绝对定位的区别通常情况下，position属性默认是static，在正常的文档流中，静态定位的元素不受left,bottom,right,top属性的影响。
+position属性位置值：static、relative、fixed、absolute、sticky。必须先给元素指定定位"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="嘀咕嘀咕"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://yoursite.comhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="http://yoursite.comhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>CSS的相对定位与绝对定位的区 - 嘀咕嘀咕</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">啄木鸟</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woodjobber">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>CSS的相对定位与绝对定位的区</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2021-03-31
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h1 id="CSS的相对定位与绝对定位的区别"><a href="#CSS的相对定位与绝对定位的区别" class="headerlink" title="CSS的相对定位与绝对定位的区别"></a><code>CSS</code>的相对定位与绝对定位的区别</h1><p>通常情况下，<code>position</code>属性默认是<code>static</code>，在正常的文档流中，静态定位的元素不受<code>left</code>,<code>bottom</code>,<code>right</code>,<code>top</code>属性的影响。</p>
+<p><code>position</code>属性位置值：<code>static</code>、<code>relative</code>、<code>fixed</code>、<code>absolute</code>、<code>sticky</code>。必须先给元素指定定位类型，才能使用<code>left</code>,<code>bottom</code>,<code>right</code>,<code>top</code>，否则无效。</p>
+<p>在这5个位置值中，最难理解的是<code>relative</code>与<code>absolute</code>了。现在我们来看看他们之间的布局方式。</p>
+<p>对于<code>relative</code>：</p>
+<p>我们看看正常流文档的布局方式：</p>
+<p><img src="https://gitee.com/woodjobbeer/pics/raw/master/image-20210330113419634.png" alt="image-20210330113419634" style="zoom:25%;" /></p>
+<p><img src="https://gitee.com/woodjobbeer/pics/raw/master/image-20210330113443904.png" alt="image-20210330113443904" style="zoom:25%;" /></p>
+<p>然后我们对<code>position</code>设置<code>relative,left:50px</code></p>
+<p><img src="https://gitee.com/woodjobbeer/pics/raw/master/image-20210330115239226.png" alt="image-20210330115239226" style="zoom:25%;" /></p>
+<p><img src="https://gitee.com/woodjobbeer/pics/raw/master/image-20210330114040518.png" alt="image-20210330114040518" style="zoom:25%;" /></p>
+<p>这时我们发现第二个块针对它本身位置的起始点进行了一个偏移，但是它原来所占据的那个位置空间依然还在，即使我们把偏移量设置得再大一点，使它完全离开原来的位置，它原来位于文档流中的位置仍然会存在，不会被第三个块浮动过来填补掉。</p>
+<p>同时，它的偏移也不会把别的块从文档流中原来的位置挤开，如果有重叠的地方它会重叠在其它文档流元素之上，而不是把它们挤开，就像图中那样，它已经覆盖在了第三个块之上。</p>
+<p><strong>结论：<code>position:relative</code>,它的位置是相对于它正常的位置。设置相对放置的元素的<code>top</code>，<code>right</code>，<code>bottom</code>和<code>left</code>属性将导致其偏离正常位置进行调整，其他内容将不进行调整以适合元素留下的任何间隙。</strong></p>
+<p>再来看看<code>absolute</code>：</p>
+<p><img src="https://gitee.com/woodjobbeer/pics/raw/master/image-20210330115423362.png" alt="image-20210330115423362" style="zoom:25%;" /></p>
+<p><img src="https://gitee.com/woodjobbeer/pics/raw/master/image-20210330115448143.png" alt="image-20210330115448143" style="zoom:25%;" /></p>
+<p>被设置了绝对定位的元素，在文档流中是不占据空间的，如果某元素设置了绝对定位，那么它在文档流中的位置会被删除，那这个元素到哪去了呢？它浮了起来，其实设置了相对定位<code>relative</code>时也会让该 元素浮起来，但它们的不同点在于，相对对定位不会删除它本身在文档流中占据的那块空间，而绝对定位则会删除掉该元素在文档流中的位置，完全从文档流中抽了出来，我们可以通过<code>z-index</code>来设置它们的堆叠顺序 。</p>
+<p>那么绝对定位是如何定位的呢？首先，如果它的父元素设置了除<code>static</code>之外的<em>定位</em>，比如<code>position:relative</code>,或者<code>position:absolute</code>以及<code>position:fixed</code>，那么它就会相对于它的父元素来定位，位置通过<code>left</code> , <code>top</code> ,<code>right</code> ,<code>bottom</code>属性来规定，如果它的父元素没有设置定位，那么就得看它父元素的父元素是否有设置定位 ，如果还是没有就继续向更高层的祖先元素类推，总之它的定位就是相对于设置了除<code>static</code>定位之外的定位（比如<code>position:relative</code>）的第一个祖先元素，如果所有的祖先元素都没有以上三种定位中的其中一种定位，那么它就会相对于文档<code>body</code>来定位（并非窗口,相对于窗口定位的是<code>fixed</code>）。</p>
+<p><strong>结论：元素<code>position: absolute;</code>的位置相对于最近的祖先位置（而不是相对于视口的位置，如固定位置）。</strong></p>
+<p><strong>然而; 如果绝对定位的元素没有祖先，它将使用文档正文，并随页面滚动一起移动。</strong></p>
+<p><strong>注意：</strong> “定位”元素是位置除以外的任何元素 <code>static</code>。</p>
+<p>文字太多，看下面图：</p>
+<p><img src="https://gitee.com/woodjobbeer/pics/raw/master/image-20210330123333351.png" alt="image-20210330123333351" style="zoom:50%;" /></p>
+<p><strong>结论：元素<code>position: absolute;</code>的位置相对于最近的祖先位置，且祖先的元素一定要设置<code>position</code>不为static的值才能作为参照物，进行<code>left</code>,<code>top</code>,<code>right</code>,<code>bottom</code>调整。</strong></p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/woodjobber" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2021 Woodjobber<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
