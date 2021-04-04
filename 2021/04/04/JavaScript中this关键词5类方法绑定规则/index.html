@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="JavaScript中this关键词5种方法绑定规则JavaScript的this关键字是该语言最难掌握的方面之一。但是对于编写更高级的JavaScript代码至关重要。
+在JavaScript中，this关键字使我们能够：
+
+在不同的执行上下文中重用函数。这意味着，一个函数定义一次，可以使用thi"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Woodjobber"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="JavaScript中this关键词5类方法绑定规则"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="JavaScript中this关键词5种方法绑定规则JavaScript的this关键字是该语言最难掌握的方面之一。但是对于编写更高级的JavaScript代码至关重要。
+在JavaScript中，this关键字使我们能够：
+
+在不同的执行上下文中重用函数。这意味着，一个函数定义一次，可以使用thi"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Woodjobber"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://yoursite.comhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="http://yoursite.comhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>JavaScript中this关键词5类方法绑定规则 - Woodjobber</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">啄木鸟</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woodjobber">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>JavaScript中this关键词5类方法绑定规则</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2021-04-04
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p><img src="https://gitee.com/woodjobbeer/picgo/raw/master/pics/20210404124706.png" alt="cover_freecodecamp"></p>
+<h1 id="JavaScript中this关键词5种方法绑定规则"><a href="#JavaScript中this关键词5种方法绑定规则" class="headerlink" title="JavaScript中this关键词5种方法绑定规则"></a>JavaScript中<strong>this</strong>关键词5种方法绑定规则</h1><p>JavaScript的<strong><code>this</code></strong>关键字是该语言最难掌握的方面之一。但是对于编写更高级的JavaScript代码至关重要。</p>
+<p>在JavaScript中，<strong><code>this</code></strong>关键字使我们能够：</p>
+<ul>
+<li>在不同的执行上下文中重用函数。这意味着，一个函数定义一次，可以使用<code>this</code>关键字为不同的对象调用。</li>
+<li>调用方法时，在当前执行上下文中标识对象。</li>
+</ul>
+<p><strong><code>this</code></strong>关键字与JavaScript函数紧密相关。当涉及到这一点时，基本的事情就是了解在何处调用函数。因为直到调用该函数，我们才知道<code>this</code>关键字中的内容。 它的用法可以分为五个不同方面绑定。在本文中，我们将通过示例了解所有五个方面。</p>
+<h2 id="首先，什么是绑定？"><a href="#首先，什么是绑定？" class="headerlink" title="首先，什么是绑定？"></a>首先，什么是绑定？</h2><p>在JavaScript中，词法环境是物理编写代码的地方。在下面的示例中，变量名按词法位于函数<code>sayName()</code>中。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayName</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> name = <span class="string">&#x27;someName&#x27;</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;The name is, &#x27;</span>, name);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>执行上下文是指当前正在运行的代码以及有助于运行它的所有其他内容。可能有许多词汇环境可用，但是当前正在运行的词汇环境由<strong>执行上下文</strong>管理。</p>
+<p><img src="https://gitee.com/woodjobbeer/picgo/raw/master/pics/20210404125210.gif" alt="lexical"></p>
+<p>每个执行上下文都包含一个<strong>环境记录</strong>。当JavaScript引擎执行代码时，变量和函数名将添加到环境记录中。</p>
+<p>这种现象在JavaScript中称为<strong>Binding</strong>。绑定有助于将标识符（变量，函数名称）与<code>this</code>关键字关联用于<strong>执行上下文</strong>。</p>
+<p>如果您现在觉得有点难以理解，请不要担心。随着我们的进行，您将更好地掌握。</p>
+<h2 id="规则1：JavaScript隐式绑定的工作方式"><a href="#规则1：JavaScript隐式绑定的工作方式" class="headerlink" title="规则1：JavaScript隐式绑定的工作方式"></a>规则1：JavaScript隐式绑定的工作方式</h2><p>隐式绑定涵盖了处理<code>this</code>关键字的大多数用例。</p>
+<p>在隐式绑定中，您需要在调用时检查与函数相邻的<code>dot(.)</code>运算符左侧的内容。这确定了要绑定的内容。</p>
+<p>让我们看一个例子，以更好地理解它。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> user = &#123;</span><br><span class="line">    name: <span class="string">&#x27;Tapas&#x27;</span>,</span><br><span class="line">    address: <span class="string">&#x27;freecodecamp&#x27;</span>,</span><br><span class="line">    getName: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="built_in">this</span>.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">user.getName();</span><br></pre></td></tr></table></figure>
+<p>在这里，这绑定到<code>user</code>对象。我们知道这一点是因为在函数<code>getName()</code>旁边的<code>dot(.)</code>运算符的左侧，我们看到了用户对象。因此，<code>this.name</code>将在控制台中打印<code>Tapas</code>。</p>
+<p>让我们看另一个例子，以更好地理解这个概念：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">decorateLogName</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">      obj.logName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">          <span class="built_in">console</span>.log(<span class="built_in">this</span>.name);</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> tom = &#123;</span><br><span class="line">      name: <span class="string">&#x27;Tom&#x27;</span>,</span><br><span class="line">      age: <span class="number">7</span></span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> jerry = &#123;</span><br><span class="line">      name: <span class="string">&#x27;jerry&#x27;</span>,</span><br><span class="line">      age: <span class="number">3</span></span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  decorateLogName(tom);</span><br><span class="line">  decorateLogName(jerry);</span><br><span class="line"></span><br><span class="line">  tom.logName();</span><br><span class="line">  jerry.logName();</span><br></pre></td></tr></table></figure>
+<p>在此示例中，我们有两个对象，<code>tom</code>和<code>jerry</code>。我们通过附加一个名为<code>logName()</code>的方法来修饰（增强）这些对象。 请注意，当我们调用<code>tom.logName()</code>时，<code>tom</code>对象位于与函数<code>logName()</code>相邻的<code>dot(.)</code>运算符的左侧。因此，这绑定到了<code>tom</code>对象，并记录了<code>tom</code>值（此名称在此处等于<code>tom</code>）。调用<code>jerry.logName()</code>时，也是如此。</p>
+<h2 id="规则2：JavaScript显式绑定的工作方式"><a href="#规则2：JavaScript显式绑定的工作方式" class="headerlink" title="规则2：JavaScript显式绑定的工作方式"></a>规则2：JavaScript显式绑定的工作方式</h2><p>我们已经看到JavaScript创建了执行我们编写的代码的环境。它负责在创建阶段为变量，函数，对象等创建内存。最后，它在执行阶段执行代码。这种特殊的环境称为<strong>执行上下文</strong>。</p>
+<p>JavaScript应用程序中可以有许多这样的环境（执行上下文）。每个执行上下文都独立于其他上下文运行。</p>
+<p>但是有时，我们可能想在另一个执行上下文中使用东西。这就是显式绑定起作用的地方。</p>
+<p>在显式绑定中，当函数在对象的执行上下文之外时，我们可以使用该对象来调用函数。</p>
+<p>有三种非常特殊的方法，分别是<code>call()</code>，<code>apply()</code>和<code>bind()</code>，它们可以帮助我们实现显式绑定。</p>
+<h3 id="JavaScript中-的call-方法的工作方式"><a href="#JavaScript中-的call-方法的工作方式" class="headerlink" title="JavaScript中 的call()方法的工作方式"></a>JavaScript中 的<code>call()</code>方法的工作方式</h3><p>使用<code>call()</code>方法，必须将调用函数的上下文作为参数传递给<code>call()</code>。让我们用一个例子看看它是如何工作的：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> getName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(<span class="built_in">this</span>.name);</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">let</span> user = &#123;</span><br><span class="line">   name: <span class="string">&#x27;Tapas&#x27;</span>,</span><br><span class="line">   address: <span class="string">&#x27;Freecodecamp&#x27;</span>  </span><br><span class="line"> &#125;;</span><br><span class="line"></span><br><span class="line">getName.call(user);</span><br></pre></td></tr></table></figure>
+<p>在这里，<code>call()</code>方法是在名为<code>getName()</code>的函数上调用的。 <code>getName()</code>函数仅仅记录<code>this.name</code>。但是，这是什么？这取决于传递给<code>call()</code>方法的内容。 在这里，这将绑定到<code>user</code>对象，因为我们已经将<code>user</code>作为参数传递给<code>call()</code>方法。因此，<code>this.name</code>应该记录<code>user</code>对象（即<code>Tapas</code>）的<code>name</code>属性的值。</p>
+<p>在上面的示例中，我们仅将一个参数传递给<code>call()</code>。但是我们也可以将多个参数传递给<code>call()</code>，如下所示：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> getName = <span class="function"><span class="keyword">function</span>(<span class="params">hobby1, hobby2</span>) </span>&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(<span class="built_in">this</span>.name + <span class="string">&#x27; likes &#x27;</span> + hobby1 + <span class="string">&#x27; , &#x27;</span> + hobby2);</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> user = &#123;</span><br><span class="line">   name: <span class="string">&#x27;Tapas&#x27;</span>,</span><br><span class="line">   address: <span class="string">&#x27;Bangalore&#x27;</span>  </span><br><span class="line"> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> hobbies = [<span class="string">&#x27;Swimming&#x27;</span>, <span class="string">&#x27;Blogging&#x27;</span>];</span><br><span class="line"> </span><br><span class="line">getName.call(user, hobbies[<span class="number">0</span>], hobbies[<span class="number">1</span>]);</span><br></pre></td></tr></table></figure>
+<p>在这里，我们已经将多个参数传递给<code>call()</code>方法。第一个参数必须是必须使用该函数调用的对象上下文。其他参数可能只是要使用的值。</p>
+<p>在这里，我将<code>Swimming</code>和<code>Blogging</code>作为两个参数传递给<code>getName()</code>函数。</p>
+<p>您在这里注意到痛点了吗？如果是<code>call()</code>，则必须逐个传递参数-这不是一种明智的处理方式！这就是我们的下一个方法<code>apply()</code>出现在其中的地方。</p>
+<h3 id="JavaScript中的-apply-方法的工作方式"><a href="#JavaScript中的-apply-方法的工作方式" class="headerlink" title="JavaScript中的 apply()方法的工作方式"></a>JavaScript中的 <code>apply()</code>方法的工作方式</h3><p>这种将参数传递给<code>call()</code>方法的方法很忙，可以通过另一个名为<code>apply()</code>的替代方法来解决。它与<code>call()</code>完全相同，但允许您更方便地传递参数。看一看：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> getName = <span class="function"><span class="keyword">function</span>(<span class="params">hobby1, hobby2</span>) </span>&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(<span class="built_in">this</span>.name + <span class="string">&#x27; likes &#x27;</span> + hobby1 + <span class="string">&#x27; , &#x27;</span> + hobby2);</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">let</span> user = &#123;</span><br><span class="line">   name: <span class="string">&#x27;Tapas&#x27;</span>,</span><br><span class="line">   address: <span class="string">&#x27;Bangalore&#x27;</span>  </span><br><span class="line"> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> hobbies = [<span class="string">&#x27;Swimming&#x27;</span>, <span class="string">&#x27;Blogging&#x27;</span>];</span><br><span class="line"> </span><br><span class="line">getName.apply(user, hobbies);</span><br></pre></td></tr></table></figure>
+<p>在这里，我们能够传递一个参数数组，这比一个一个地传递参数要方便得多。</p>
+<p>提示：当您仅要传递一个值参数或没有值参数时，请使用<code>call()</code>。当您有多个要传递的值参数时，请使用<code>apply()</code>。</p>
+<h3 id="JavaScript中的-bind-方法的工作方式"><a href="#JavaScript中的-bind-方法的工作方式" class="headerlink" title="JavaScript中的 bind()方法的工作方式"></a>JavaScript中的 <code>bind()</code>方法的工作方式</h3><p>bind()方法类似于call()方法，但有一个区别。与直接调用该函数的call()方法不同，bind()返回一个全新的函数，而我们可以调用它。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> getName = <span class="function"><span class="keyword">function</span>(<span class="params">hobby1, hobby2</span>) </span>&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(<span class="built_in">this</span>.name + <span class="string">&#x27; likes &#x27;</span> + hobby1 + <span class="string">&#x27; , &#x27;</span> + hobby2);</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> user = &#123;</span><br><span class="line">   name: <span class="string">&#x27;Tapas&#x27;</span>,</span><br><span class="line">   address: <span class="string">&#x27;Bangalore&#x27;</span>  </span><br><span class="line"> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> hobbies = [<span class="string">&#x27;Swimming&#x27;</span>, <span class="string">&#x27;Blogging&#x27;</span>];</span><br><span class="line"><span class="keyword">let</span> newFn = getName.bind(user, hobbies[<span class="number">0</span>], hobbies[<span class="number">1</span>]); </span><br><span class="line"></span><br><span class="line">newFn();</span><br></pre></td></tr></table></figure>
+<p>在这里，<code>getName.bind()</code>不会直接调用函数<code>getName()</code>。它返回一个新函数<code>newFn</code>，我们可以将其作为<code>newFn()</code>调用。</p>
+<h2 id="规则3：JavaScript中的new绑定"><a href="#规则3：JavaScript中的new绑定" class="headerlink" title="规则3：JavaScript中的new绑定"></a>规则3：JavaScript中的<code>new</code>绑定</h2><p><code>new</code>关键字用于根据构造函数创建对象。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> Cartoon = <span class="function"><span class="keyword">function</span>(<span class="params">name, character</span>) </span>&#123;</span><br><span class="line">     <span class="built_in">this</span>.name = name;</span><br><span class="line">     <span class="built_in">this</span>.character = character;</span><br><span class="line">     <span class="built_in">this</span>.log = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">         <span class="built_in">console</span>.log(<span class="built_in">this</span>.name +  <span class="string">&#x27; is a &#x27;</span> + <span class="built_in">this</span>.character);</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;;</span><br></pre></td></tr></table></figure>
+<p>您可以使用<code>new</code>关键字创建对象，如下所示：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> tom = <span class="keyword">new</span> Cartoon(<span class="string">&#x27;Tom&#x27;</span>, <span class="string">&#x27;Cat&#x27;</span>);</span><br><span class="line"><span class="keyword">let</span> jerry = <span class="keyword">new</span> Cartoon(<span class="string">&#x27;Jerry&#x27;</span>, <span class="string">&#x27;Mouse&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<p>当使用<code>new</code>关键字调用函数时，JavaScript在函数内创建一个内部<code>this</code>对象（例如<code>this = &#123;&#125;</code>）。新创建的<code>this</code>绑定到使用<code>new</code>关键字创建的对象。</p>
+<p>听起来复杂吗？好吧，让我们分解一下。看看这一行，</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> tom = <span class="keyword">new</span> Cartoon(<span class="string">&#x27;Tom&#x27;</span>, <span class="string">&#x27;Cat&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<p>在这里，函数<code>Cartoon</code>是通过<code>new</code>关键字调用的。因此，内部创建的对象将绑定到此处要创建的新对象，即<code>tom</code>。</p>
+<p>构造函数<code>this</code></p>
+<p><img src="https://gitee.com/woodjobbeer/picgo/raw/master/pics/20210404125408.png" alt="image-20210404125407947" style="zoom: 33%;" /></p>
+<h2 id="规则4：JavaScript全局对象绑定"><a href="#规则4：JavaScript全局对象绑定" class="headerlink" title="规则4：JavaScript全局对象绑定"></a>规则4：JavaScript全局对象绑定</h2><p>您认为以下代码的输出是什么？这对这里有什么约束？</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> sayName = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.name);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.name = <span class="string">&#x27;Tapas&#x27;</span>;</span><br><span class="line">sayName();</span><br></pre></td></tr></table></figure>
+<p>如果<code>this</code>关键字不使用任何<code>隐式</code>，<code>显式</code>或<code>new</code>绑定解析，则<code>this</code>绑定到<code>window(global)</code>对象。</p>
+<p>但是有一个例外。 JavaScript严格模式不允许此默认绑定。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&quot;use strict&quot;</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myFunction</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在上述情况下，<code>this</code> 是 <code>undefined</code>。</p>
+<h2 id="规则5：JavaScript中的HTML事件元素绑定"><a href="#规则5：JavaScript中的HTML事件元素绑定" class="headerlink" title="规则5：JavaScript中的HTML事件元素绑定"></a>规则5：JavaScript中的HTML事件元素绑定</h2><p>在HTML事件处理程序中，<code>this</code>绑定到接收事件的HTML元素。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button onclick=<span class="string">&quot;console.log(this)&quot;</span>&gt;Click Me!&lt;/button&gt;</span><br></pre></td></tr></table></figure>
+<p>当您单击按钮时，这是控制台中的输出日志：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;&lt;button onclick=&#x27;console.log(this)&#x27;&gt;Click Me!&lt;/button&gt;&quot;</span></span><br></pre></td></tr></table></figure>
+<p>您可以使用<code>this</code>关键字更改按钮样式，如下所示：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button onclick=<span class="string">&quot;this.style.color=&#x27;teal&#x27;&quot;</span>&gt;Click Me!&lt;/button&gt;</span><br></pre></td></tr></table></figure>
+<p>但是请注意，在单击按钮时调用某个函数并在该函数内部使用<code>this</code>。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button onclick=<span class="string">&quot;changeColor()&quot;</span>&gt;Click Me!&lt;/button&gt;</span><br></pre></td></tr></table></figure>
+<p>和JavaScript代码：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">changeColor</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.style.color=<span class="string">&#x27;teal&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的代码无法正常工作。正如我们在<code>规则4</code>中所看到的，这里<code>this</code>将绑定到没有样式对象来设置颜色的全局对象（在“非严格”模式下）。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>对于隐式绑定，<code>this</code>将绑定到<code>dot(.)</code>运算符左侧的对象。</li>
+<li>在显式绑定的情况下，当函数位于对象的执行上下文之外时，我们可以使用该对象来调用函数。方法<code>call()</code>，<code>apply()</code>和<code>bind()</code>在这里起着重要作用。</li>
+<li>使用<code>new</code>关键字调用函数时，函数内的<code>this</code>关键字绑定到正在构造的新对象。</li>
+<li>当<code>this</code>关键字不使用任何<code>隐式</code>，<code>显式</code>或<code>new</code>绑定解析时，则将其绑定到<code>window(global）</code>对象。在JavaScript的严格模式下，<code>this</code>是<code>undefined</code>的。</li>
+<li>在HTML事件处理程序中，<code>this</code>绑定到接收事件的HTML元素</li>
+</ul>
+<p>在另外一种情况下，<code>this</code>的行为也有所不同，例如使用<code>ES6箭头函数</code>。我们将在以后的文章中对此进行介绍。</p>
+<p>希望您对本文有所了解。你也许也喜欢，</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.greenroots.info/javascript-hoisting-internals-ckbuavl6f00dllas14hl9ckq1">JavaScript Hoisting Internals</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.greenroots.info/understanding-javascript-execution-context-like-never-before-ckb8x246k00f56hs1nefzpysq">Understanding JavaScript Execution Context like never before</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.greenroots.info/javascript-scope-fundamentals-with-tom-and-jerry-ckcq723h4007vkxs18dxa97ae">JavaScript Scope Fundamentals with Tom and Jerry</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.greenroots.info/understanding-javascript-closure-with-example-ckd17fci5001iw5s1fju4f8r0">Understanding JavaScript Closure with example</a></li>
+</ul>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>以上翻译自<a target="_blank" rel="noopener" href="https://www.freecodecamp.org/news/javascript-this-keyword-binding-rules/">The JavaScript <code>this</code> Keyword + 5 Key Binding Rules Explained for JS Beginners</a></p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/woodjobber" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2021 Woodjobber
+                <!-- <a href="http://www.beian.miit.gov.cn/"  style="color:#f72b07" target="_blank">你自己的备案号</a> -->
+                <br>
+                </p>
+                <!--
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p> 
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+                -->
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
