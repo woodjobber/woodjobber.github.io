@@ -188,7 +188,7 @@
             <!-- Post Main Content -->
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <p><img src="https://gitee.com/woodjobbeer/picgo/raw/master/pics/20210404173016.png" alt="image-20210404173016225"></p>
-<h1 id="JavaScript提升内部"><a href="#JavaScript提升内部" class="headerlink" title="JavaScript提升内部"></a>JavaScript提升内部</h1><h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>在这篇文章中，我们将学习另一个称为Hoisting的基本JavaScript概念。</p>
+<h1 id="JavaScript提升内部"><a href="#JavaScript提升内部" class="headerlink" title="JavaScript提升内部"></a>JavaScript提升内部</h1><h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>在这篇文章中，我们将学习另一个称为<code>Hoisting</code>的基本JavaScript概念。</p>
 <p>由于本系列的重点是了解每个概念的基础知识和内在原理，因此我们将在这里尝试探索起重的内在原理，而不仅仅是刮擦表面。</p>
 <h2 id="到目前为止我们知道什么"><a href="#到目前为止我们知道什么" class="headerlink" title="到目前为止我们知道什么"></a>到目前为止我们知道什么</h2><p>以下是本系列最后几篇文章的回顾：</p>
 <ul>
@@ -196,9 +196,9 @@
 <li>每当运行JavaScript代码时，它都会创建一个称为执行上下文的东西。它有助于确定当前正在运行的代码，并有助于为其途中发现的每个函数和变量声明分配内存。</li>
 </ul>
 <blockquote>
-<p>在执行上下文中为函数和变量声明分配内存的机制称为提升（Hoisting）。</p>
+<p>在执行上下文中为函数和变量声明分配内存的机制称为提升（<code>Hoisting</code>）。</p>
 </blockquote>
-<h2 id="揭开一些神话的神秘面纱"><a href="#揭开一些神话的神秘面纱" class="headerlink" title="揭开一些神话的神秘面纱"></a>揭开一些神话的神秘面纱</h2><p>在这里实际发生的情况下，“<code>Hoisting</code>”一词令人困惑和误解。这就是为什么许多有关<code>Hoisting</code>的解释都集中在Hoisting变量和函数这一事实的原因之一。 用通俗的英语来说，“<code>Hoisting</code>”意思是用绳索和滑轮抬起（某种东西）。在某个时候，人们可能会开始相信，通过JavaScript引擎将事物（变量和函数）的位置上移实际上已经将其<code>Hoisting</code>。</p>
+<h2 id="揭开一些神话的神秘面纱"><a href="#揭开一些神话的神秘面纱" class="headerlink" title="揭开一些神话的神秘面纱"></a>揭开一些神话的神秘面纱</h2><p>在这里实际发生的情况下，“<code>Hoisting</code>”一词令人困惑和误解。这就是为什么许多有关<code>Hoisting</code>的解释都集中在<code>Hoisting</code>变量和函数这一事实的原因之一。 用通俗的英语来说，“<code>Hoisting</code>”意思是用绳索和滑轮抬起（某种东西）。在某个时候，人们可能会开始相信，通过JavaScript引擎将事物（变量和函数）的位置上移实际上已经将其<code>Hoisting</code>。</p>
 <p><img src="https://gitee.com/woodjobbeer/picgo/raw/master/pics/20210404181529.png" alt="image-20210404181529424" style="zoom:25%;" /></p>
 <p>嘿，放松，什么都没有发生！老实说，没有任何代码会被物理地吊起。这是关于如何在执行上下文的创建阶段为函数，变量声明分配内存的。</p>
 <p>我们将在后面的示例中看到这一点。</p>
@@ -212,7 +212,7 @@
 <li>创建阶段</li>
 <li>执行阶段</li>
 </ul>
-<p>在创建阶段，将为变量分配内存，并使用称为undefined的特殊值进行初始化。</p>
+<p>在创建阶段，将为变量分配内存，并使用称为<code>undefined</code>的特殊值进行初始化。</p>
 <blockquote>
 <p><code>undefined</code>的含义是，已声明变量，但未分配任何值。</p>
 </blockquote>
@@ -229,7 +229,7 @@
 <p>JavaScript语言中已经存在一些准则和检查，以防止在未意识到的情况下使用<code>Hoisting</code>的安全隐患。</p>
 <p>JavaScript仅提升声明，而不初始化。这样，下面的代码将被打破：</p>
 <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">test();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> test = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;I am being tested&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>由于将使用undefined的值提升和初始化测试声明，因此将引发以下错误。从来没有假设它是一个函数。实际上，它是作为变量提升而不是函数提升来的。</p>
+<p>由于将使用<code>undefined</code>的值提升和初始化测试声明，因此将引发以下错误。从来没有假设它是一个函数。实际上，它是作为变量提升而不是函数提升来的。</p>
 <p><img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1593055794499/CeH_Gx1w6.png?auto=compress" alt="hoisting_error_1.png"></p>
 <p>也可以提升<code>let</code>和<code>const</code>声明，但是它们不会像<code>var</code>一样初始化为<code>undefined</code>。请参阅此处的示例：</p>
 <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(foo);</span><br><span class="line"><span class="keyword">let</span> foo;</span><br></pre></td></tr></table></figure>
