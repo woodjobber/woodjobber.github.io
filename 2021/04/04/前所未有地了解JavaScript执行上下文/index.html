@@ -218,7 +218,7 @@
 <li><strong>执行上下文</strong>：这意味着当前正在运行的代码及其周围的所有内容都有助于运行它。可能有许多词法环境可用，但当前正在运行的词法环境由执行上下文管理。</li>
 </ul>
 <p>这是一个图片演示，解释了同样的情况，</p>
-<p><img src="https://gitee.com/woodjobbeer/picgo/raw/master/pics/20210404161039.gif" style="zoom: 100%" /></p>
+<p><img src="/download/tQOPPAOPu.gif" style="zoom: 100%" /></p>
 <h2 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h2><p>作为软件开发人员，我们喜欢（或希望）编写代码，以使其看起来不那么复杂，可以轻松维护，并遵循某些实践，标准等。以类似的方式，Execution Context允许JavaScript引擎维护代码更好地管理复杂性。</p>
 <p>每当代码在JavaScript中运行时，它就会在执行上下文中运行，该上下文是您的代码以及JavaScript引擎完成<a target="_blank" rel="noopener" href="https://blog.greenroots.info/javascript-interpreted-or-compiled-the-debate-is-over-ckb092cv302mtl6s17t14hq1j">这儿</a>所有工作（标记化，解析，代码生成等）的组合。</p>
 <h2 id="全局执行上下文（GEC）"><a href="#全局执行上下文（GEC）" class="headerlink" title="全局执行上下文（GEC）"></a>全局执行上下文（GEC）</h2><p>每当JavaScript代码首次运行时，它都会创建一个称为全局执行上下文（GEC）的东西。即使在.js文件中没有一行代码并进行加载时，也将创建“全局执行上下文”。</p>
@@ -245,7 +245,7 @@
 <h2 id="具有变量和函数"><a href="#具有变量和函数" class="headerlink" title="具有变量和函数"></a>具有变量和函数</h2><p>现在让我们向JavaScript文件中添加一些代码。我们添加了一个名为<code>name</code>的变量，并使用值<code>Tom</code>对其进行了初始化。我们添加了一个名为<code>sayName()</code>的函数，用于记录名称。</p>
 <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">&#x27;Tom&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayName</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">this</span>.name); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>您认为现在全局执行上下文会发生什么？让我们首先在下面的图片演示中看到它，然后进行解释。</p>
-<p><img src="https://gitee.com/woodjobbeer/picgo/raw/master/pics/20210404161317.gif" style="zoom:100%"/></p>
+<p><img src="/download/CAhuK5gWl.gif" style="zoom:100%"/></p>
 <p>全局执行上下文阶段</p>
 <ul>
 <li><p>在全局执行上下文中创建了两个阶段，即创建和执行阶段。</p>
@@ -271,7 +271,7 @@
 <li>函数执行上下文经历相同的阶段，即创建和执行。需要注意的重要一点是，函数执行上下文可以访问一个称为参数(<code>arguments</code>)的特殊变量，这是调用函数时传递给函数的参数。在我们的示例中，我们不传递任何参数。因此，长度为0。</li>
 <li>一个函数可以调用另一个函数，也可以调用另一个，依此类推。对于每个函数调用，将创建一个函数执行上下文。我们将在即将发表的Scope文章中详细介绍这个概念。</li>
 </ul>
-<h2 id="那么，全局和函数执行上下文之间有什么区别？"><a href="#那么，全局和函数执行上下文之间有什么区别？" class="headerlink" title="那么，全局和函数执行上下文之间有什么区别？"></a>那么，全局和函数执行上下文之间有什么区别？</h2><p><img src="/Users/chengbin/Library/Application%20Support/typora-user-images/image-20210404164626206.png" alt="image-20210404164626206"></p>
+<h2 id="那么，全局和函数执行上下文之间有什么区别？"><a href="#那么，全局和函数执行上下文之间有什么区别？" class="headerlink" title="那么，全局和函数执行上下文之间有什么区别？"></a>那么，全局和函数执行上下文之间有什么区别？</h2><p><img src="https://gitee.com/woodjobbeer/picgo/raw/master/pics/20210404165148.png" alt="image-20210404164626206"></p>
 <h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>全局和函数执行上下文以及阶段（创建和执行）是需要熟悉的重要概念。这将有助于轻松理解范围，异步功能，闭合，提升等。我们将在本系列的后续文章中详细介绍每个概念。</p>
 <p>如果您是执行上下文概念的新手，请在学习此概念的同时并排使用<a target="_blank" rel="noopener" href="https://ui.dev/">JavaScript Visualizer Too</a>l。编写小函数，用户定义的变量，执行函数，并查看工具如何在执行上下文的各个阶段使用它。</p>
 <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>翻译来自<a target="_blank" rel="noopener" href="https://blog.greenroots.info/understanding-javascript-execution-context-like-never-before-ckb8x246k00f56hs1nefzpysq">Understanding JavaScript Execution Context like never before</a></p>
