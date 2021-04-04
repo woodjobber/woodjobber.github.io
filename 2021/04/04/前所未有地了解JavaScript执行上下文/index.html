@@ -271,12 +271,12 @@
 <li>函数执行上下文经历相同的阶段，即创建和执行。需要注意的重要一点是，函数执行上下文可以访问一个称为参数(<code>arguments</code>)的特殊变量，这是调用函数时传递给函数的参数。在我们的示例中，我们不传递任何参数。因此，长度为0。</li>
 <li>一个函数可以调用另一个函数，也可以调用另一个，依此类推。对于每个函数调用，将创建一个函数执行上下文。我们将在即将发表的Scope文章中详细介绍这个概念。</li>
 </ul>
-<h2 id="那么，全局和函数执行上下文之间有什么区别？"><a href="#那么，全局和函数执行上下文之间有什么区别？" class="headerlink" title="那么，全局和函数执行上下文之间有什么区别？"></a>那么，全局和函数执行上下文之间有什么区别？</h2><p><a target="_blank" rel="noopener" href="https://www.notion.so/997e4da3e1d448eeb3aae0bf500b00f7">全局和函数执行上下文</a></p>
-<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>全局和函数执行上下文以及阶段（创建和执行）是需要熟悉的重要概念。这将有助于轻松理解范围，异步功能，闭合，提升等。我们将在本系列的后续文章中详细介绍每个概念。</p>
-<p>如果您是执行上下文概念的新手，请在学习此概念的同时并排使用<a target="_blank" rel="noopener" href="https://ui.dev/">JavaScript Visualizer Too</a>l。编写小函数，用户定义的变量，执行函数，并查看工具如何在执行上下文的各个阶段使用它。</p>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>翻译来自<a target="_blank" rel="noopener" href="https://blog.greenroots.info/understanding-javascript-execution-context-like-never-before-ckb8x246k00f56hs1nefzpysq">Understanding JavaScript Execution Context like never before</a></p>
+<h2 id="那么，全局和函数执行上下文之间有什么区别？"><a href="#那么，全局和函数执行上下文之间有什么区别？" class="headerlink" title="那么，全局和函数执行上下文之间有什么区别？"></a>那么，全局和函数执行上下文之间有什么区别？</h2><p>| 全局执行上下文                                          | 函数执行上下文                                               |<br>| ——————————————————- | ———————————————————— |<br>| 创建一个全局对象                                        | 不创建全局对象。它创建一个参数对象。                         |<br>| 创建一个对象，this                                      | 默认情况下，它指向Window对象（还有很多，我们将在以后的文章中看到）。 |<br>| 设置用于全局定义的变量和函数的存储空间                  | 设置函数中定义的变量和函数的存储空间。                       |<br>| 将任何函数声明放入内存时，为变量声明分配默认值undefined | 将任何函数声明放入内存时，为变量声明分配默认值undefined。此外，函数执行上下文会创建自己的执行堆栈。 |</p>
 </li>
 </ul>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>  全局和函数执行上下文以及阶段（创建和执行）是需要熟悉的重要概念。这将有助于轻松理解范围，异步功能，闭合，提升等。我们将在本系列的后续文章中详细介绍每个概念。</p>
+<p>  如果您是执行上下文概念的新手，请在学习此概念的同时并排使用<a target="_blank" rel="noopener" href="https://ui.dev/">JavaScript Visualizer Too</a>l。编写小函数，用户定义的变量，执行函数，并查看工具如何在执行上下文的各个阶段使用它。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>  翻译来自<a target="_blank" rel="noopener" href="https://blog.greenroots.info/understanding-javascript-execution-context-like-never-before-ckb8x246k00f56hs1nefzpysq">Understanding JavaScript Execution Context like never before</a></p>
 
 
                 
