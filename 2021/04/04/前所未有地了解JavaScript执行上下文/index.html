@@ -218,7 +218,7 @@
 <li><strong>执行上下文</strong>：这意味着当前正在运行的代码及其周围的所有内容都有助于运行它。可能有许多词法环境可用，但当前正在运行的词法环境由执行上下文管理。</li>
 </ul>
 <p>这是一个图片演示，解释了同样的情况，</p>
-<p><img src="https://gitee.com/woodjobbeer/picgo/raw/master/pics/20210404161039.gif" alt="lexical.gif"></p>
+<p><img src="https://gitee.com/woodjobbeer/picgo/raw/master/pics/20210404161039.gif" style="zoom: 100%" /></p>
 <h2 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h2><p>作为软件开发人员，我们喜欢（或希望）编写代码，以使其看起来不那么复杂，可以轻松维护，并遵循某些实践，标准等。以类似的方式，Execution Context允许JavaScript引擎维护代码更好地管理复杂性。</p>
 <p>每当代码在JavaScript中运行时，它就会在执行上下文中运行，该上下文是您的代码以及JavaScript引擎完成<a target="_blank" rel="noopener" href="https://blog.greenroots.info/javascript-interpreted-or-compiled-the-debate-is-over-ckb092cv302mtl6s17t14hq1j">这儿</a>所有工作（标记化，解析，代码生成等）的组合。</p>
 <h2 id="全局执行上下文（GEC）"><a href="#全局执行上下文（GEC）" class="headerlink" title="全局执行上下文（GEC）"></a>全局执行上下文（GEC）</h2><p>每当JavaScript代码首次运行时，它都会创建一个称为全局执行上下文（GEC）的东西。即使在.js文件中没有一行代码并进行加载时，也将创建“全局执行上下文”。</p>
@@ -245,7 +245,7 @@
 <h2 id="具有变量和函数"><a href="#具有变量和函数" class="headerlink" title="具有变量和函数"></a>具有变量和函数</h2><p>现在让我们向JavaScript文件中添加一些代码。我们添加了一个名为<code>name</code>的变量，并使用值<code>Tom</code>对其进行了初始化。我们添加了一个名为<code>sayName()</code>的函数，用于记录名称。</p>
 <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">&#x27;Tom&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayName</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">this</span>.name); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>您认为现在全局执行上下文会发生什么？让我们首先在下面的图片演示中看到它，然后进行解释。</p>
-<p><img src="https://gitee.com/woodjobbeer/picgo/raw/master/pics/20210404161317.gif" alt="CAhuK5gWl"></p>
+<p><img src="https://gitee.com/woodjobbeer/picgo/raw/master/pics/20210404161317.gif" style="zoom:100%"/></p>
 <p>全局执行上下文阶段</p>
 <ul>
 <li><p>在全局执行上下文中创建了两个阶段，即创建和执行阶段。</p>
@@ -265,7 +265,7 @@
 <p>让我们看下面的例子来理解这个概念。在此示例中，我们有一个名为<code>name</code>的全局变量，该变量被分配一个值<code>Tom</code>。我们有一个名为<code>tom()</code>的函数，该函数记录名称。最后，我们调用函数<code>tom()</code>。</p>
 <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">&#x27;Tom&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">tom</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="built_in">this</span>.name + <span class="string">&#x27; Runs&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Invoke the function tom()</span></span><br><span class="line">tom();</span><br></pre></td></tr></table></figure>
 <p>请参见下面的演示，以一起了解函数执行上下文和全局执行上下文。</p>
-<p><img src="https://gitee.com/woodjobbeer/picgo/raw/master/pics/20210404161428.gif" alt="mE1WCYtrt"></p>
+<p><img src="https://gitee.com/woodjobbeer/picgo/raw/master/pics/20210404161428.gif" style="zoom:100%"/></p>
 <ul>
 <li>正如我们在上面看到的，全局执行上下文的创建阶段将创建<code>window</code>对象，<code>this</code>变量以及该变量和函数的内存。变量使用称为<code>undefined</code>的特殊值初始化。<code>执行</code>阶段将值分配给变量并调用函数。接下来，创建函数<code>执行上下文</code>。</li>
 <li>函数执行上下文经历相同的阶段，即创建和执行。需要注意的重要一点是，函数执行上下文可以访问一个称为参数(<code>arguments</code>)的特殊变量，这是调用函数时传递给函数的参数。在我们的示例中，我们不传递任何参数。因此，长度为0。</li>
