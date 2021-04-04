@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="引言执行上下文是JavaScript编程语言的最基本部分。在这篇文章中，我们将深入研究该概念以发现它，这不仅是基础知识，而且易于理解。
+从学习角度的理解和复杂性来看，在许多情况下，执行上下文的概念已被投影为高级JavaScript概念。是的，如果不按正确的顺序学习适当的例子，这听起来可能很复杂。每个"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Woodjobber"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="前所未有地了解JavaScript执行上下文"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="引言执行上下文是JavaScript编程语言的最基本部分。在这篇文章中，我们将深入研究该概念以发现它，这不仅是基础知识，而且易于理解。
+从学习角度的理解和复杂性来看，在许多情况下，执行上下文的概念已被投影为高级JavaScript概念。是的，如果不按正确的顺序学习适当的例子，这听起来可能很复杂。每个"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Woodjobber"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://yoursite.comhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="http://yoursite.comhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>前所未有地了解JavaScript执行上下文 - Woodjobber</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">啄木鸟</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woodjobber">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>前所未有地了解JavaScript执行上下文</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2021-04-04
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p><img src="https://gitee.com/woodjobbeer/picgo/raw/master/pics/20210404160725.png" alt="image-20210404160631081"></p>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>执行上下文是JavaScript编程语言的最基本部分。在这篇文章中，我们将深入研究该概念以发现它，这不仅是基础知识，而且易于理解。</p>
+<p>从学习角度的理解和复杂性来看，在许多情况下，执行上下文的概念已被投影为高级JavaScript概念。是的，如果不按正确的顺序学习适当的例子，这听起来可能很复杂。每个JavaScript初学者都需要理解为什么对这个基本概念充满信心很重要。</p>
+<p>这是JavaScript的第二篇文章：<a target="_blank" rel="noopener" href="https://hashnode.com/series/javascript-cracking-nuts-ckawn7vc5007dl6s164ogqplz">Cracking the Nuts</a>。如果您尚未阅读有关JavaScript解释或编译的第一篇文章，请尝试一下。希望您喜欢阅读。</p>
+<blockquote>
+<p>如果您还没有阅读该系列的上一篇文章，则可以在这里找到：<a target="_blank" rel="noopener" href="https://blog.greenroots.info/javascript-interpreted-or-compiled-the-debate-is-over-ckb092cv302mtl6s17t14hq1j">JavaScript Interpreted or Compiled? The Debate is Over</a>。</p>
+</blockquote>
+<h2 id="为什么这个概念很重要？"><a href="#为什么这个概念很重要？" class="headerlink" title="为什么这个概念很重要？"></a>为什么这个概念很重要？</h2><p>一项研究说，人脑也许能够在其记忆中保存与整个Internet一样多的信息！但是我们不应该认为这是理所当然的，对吧？因此，一个有效的问题可能是，为什么这个概念对学习很重要？</p>
+<p>JavaScript的执行上下文是正确理解许多其他基本概念的基础。通常，在以下每个概念中我们都会发现很多误解，只是因为我们误解了执行上下文背后的事实。</p>
+<ul>
+<li>Hoisting</li>
+<li>Scope</li>
+<li>Scope Chain</li>
+<li>Closure</li>
+<li>Event Loop</li>
+</ul>
+<p>作为JavaScript开发人员，一旦我们对这些概念有了很好的了解，便可以实现以下目标：</p>
+<ul>
+<li>🐛 Introduce lesser bugs into the Source Code.</li>
+<li>👩‍🏫 Become a boss in doing great Code Reviews.</li>
+<li>👀 Great eyes for Debugging.</li>
+<li>🏭 Easier ways to tackle Production Issues.</li>
+</ul>
+<h2 id="不要不知所措"><a href="#不要不知所措" class="headerlink" title="不要不知所措"></a>不要不知所措</h2><p>鼓励一下，如果您是新手，不要被淹没。</p>
+<p><img src="https://gitee.com/woodjobbeer/picgo/raw/master/pics/20210404160720.gif" alt="overwhelmed.gif"></p>
+<p>大多数编程语言都充满了令人沮丧的沉重行话。这些重磅词背后的基本概念大部分是简单明了且易于掌握的。以下是一些对这篇文章有用的信息：</p>
+<ul>
+<li><strong>解析器</strong>: 解析器或语法解析器是一个程序，可逐行读取您的代码，并了解其如何适合编程语言定义的语法以及其预期功能。正如您在我之前的文章中所看到的那样，JavaScript语法解析器采用令牌数组并创建抽象语法树（AST），以便可以对其进行进一步处理以创建可执行代码。</li>
+<li><strong>词汇环境</strong>：词法一词的意思是与某事有关。词法环境是指代码的物理编写方式和位置。让我们以这段代码为例，</li>
+</ul>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayName</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name = <span class="string">&#x27;someName&#x27;</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;The name is, &#x27;</span>, name);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>在上面的代码中，变量名称按词法位于函数<code>sayName</code>中。现在，这一点很重要，请注意，您的程序无法在计算机上按原样运行。它必须由编译器翻译。因此，编译器必须知道并映射正确地附着词法上的内容。它也必须是有意义和有效的。 请注意;通常，您的代码中将有许多词法环境。但是不会立即执行所有环境。我们很快就会看到。</p>
+<ul>
+<li><strong>上下文</strong>：可视化上下文一词的最好方法是，围绕您感兴趣的主题（或我们正在讨论的“上下文”）围成一个圆圈（或包装）。上下文是围绕特定事件，情况等的一组情况或事实。</li>
+<li><strong>执行上下文</strong>：这意味着当前正在运行的代码及其周围的所有内容都有助于运行它。可能有许多词法环境可用，但当前正在运行的词法环境由执行上下文管理。</li>
+</ul>
+<p>这是一个图片演示，解释了同样的情况，</p>
+<p><img src="https://gitee.com/woodjobbeer/picgo/raw/master/pics/20210404161039.gif" alt="lexical.gif"></p>
+<h2 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h2><p>作为软件开发人员，我们喜欢（或希望）编写代码，以使其看起来不那么复杂，可以轻松维护，并遵循某些实践，标准等。以类似的方式，Execution Context允许JavaScript引擎维护代码更好地管理复杂性。</p>
+<p>每当代码在JavaScript中运行时，它就会在执行上下文中运行，该上下文是您的代码以及JavaScript引擎完成<a target="_blank" rel="noopener" href="https://blog.greenroots.info/javascript-interpreted-or-compiled-the-debate-is-over-ckb092cv302mtl6s17t14hq1j">这儿</a>所有工作（标记化，解析，代码生成等）的组合。</p>
+<h2 id="全局执行上下文（GEC）"><a href="#全局执行上下文（GEC）" class="headerlink" title="全局执行上下文（GEC）"></a>全局执行上下文（GEC）</h2><p>每当JavaScript代码首次运行时，它都会创建一个称为全局执行上下文（GEC）的东西。即使在.js文件中没有一行代码并进行加载时，也将创建“全局执行上下文”。</p>
+<blockquote>
+<p>全局（Global）一词在这里是什么意思？函数外的所有事物都是全局的。</p>
+</blockquote>
+<p>全局执行上下文也称为基本执行上下文。它为您创建了两个特殊的东西，</p>
+<ul>
+<li>对于浏览器，全局对象被称为<code>window</code>。如果您在服务器端使用JavaScript，例如<code>NodeJs</code>，则它将不是<code>window</code>对象。</li>
+<li>全局变量被称为<code>this</code>。</li>
+</ul>
+<p>让我们通过几个示例来了解全局执行上下文，</p>
+<h2 id="加载空脚本"><a href="#加载空脚本" class="headerlink" title="加载空脚本"></a>加载空脚本</h2><p>为了简单起见，让我们提取一个名为index.js的空JavaScript文件，然后将其导入名为index.html的html文件中，如下所示：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">   &lt;head&gt;</span><br><span class="line">     &lt;script src=<span class="string">&quot;index.js&quot;</span> /&gt;</span><br><span class="line">   &lt;/head&gt;</span><br><span class="line"></span><br><span class="line">   &lt;body&gt;</span><br><span class="line">     I have loaded an empty Script</span><br><span class="line">   &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>在浏览器中加载此HTML后，将不会加载和执行任何JavaScript代码。如果您打开调试器控制台（Chrome浏览器为F12）并键入<code>this</code>，您将已经看到为您创建的称为<code>this</code>的东西。</p>
+<p><img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1591255177028/a9BvMY1oL.png?auto=compress" alt="this.png"></p>
+<p>您也可以尝试输入window，这一次您将打印出window对象的值，</p>
+<p><img src="https://gitee.com/woodjobbeer/picgo/raw/master/pics/20210404161149.png" alt="window.png"></p>
+<p>您是否注意到，窗口对象和this变量在全局执行上下文中都相等？试试这个来确认</p>
+<p><img src="https://gitee.com/woodjobbeer/picgo/raw/master/pics/20210404161203.png" alt="this_equal_true.png"></p>
+<p>在没有任何JavaScript代码的情况下创建全局执行上下文时，可以将其可视化为：</p>
+<p><img src="https://gitee.com/woodjobbeer/picgo/raw/master/pics/20210404161215.png" alt="gec.png"></p>
+<p><a target="_blank" rel="noopener" href="http://xn--tylermcginnis-he5uj694b.com/javascript-visualizer创建">使用tylermcginnis.com/javascript-visualizer创建</a></p>
+<h2 id="具有变量和函数"><a href="#具有变量和函数" class="headerlink" title="具有变量和函数"></a>具有变量和函数</h2><p>现在让我们向JavaScript文件中添加一些代码。我们添加了一个名为<code>name</code>的变量，并使用值<code>Tom</code>对其进行了初始化。我们添加了一个名为<code>sayName()</code>的函数，用于记录名称。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">&#x27;Tom&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayName</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">this</span>.name); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>您认为现在全局执行上下文会发生什么？让我们首先在下面的图片演示中看到它，然后进行解释。</p>
+<p><img src="https://gitee.com/woodjobbeer/picgo/raw/master/pics/20210404161317.gif" alt="CAhuK5gWl"></p>
+<p>全局执行上下文阶段</p>
+<ul>
+<li><p>在全局执行上下文中创建了两个阶段，即创建和执行阶段。</p>
+</li>
+<li><p>创建阶段：</p>
+<ul>
+<li>在此阶段，将创建两个特殊的东西，即用于浏览器的全局对象<code>window</code>和一个名为<code>this</code>的变量。</li>
+<li>为变量<code>name</code>和函数<code>sayName()</code>分配内存</li>
+<li>变量<code>name</code>由称为undefined的特殊值初始化。函数<code>sayName()</code>被直接放置到内存中。我们将在即将到来的帖子中看到有关此概念的更多信息，该概念称为<code>提升</code>(<code>hoisting</code>)</li>
+</ul>
+</li>
+<li><p>执行阶段：</p>
+<ul>
+<li>在此阶段，实际代码执行开始。对于上面的示例，唯一发生的是将值<code>Tom</code>分配给变量<code>name</code>。请注意，尽管已定义函数<code>sayName()</code>，但我们并未调用它。因此，该功能将不会执行。在下一部分中，我们将学习功能执行。</li>
+</ul>
+<h2 id="函数执行上下文（FEC）"><a href="#函数执行上下文（FEC）" class="headerlink" title="函数执行上下文（FEC）"></a>函数执行上下文（FEC）</h2><p>调用函数时会创建一个函数执行上下文。</p>
+<p>让我们看下面的例子来理解这个概念。在此示例中，我们有一个名为<code>name</code>的全局变量，该变量被分配一个值<code>Tom</code>。我们有一个名为<code>tom()</code>的函数，该函数记录名称。最后，我们调用函数<code>tom()</code>。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">&#x27;Tom&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">tom</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="built_in">this</span>.name + <span class="string">&#x27; Runs&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Invoke the function tom()</span></span><br><span class="line">tom();</span><br></pre></td></tr></table></figure>
+<p>请参见下面的演示，以一起了解函数执行上下文和全局执行上下文。</p>
+<p><img src="https://gitee.com/woodjobbeer/picgo/raw/master/pics/20210404161428.gif" alt="mE1WCYtrt"></p>
+<ul>
+<li>正如我们在上面看到的，全局执行上下文的创建阶段将创建<code>window</code>对象，<code>this</code>变量以及该变量和函数的内存。变量使用称为<code>undefined</code>的特殊值初始化。<code>执行</code>阶段将值分配给变量并调用函数。接下来，创建函数<code>执行上下文</code>。</li>
+<li>函数执行上下文经历相同的阶段，即创建和执行。需要注意的重要一点是，函数执行上下文可以访问一个称为参数(<code>arguments</code>)的特殊变量，这是调用函数时传递给函数的参数。在我们的示例中，我们不传递任何参数。因此，长度为0。</li>
+<li>一个函数可以调用另一个函数，也可以调用另一个，依此类推。对于每个函数调用，将创建一个函数执行上下文。我们将在即将发表的Scope文章中详细介绍这个概念。</li>
+</ul>
+<h2 id="那么，全局和函数执行上下文之间有什么区别？"><a href="#那么，全局和函数执行上下文之间有什么区别？" class="headerlink" title="那么，全局和函数执行上下文之间有什么区别？"></a>那么，全局和函数执行上下文之间有什么区别？</h2><p><a target="_blank" rel="noopener" href="https://www.notion.so/997e4da3e1d448eeb3aae0bf500b00f7">全局和函数执行上下文</a></p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>全局和函数执行上下文以及阶段（创建和执行）是需要熟悉的重要概念。这将有助于轻松理解范围，异步功能，闭合，提升等。我们将在本系列的后续文章中详细介绍每个概念。</p>
+<p>如果您是执行上下文概念的新手，请在学习此概念的同时并排使用<a target="_blank" rel="noopener" href="https://ui.dev/">JavaScript Visualizer Too</a>l。编写小函数，用户定义的变量，执行函数，并查看工具如何在执行上下文的各个阶段使用它。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>翻译来自<a target="_blank" rel="noopener" href="https://blog.greenroots.info/understanding-javascript-execution-context-like-never-before-ckb8x246k00f56hs1nefzpysq">Understanding JavaScript Execution Context like never before</a></p>
+</li>
+</ul>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/woodjobber" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2021 Woodjobber
+                <!-- <a href="http://www.beian.miit.gov.cn/"  style="color:#f72b07" target="_blank">你自己的备案号</a> -->
+                <br>
+                </p>
+                <!--
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p> 
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+                -->
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
