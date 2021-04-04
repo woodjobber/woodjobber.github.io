@@ -209,7 +209,7 @@
 <p>大多数编程语言都充满了令人沮丧的沉重行话。这些重磅词背后的基本概念大部分是简单明了且易于掌握的。以下是一些对这篇文章有用的信息：</p>
 <ul>
 <li><strong>解析器</strong>: 解析器或语法解析器是一个程序，可逐行读取您的代码，并了解其如何适合编程语言定义的语法以及其预期功能。正如您在我之前的文章中所看到的那样，JavaScript语法解析器采用令牌数组并创建抽象语法树（AST），以便可以对其进行进一步处理以创建可执行代码。</li>
-<li><strong>词汇环境</strong>：词法一词的意思是与某事有关。词法环境是指代码的物理编写方式和位置。让我们以这段代码为例，</li>
+<li><strong>词法环境</strong>：词法一词的意思是与某事有关。词法环境是指代码的物理编写方式和位置。让我们以这段代码为例，</li>
 </ul>
 <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayName</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name = <span class="string">&#x27;someName&#x27;</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;The name is, &#x27;</span>, name);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 <p>在上面的代码中，变量名称按词法位于函数<code>sayName</code>中。现在，这一点很重要，请注意，您的程序无法在计算机上按原样运行。它必须由编译器翻译。因此，编译器必须知道并映射正确地附着词法上的内容。它也必须是有意义和有效的。 请注意;通常，您的代码中将有许多词法环境。但是不会立即执行所有环境。我们很快就会看到。</p>
@@ -219,8 +219,8 @@
 </ul>
 <p>这是一个图片演示，解释了同样的情况，</p>
 <p><img src="/download/tQOPPAOPu.gif" style="zoom: 100%" /></p>
-<h2 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h2><p>作为软件开发人员，我们喜欢（或希望）编写代码，以使其看起来不那么复杂，可以轻松维护，并遵循某些实践，标准等。以类似的方式，Execution Context允许JavaScript引擎维护代码更好地管理复杂性。</p>
-<p>每当代码在JavaScript中运行时，它就会在执行上下文中运行，该上下文是您的代码以及JavaScript引擎完成<a target="_blank" rel="noopener" href="https://blog.greenroots.info/javascript-interpreted-or-compiled-the-debate-is-over-ckb092cv302mtl6s17t14hq1j">这儿</a>所有工作（标记化，解析，代码生成等）的组合。</p>
+<h2 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h2><p>作为软件开发人员，我们喜欢（或希望）编写代码，以使其看起来不那么复杂，可以轻松维护，并遵循某些实践，标准等。以类似的方式，执行上下文允许JavaScript引擎维护代码更好地管理复杂性。</p>
+<p>每当代码在JavaScript中运行时，它就会在执行上下文中运行，该上下文是你的代码以及JavaScript引擎完成<a target="_blank" rel="noopener" href="https://blog.greenroots.info/javascript-interpreted-or-compiled-the-debate-is-over-ckb092cv302mtl6s17t14hq1j">这儿</a>所有工作（标记化，解析，代码生成等）的组合。</p>
 <h2 id="全局执行上下文（GEC）"><a href="#全局执行上下文（GEC）" class="headerlink" title="全局执行上下文（GEC）"></a>全局执行上下文（GEC）</h2><p>每当JavaScript代码首次运行时，它都会创建一个称为全局执行上下文（GEC）的东西。即使在.js文件中没有一行代码并进行加载时，也将创建“全局执行上下文”。</p>
 <blockquote>
 <p>全局（Global）一词在这里是什么意思？函数外的所有事物都是全局的。</p>
@@ -254,7 +254,7 @@
 <ul>
 <li>在此阶段，将创建两个特殊的东西，即用于浏览器的全局对象<code>window</code>和一个名为<code>this</code>的变量。</li>
 <li>为变量<code>name</code>和函数<code>sayName()</code>分配内存</li>
-<li>变量<code>name</code>由称为undefined的特殊值初始化。函数<code>sayName()</code>被直接放置到内存中。我们将在即将到来的帖子中看到有关此概念的更多信息，该概念称为<code>提升</code>(<code>hoisting</code>)</li>
+<li>变量<code>name</code>由称为<code>undefined</code>的特殊值初始化。函数<code>sayName()</code>被直接放置到内存中。我们将在即将到来的文章中看到有关此概念的更多信息，该概念称为<code>提升</code>(<code>hoisting</code>)</li>
 </ul>
 </li>
 <li><p>执行阶段：</p>
