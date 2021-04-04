@@ -13,7 +13,11 @@
     
 
     
-        <meta name="description" content="JavaScript提升内部"/>
+        <meta name="description" content="JavaScript提升内部引言在这篇文章中，我们将学习另一个称为Hoisting的基本JavaScript概念。
+由于本系列的重点是了解每个概念的基础知识和内在原理，因此我们将在这里尝试探索起重的内在原理，而不仅仅是刮擦表面。
+到目前为止我们知道什么以下是本系列最后几篇文章的回顾：
+
+在JavaS"/>
     
 
     <!--Author-->
@@ -28,7 +32,11 @@
 
     <!--Open Graph Description-->
     
-        <meta property="og:description" content="JavaScript提升内部"/>
+        <meta property="og:description" content="JavaScript提升内部引言在这篇文章中，我们将学习另一个称为Hoisting的基本JavaScript概念。
+由于本系列的重点是了解每个概念的基础知识和内在原理，因此我们将在这里尝试探索起重的内在原理，而不仅仅是刮擦表面。
+到目前为止我们知道什么以下是本系列最后几篇文章的回顾：
+
+在JavaS"/>
     
 
     <!--Open Graph Site Name-->
@@ -180,7 +188,56 @@
             <!-- Post Main Content -->
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <p><img src="https://gitee.com/woodjobbeer/picgo/raw/master/pics/20210404173016.png" alt="image-20210404173016225"></p>
-<h1 id="JavaScript提升内部"><a href="#JavaScript提升内部" class="headerlink" title="JavaScript提升内部"></a>JavaScript提升内部</h1>
+<h1 id="JavaScript提升内部"><a href="#JavaScript提升内部" class="headerlink" title="JavaScript提升内部"></a>JavaScript提升内部</h1><h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>在这篇文章中，我们将学习另一个称为Hoisting的基本JavaScript概念。</p>
+<p>由于本系列的重点是了解每个概念的基础知识和内在原理，因此我们将在这里尝试探索起重的内在原理，而不仅仅是刮擦表面。</p>
+<h2 id="到目前为止我们知道什么"><a href="#到目前为止我们知道什么" class="headerlink" title="到目前为止我们知道什么"></a>到目前为止我们知道什么</h2><p>以下是本系列最后几篇文章的回顾：</p>
+<ul>
+<li>在JavaScript中，源代码通常要经过几个阶段才能最终执行。这些阶段是标记化，解析和代码生成。</li>
+<li>每当运行JavaScript代码时，它都会创建一个称为执行上下文的东西。它有助于确定当前正在运行的代码，并有助于为其途中发现的每个函数和变量声明分配内存。</li>
+</ul>
+<blockquote>
+<p>在执行上下文中为函数和变量声明分配内存的机制称为提升（Hoisting）。</p>
+</blockquote>
+<h2 id="揭开一些神话的神秘面纱"><a href="#揭开一些神话的神秘面纱" class="headerlink" title="揭开一些神话的神秘面纱"></a>揭开一些神话的神秘面纱</h2><p>在这里实际发生的情况下，“<code>Hoisting</code>”一词令人困惑和误解。这就是为什么许多有关<code>Hoisting</code>的解释都集中在Hoisting变量和函数这一事实的原因之一。 用通俗的英语来说，“<code>Hoisting</code>”意思是用绳索和滑轮抬起（某种东西）。在某个时候，人们可能会开始相信，通过JavaScript引擎将事物（变量和函数）的位置上移实际上已经将其<code>Hoisting</code>。</p>
+<p><img src="https://gitee.com/woodjobbeer/picgo/raw/master/pics/20210404181529.png" alt="image-20210404181529424" style="zoom:25%;" /></p>
+<p>嘿，放松，什么都没有发生！老实说，没有任何代码会被物理地吊起。这是关于如何在执行上下文的创建阶段为函数，变量声明分配内存的。</p>
+<p>我们将在后面的示例中看到这一点。</p>
+<h2 id="变量提升（Variable-Hoisting）"><a href="#变量提升（Variable-Hoisting）" class="headerlink" title="变量提升（Variable Hoisting）"></a>变量提升（Variable Hoisting）</h2><p>考虑以下简单代码：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;name is &#x27;</span>, name);</span><br><span class="line"><span class="keyword">var</span> name;</span><br><span class="line">name = <span class="string">&#x27;tom&#x27;</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;name is &#x27;</span>, name);</span><br></pre></td></tr></table></figure>
+<p>上面的代码的预期输出是什么？好吧，这很容易：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">name is  <span class="literal">undefined</span></span><br><span class="line">name is  tom</span><br></pre></td></tr></table></figure>
+<p>问题是，为什么？我们早在变量<code>name</code>称被声明之前就已经对其进行了访问。像许多其他编程语言一样，我们应该有一个错误。但是，相反，我们得到<code>undefined</code>。</p>
+<p>在JavaScript中，代码执行上下文分为两个阶段：</p>
+<ul>
+<li>创建阶段</li>
+<li>执行阶段</li>
+</ul>
+<p>在创建阶段，将为变量分配内存，并使用称为undefined的特殊值进行初始化。</p>
+<blockquote>
+<p><code>undefined</code>的含义是，已声明变量，但未分配任何值。</p>
+</blockquote>
+<p>在上面的代码示例中，创建阶段通过为其分配内存来声明变量<code>name</code>并将其标记为<code>undefined</code>。这种现象在JavaScript中称为“<code>变量提升</code>”。</p>
+<p>在执行阶段的后期，将值<code>tom</code>分配给变量<code>name</code>，并执行控制台日志语句。当创建阶段发生在执行阶段之前时，我们发现变量已经声明，即在内存中创建（就像在提升中一样）。</p>
+<h2 id="函数提升（Function-Hoisting）"><a href="#函数提升（Function-Hoisting）" class="headerlink" title="函数提升（Function Hoisting）"></a>函数提升（Function Hoisting）</h2><p>函数提升遵循与可变提升类似的路径。在函数提升中，JavaScript 执行环境的创建阶段将函数声明放入内存中。让我们通过以下示例了解它：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Invoke a function, chase()</span></span><br><span class="line">chase();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Declare a function, chase()</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">chase</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;Tom chases Jerry!&#x27;</span>);</span><br><span class="line">  <span class="comment">// Invoke a function, caught();</span></span><br><span class="line">  caught();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Declare a function, caught()</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">caught</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;Tom caught Jerry :(&#x27;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行上下文的创建阶段为函数<code>chase()</code>创建一个内存，并且整个函数声明都已放入该内存中。在执行阶段，可以执行存储器的全部功能。</p>
+<p>众所周知，函数创建自己的执行上下文（函数执行环境），其机制在函数执行上下文中保持不变。首先，为<code>catch()</code>创建一个内存，并将声明放入其中。以后执行它。</p>
+<p><img src="/download/mLNMsYR07.gif" style="zoom: 100%"/></p>
+<h2 id="提升规则（Hoisting-Rules）"><a href="#提升规则（Hoisting-Rules）" class="headerlink" title="提升规则（Hoisting Rules）"></a>提升规则（Hoisting Rules）</h2><blockquote>
+<p>一般的经验法则是，始终在代码中使用函数，变量等之前定义它们。这可以帮助避免意外情况和调试噩梦。</p>
+</blockquote>
+<p>JavaScript语言中已经存在一些准则和检查，以防止在未意识到的情况下使用<code>Hoisting</code>的安全隐患。</p>
+<p>JavaScript仅提升声明，而不初始化。这样，下面的代码将被打破：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">test();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> test = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;I am being tested&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>由于将使用undefined的值提升和初始化测试声明，因此将引发以下错误。从来没有假设它是一个函数。实际上，它是作为变量提升而不是函数提升来的。</p>
+<p><img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1593055794499/CeH_Gx1w6.png?auto=compress" alt="hoisting_error_1.png"></p>
+<p>也可以提升<code>let</code>和<code>const</code>声明，但是它们不会像<code>var</code>一样初始化为<code>undefined</code>。请参阅此处的示例：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(foo);</span><br><span class="line"><span class="keyword">let</span> foo;</span><br></pre></td></tr></table></figure>
+<p>这将引发以下错误，但是使用<code>var</code>可以正常运行：</p>
+<p><img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1593056191691/t9mVGjVM2.png?auto=compress" alt="hoisting_error_2.png"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>如上所述，在代码中使用函数，变量等之前，请务必先定义它们。不要太依赖提升。同时，重要的是要理解为什么某些事物以特定方式表现的基本概念。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>翻译自<a target="_blank" rel="noopener" href="https://blog.greenroots.info/javascript-hoisting-internals-ckbuavl6f00dllas14hl9ckq1">JavaScript Hoisting Internals</a></p>
+
 
                 
             </div>
