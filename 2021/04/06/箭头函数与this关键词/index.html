@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="JavaScript:箭头函数与this关键词那么，到底是什么=&amp;gt;？你可能在这里或那里见过这些奇怪的埃及象形文字符号，尤其是在别人的代码中，你正在调试一个“this”关键字问题。经过一个小时的修补，你现在漫游谷歌搜索栏和跟踪堆栈溢出。听起来熟悉吗？
+让我一起来讨论3个主题：
+
+“this”关键"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Woodjobber"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="JavaScript:箭头函数与this关键词"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="JavaScript:箭头函数与this关键词那么，到底是什么=&amp;gt;？你可能在这里或那里见过这些奇怪的埃及象形文字符号，尤其是在别人的代码中，你正在调试一个“this”关键字问题。经过一个小时的修补，你现在漫游谷歌搜索栏和跟踪堆栈溢出。听起来熟悉吗？
+让我一起来讨论3个主题：
+
+“this”关键"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Woodjobber"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://yoursite.comhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="http://yoursite.comhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>JavaScript:箭头函数与this关键词 - Woodjobber</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">啄木鸟</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/woodjobber">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>JavaScript:箭头函数与this关键词</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2021-04-06
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h1 id="JavaScript-箭头函数与this关键词"><a href="#JavaScript-箭头函数与this关键词" class="headerlink" title="JavaScript:箭头函数与this关键词"></a>JavaScript:箭头函数与this关键词</h1><h2 id="那么，到底是什么-gt-？"><a href="#那么，到底是什么-gt-？" class="headerlink" title="那么，到底是什么=&gt;？"></a>那么，到底是什么=&gt;？</h2><p>你可能在这里或那里见过这些奇怪的埃及象形文字符号，尤其是在别人的代码中，你正在调试一个“this”关键字问题。经过一个小时的修补，你现在漫游谷歌搜索栏和跟踪堆栈溢出。听起来熟悉吗？</p>
+<p>让我一起来讨论3个主题：</p>
+<ul>
+<li>“this”关键字与=&gt;的关系</li>
+<li>如何将函数从ES5迁移到ES6。</li>
+<li>使用=&gt;时要注意的重要技巧。</li>
+</ul>
+<h2 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h2><p>创建箭头函数是为了简化函数的作用域，并使用“this”关键字更加简单。它们使用看起来像箭头的=&gt;；语法。尽管我不认为它需要节食，但人们称之为“胖箭头”（Ruby爱好者可能更了解它为“散列火箭”）——这是需要注意的。</p>
+<h2 id="“this”关键字与箭头函数的关系"><a href="#“this”关键字与箭头函数的关系" class="headerlink" title="“this”关键字与箭头函数的关系"></a>“this”关键字与箭头函数的关系</h2><p>在深入研究ES6 arrow函数之前，首先要清楚地了解ES5代码中的“this”绑定到什么</p>
+<p>如果“this”关键字位于对象的方法（属于对象的函数）中，那么它将指什么？</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Test it here: &lt;https://jsfiddle.net/maasha/x7wz1686/&gt;</span></span><br><span class="line"><span class="keyword">var</span> bunny = &#123;</span><br><span class="line">  name: <span class="string">&#x27;Usagi&#x27;</span>,</span><br><span class="line">  showName: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="built_in">this</span>.name);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">bunny.showName(); <span class="comment">// Usagi</span></span><br></pre></td></tr></table></figure>
+<p>对的！它指的是那个物体。我们稍后再讨论原因。</p>
+<p>如果’this’关键字在方法的函数中呢？</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Test it here: &lt;https://jsfiddle.net/maasha/z65c1znn/&gt;</span></span><br><span class="line"><span class="keyword">var</span> bunny = &#123;</span><br><span class="line">  name: <span class="string">&#x27;Usagi&#x27;</span>,</span><br><span class="line">  tasks: [<span class="string">&#x27;transform&#x27;</span>, <span class="string">&#x27;eat cake&#x27;</span>, <span class="string">&#x27;blow kisses&#x27;</span>],</span><br><span class="line">  showTasks: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.tasks.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">task</span>) </span>&#123;</span><br><span class="line">      alert(<span class="built_in">this</span>.name + <span class="string">&quot; wants to &quot;</span> + task);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">bunny.showTasks();</span><br><span class="line"><span class="comment">// [object Window] wants to transform</span></span><br><span class="line"><span class="comment">// [object Window] wants to eat cake</span></span><br><span class="line"><span class="comment">// [object Window] wants to blow kisses</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// please note, in jsfiddle the [object Window] is named &#x27;result&#x27; within inner functions of methods.</span></span><br></pre></td></tr></table></figure>
+<p>你得到了什么？等等，我们的bunny怎么了…？</p>
+<p>啊，你认为‘this’是指方法的内部函数吗？</p>
+<p>也许是对象本身？</p>
+<p>你这么想是明智的，但事实并非如此。请允许我教你老程序员曾经教过我的：</p>
+<p>老程序员：“啊，是的，这个代码很强,认为’this’关键字绑定到函数确实是可行的，但事实是，’this’现在已经超出了范围…它现在属于…”。他停顿了一下，好像经历了内心的混乱，“window对象”</p>
+<p>没错。事情就是这样发生的。</p>
+<p>“this”为什么绑定到window对象？<strong>因为“this”总是引用它所在的函数的所有者，在这种情况下，因为它现在超出了范围，所以是window/global对象。</strong></p>
+<p>当它位于对象的方法内部时，函数的所有者就是该对象。因此，“this”关键字被绑定到该对象。然而，当它在一个函数内部时，不管是独立的还是在另一个方法中，它总是引用window/global对象。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Test it here: &lt;https://jsfiddle.net/maasha/g278gjtn/&gt;</span></span><br><span class="line"><span class="keyword">var</span> standAloneFunc = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  alert(<span class="built_in">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">standAloneFunc(); <span class="comment">// [object Window]</span></span><br></pre></td></tr></table></figure>
+<p>但是为什么…？</p>
+<p>这被称为Java脚本怪癖，这意味着Java脚本中发生的事情并不完全简单，而且它的工作方式不符合您的想法。开发人员也认为这是一个糟糕的设计选择，他们现在正在用ES6的箭头函数来重新定义它。</p>
+<p>在我们继续之前，重要的是要了解程序员解决ES5代码中“this”问题的两种灵巧方法，特别是因为您将继续在ES5中运行一段时间（并非所有浏览器都已完全迁移到ES6）：</p>
+<ol>
+<li>在方法的内部函数之外创建一个变量。现在，“for Each”方法获得了对“this”的访问，从而获得对象的属性及其值。这是因为“This”存储在变量中，而它仍然在对象的直接方法“showTasks”的范围内。</li>
+</ol>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Test it here: &lt;https://jsfiddle.net/maasha/3mu5r6vg/&gt;</span></span><br><span class="line"><span class="keyword">var</span> bunny = &#123;</span><br><span class="line">  name: <span class="string">&#x27;Usagi&#x27;</span>,</span><br><span class="line">  tasks: [<span class="string">&#x27;transform&#x27;</span>, <span class="string">&#x27;eat cake&#x27;</span>, <span class="string">&#x27;blow kisses&#x27;</span>],</span><br><span class="line">  showTasks: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> _this = <span class="built_in">this</span>;</span><br><span class="line">    <span class="built_in">this</span>.tasks.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">task</span>) </span>&#123;</span><br><span class="line">      alert(_this.name + <span class="string">&quot; wants to &quot;</span> + task); </span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">bunny.showTasks();</span><br><span class="line"><span class="comment">// Usagi wants to transform</span></span><br><span class="line"><span class="comment">// Usagi wants to eat cake</span></span><br><span class="line"><span class="comment">// Usagi wants to blow kisses</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>使用bind将引用该方法的“this”关键字附加到该方法的内部函数。</li>
+</ol>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Test it here: &lt;https://jsfiddle.net/maasha/u8ybgwd5/&gt;</span></span><br><span class="line"><span class="keyword">var</span> bunny = &#123;</span><br><span class="line">  name: <span class="string">&#x27;Usagi&#x27;</span>,</span><br><span class="line">  tasks: [<span class="string">&#x27;transform&#x27;</span>, <span class="string">&#x27;eat cake&#x27;</span>, <span class="string">&#x27;blow kisses&#x27;</span>],</span><br><span class="line">  showTasks: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.tasks.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">task</span>) </span>&#123;</span><br><span class="line">      alert(<span class="built_in">this</span>.name + <span class="string">&quot; wants to &quot;</span> + task);</span><br><span class="line">    &#125;.bind(<span class="built_in">this</span>));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">bunny.showTasks();</span><br><span class="line"><span class="comment">// Usagi wants to transform</span></span><br><span class="line"><span class="comment">// Usagi wants to eat cake</span></span><br><span class="line"><span class="comment">// Usagi wants to blow kisses</span></span><br></pre></td></tr></table></figure>
+<p>现在介绍…箭头函数！处理“this”问题从未如此简单和直接！简单的ES6解决方式:</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Test it here: &lt;https://jsfiddle.net/maasha/che8m4c1/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> bunny = &#123;</span><br><span class="line">  name: <span class="string">&#x27;Usagi&#x27;</span>,</span><br><span class="line">  tasks: [<span class="string">&#x27;transform&#x27;</span>, <span class="string">&#x27;eat cake&#x27;</span>, <span class="string">&#x27;blow kisses&#x27;</span>],</span><br><span class="line">  <span class="function"><span class="title">showTasks</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.tasks.forEach(<span class="function">(<span class="params">task</span>) =&gt;</span> &#123;</span><br><span class="line">      alert(<span class="built_in">this</span>.name + <span class="string">&quot; wants to &quot;</span> + task);</span><br><span class="line">    &#125;);  </span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">bunny.showTasks();</span><br><span class="line"><span class="comment">// Usagi wants to transform</span></span><br><span class="line"><span class="comment">// Usagi wants to eat cake</span></span><br><span class="line"><span class="comment">// Usagi wants to blow kisses</span></span><br></pre></td></tr></table></figure>
+<p>在ES5中，“this”指的是函数的父级，而在ES6中，箭头函数使用词法范围-“this”指的是它当前的周围范围，而不是其他范围。因此，内部函数只知道绑定到内部函数，而不绑定到对象的方法或对象本身。</p>
+<h2 id="如何将函数从ES5迁移到ES6。"><a href="#如何将函数从ES5迁移到ES6。" class="headerlink" title="如何将函数从ES5迁移到ES6。"></a>如何将函数从ES5迁移到ES6。</h2><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Before</span></span><br><span class="line"><span class="keyword">let</span> bunny = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;Usagi&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// After</span></span><br><span class="line"><span class="keyword">let</span> bunny = <span class="function">(<span class="params">name</span>) =&gt;</span> <span class="built_in">console</span>.log(<span class="string">&quot;Usagi&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Step 1: Remove the word ‘function’.</span></span><br><span class="line"><span class="keyword">let</span> bunny = (name) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;Usagi&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Step 2: If your code is less than a line, remove brackets and place on one line.</span></span><br><span class="line"><span class="keyword">let</span> bunny = (name) <span class="built_in">console</span>.log(<span class="string">&quot;Usagi&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Step 3. Add the hash rocket.</span></span><br><span class="line"><span class="keyword">let</span> bunny = <span class="function">(<span class="params">name</span>) =&gt;</span> <span class="built_in">console</span>.log(<span class="string">&quot;Usagi&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>你做到了！干得好！很简单吧？下面是更多利用胖-瘦箭头的例子，让你的眼睛习惯：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// #1 ES6: if passing one argument you don&#x27;t need to include parenthesis around parameter.</span></span><br><span class="line"><span class="keyword">var</span> kitty = <span class="function"><span class="params">name</span> =&gt;</span> name;</span><br><span class="line"></span><br><span class="line"><span class="comment">// same as ES5:</span></span><br><span class="line"><span class="keyword">var</span> kitty = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> name;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// #2 ES6: no parameters example.</span></span><br><span class="line"><span class="keyword">var</span> add = <span class="function">() =&gt;</span> <span class="number">3</span> + <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// same as ES5:</span></span><br><span class="line"><span class="keyword">var</span> add = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">3</span> + <span class="number">2</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// #3 ES6: if function consists of more than one line or is an object, include braces.</span></span><br><span class="line"><span class="keyword">var</span> objLiteral = <span class="function"><span class="params">age</span> =&gt;</span> (&#123; <span class="attr">name</span>: <span class="string">&quot;Usagi&quot;</span>, <span class="attr">age</span>: age &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// same as ES5:</span></span><br><span class="line"><span class="keyword">var</span> objLiteral = <span class="function"><span class="keyword">function</span>(<span class="params">age</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    name: <span class="string">&quot;Usagi&quot;</span>,</span><br><span class="line">    age: age</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// #4 ES6: promises and callbacks.</span></span><br><span class="line">asyncfn1().then(<span class="function">() =&gt;</span> asyncfn2()).then(<span class="function">() =&gt;</span> asyncfn3()).then(<span class="function">() =&gt;</span> done());</span><br><span class="line"></span><br><span class="line"><span class="comment">// same as ES5:</span></span><br><span class="line">asyncfn1().then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  asyncfn2();</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  asyncfn3();</span><br><span class="line">&#125;).done(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  done();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>使用箭头函数时要注意的重要技巧</p>
+<p>如果将“new”关键字与=&gt;函数一起使用，则会引发错误。箭头函数不能用作构造函数-普通函数通过属性原型和内部方法[[Construct]]支持“new”。箭头函数两者都不使用，因此新的（（）=&gt;{}）抛出一个错误。</p>
+<p>需要考虑的其他问题：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Line breaks are not allowed and will throw a syntax error</span></span><br><span class="line"><span class="keyword">let</span> func1 = (x, y)</span><br><span class="line">=&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;; <span class="comment">// SyntaxError</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// But line breaks inside of a parameter definition is ok</span></span><br><span class="line"><span class="keyword">let</span> func6 = (</span><br><span class="line">  x,</span><br><span class="line">  y</span><br><span class="line">) =&gt; &#123;</span><br><span class="line">	<span class="keyword">return</span> x + y;</span><br><span class="line">&#125;; <span class="comment">// Works!</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// If an expression is the body of an arrow function, you don’t need braces:</span></span><br><span class="line">asyncFunc.then(<span class="function"><span class="params">x</span> =&gt;</span> <span class="built_in">console</span>.log(x));</span><br><span class="line"></span><br><span class="line"><span class="comment">// However, statements have to be put in braces:</span></span><br><span class="line">asyncFunc.catch(<span class="function"><span class="params">x</span> =&gt;</span> &#123; <span class="keyword">throw</span> x &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Arrow functions are always anonymous which means you can’t just declare them as in ES5:</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">squirrelLife</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// play with squirrels, burrow for food, etc.</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Must be inside of a variable or object property to work properly:</span></span><br><span class="line"><span class="keyword">let</span> squirrelLife = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// play with squirrels, burrow for food, etc.</span></span><br><span class="line">  <span class="comment">// another super squirrel action.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>恭喜！你已经通过了学习ES6的Dope Way第二部分，现在你有了箭头函数知识的基础，它给’this’带来的词汇上的好处，同时你也学到了一些Java脚本的技巧！:)</p>
+<p>保持你的智慧更新喜欢和跟随更多学习ES6的方式即将到来的！</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>翻译自<a target="_blank" rel="noopener" href="https://www.freecodecamp.org/news/learn-es6-the-dope-way-part-ii-arrow-functions-and-the-this-keyword-381ac7a32881/">Learn ES6 The Dope Way Part II: Arrow functions and the ‘this’ keyword</a></p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/woodjobber" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2021 Woodjobber
+                <!-- <a href="http://www.beian.miit.gov.cn/"  style="color:#f72b07" target="_blank">你自己的备案号</a> -->
+                <br>
+                </p>
+                <!--
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p> 
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+                -->
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
